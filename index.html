@@ -1,0 +1,1552 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Joy Caroline · Mis XV · 20 Febrero 2027</title>
+<!-- Preview al compartir (WhatsApp, Instagram, etc.) -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://xv-joy-caroline-joya.vercel.app/">
+<meta property="og:title" content="&#161;Mis XV A&ntilde;os! · Joy Caroline · 20 Febrero 2027">
+<meta property="og:description" content="&#161;Est&aacute;s invitado a celebrar un d&iacute;a muy especial! Toca para abrir tu invitaci&oacute;n.">
+<meta property="og:image" content="https://xv-joy-caroline-joya.vercel.app/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="&#161;Mis XV A&ntilde;os! · Joy Caroline · 20 Febrero 2027">
+<meta name="twitter:description" content="&#161;Est&aacute;s invitado a celebrar un d&iacute;a muy especial! Toca para abrir tu invitaci&oacute;n.">
+<meta name="twitter:image" content="https://xv-joy-caroline-joya.vercel.app/og.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{font-family:'Montserrat',sans-serif;font-weight:500;color:#2D1B0E;background:#FFFFFF;overflow-x:hidden;}
+:root{
+  --bg:#FFFFFF;
+  --pink:#B76E79;
+  --pink-mid:#CC949B;
+  --pink-light:#E7C9CD;
+  --pink-pale:#FAF1F2;
+  --gold:#996515;
+  --dark:#2D1B0E;
+  --text:#5C3020;
+  --border-pink:rgba(183,110,121,0.30);
+  --gold-bright:#D4AF37;
+  --champagne:#F7E7CE;
+  --silver:#C0C0C0;
+}
+
+/* ── HERO: foto de fondo ── */
+.hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 24%;z-index:0;}
+.hero-veil{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(255,255,255,0.62) 0%,rgba(255,255,255,0.22) 16%,rgba(255,255,255,0.10) 34%,rgba(255,255,255,0.55) 54%,rgba(255,255,255,0.90) 68%,rgba(255,255,255,0.97) 82%,var(--bg) 100%);}
+.hero-veil2{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(ellipse 88% 42% at 50% 82%,rgba(255,255,255,0.70) 0%,transparent 72%);}
+.hero>*{position:relative;z-index:2;}
+.hero>.hero-photo{position:absolute;inset:0;z-index:0;}
+.hero>.hero-veil{position:absolute;inset:0;z-index:1;}
+.hero>.hero-veil2{position:absolute;inset:0;z-index:1;}
+.hero-deco-tl,.hero-deco-tr,.hero-sparkle-1,.hero-sparkle-2,.hero-sparkle-3{z-index:3;}
+
+/* ── GALERIA — RUEDA 3D ── */
+#sgal{padding:52px 0 26px;text-align:center;position:relative;overflow:hidden;overflow-anchor:none;}
+.wheel-scene{overflow-anchor:none;position:relative;width:100%;height:330px;margin:26px auto 0;perspective:1100px;transform-style:preserve-3d;}
+.wheel-ring{overflow-anchor:none;position:absolute;width:100%;height:100%;transform-style:preserve-3d;cursor:grab;}
+.wheel-ring.dragging{cursor:grabbing;}
+.wheel-card{position:absolute;width:168px;height:236px;left:50%;top:50%;margin-left:-84px;margin-top:-118px;
+  border-radius:14px;overflow:hidden;border:2px solid rgba(183,110,121,0.30);
+  box-shadow:0 12px 34px rgba(183,110,121,0.20);background:var(--pink-pale);
+  user-select:none;-webkit-user-select:none;}
+.wheel-card img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;pointer-events:none;}
+.gal-hint{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;font-weight:500;
+  letter-spacing:2px;color:var(--gold);margin-top:22px;opacity:.9;}
+@media(min-width:420px){.wheel-scene{height:360px;}.wheel-card{width:186px;height:260px;margin-left:-93px;margin-top:-130px;}}
+
+/* ══ RESPLANDOR DE ORO — barrido de luz sobre los titulos ══ */
+@keyframes goldSweep{
+  0%{background-position:200% center}
+  100%{background-position:-200% center}
+}
+.sec-title,.cd-label,.fam-role,.ubic-tipo,.ft-name,.hero-xv,.hero-mis{
+  background-image:linear-gradient(100deg,
+    #996515 0%, #B8853A 8%, #D4AF37 16%, #E8CE86 24%,
+    #F7E7CE 32%, #D4AF37 40%, #B8853A 48%, #996515 56%,
+    #B8853A 66%, #D4AF37 76%, #E8CE86 86%, #996515 100%);
+  background-size:300% 100%;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  animation:goldSweep 5.5s linear infinite;
+  padding-left:.34em;padding-right:.34em;
+  margin-left:-.34em;margin-right:-.34em;
+  filter:drop-shadow(0 0 5px rgba(212,175,55,.32));
+}
+/* el icono dentro del rol de familia conserva su tinta */
+.fam-role svg{-webkit-text-fill-color:initial;}
+/* sobre la foto del hero: halo claro para que el dorado no se pierda */
+.hero-mis,.hero-xv{filter:drop-shadow(0 0 5px rgba(212,175,55,.30));}
+@media(prefers-reduced-motion:reduce){
+  .sec-title,.cd-label,.fam-role,.ubic-tipo,.ft-name,.hero-xv,.hero-mis{animation:none;background-position:50% center;}
+}
+
+/* ── ENVELOPE ── */
+#envelope-screen{position:fixed;inset:0;z-index:10000;overflow:hidden;cursor:pointer;opacity:0;background:#FFFFFF;}
+#env-image{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;z-index:2;}
+#env-video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;z-index:3;opacity:0;}
+#env-flash{
+  position:fixed;inset:0;z-index:9999;opacity:0;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 48%,
+    rgba(255,255,255,1.00) 0%,
+    rgba(255,253,250,0.98) 12%,
+    rgba(238,234,228,0.94) 32%,
+    rgba(160,156,150,0.88) 58%,
+    rgba(40,38,35,0.96) 80%,
+    rgba(255,255,255,1) 100%);
+}
+.envelope-hint{
+  position:absolute;bottom:52px;left:50%;transform:translateX(-50%);
+  font-family:'Cormorant Garamond',serif;font-size:12px;letter-spacing:10px;text-transform:uppercase;
+  color:rgba(60,20,30,0.90);opacity:0;cursor:pointer;white-space:nowrap;z-index:10;
+  padding:16px 48px;
+  background:rgba(255,255,255,0.30);
+  border-top:1px solid rgba(183,110,121,0.50);
+  border-left:1px solid rgba(183,110,121,0.25);
+  border-right:1px solid rgba(183,110,121,0.25);
+  border-bottom:1px solid rgba(183,110,121,0.15);
+  border-radius:60px;
+  backdrop-filter:blur(20px) saturate(1.4);
+  -webkit-backdrop-filter:blur(20px) saturate(1.4);
+  box-shadow:0 8px 32px rgba(183,110,121,0.18);
+  overflow:hidden;
+  animation:hintFloat 3.8s ease-in-out infinite;
+}
+.envelope-hint::before{
+  content:'';position:absolute;top:0;left:-150%;width:60%;height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,0.20) 50%,transparent);
+  animation:shimmerSweep 3.4s ease-in-out infinite 1.2s;pointer-events:none;
+}
+@keyframes shimmerSweep{0%{left:-150%;}50%{left:200%;}100%{left:200%;}}
+@keyframes hintFloat{
+  0%,100%{transform:translateX(-50%) translateY(0);}
+  50%{transform:translateX(-50%) translateY(-6px);}
+}
+
+/* ── WRAP ── */
+.wrap{max-width:430px;margin:0 auto;background:var(--bg);position:relative;overflow:clip;
+  background-image:radial-gradient(ellipse at 50% 0%,rgba(183,110,121,0.06) 0%,transparent 40%);}
+
+/* ── HERO ── */
+.hero{
+  min-height:100dvh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:60px 28px 70px;position:relative;
+  background:linear-gradient(180deg,rgba(247,231,206,0.30) 0%,transparent 100%);
+}
+.hero-deco-tl{position:absolute;top:22px;left:18px;width:80px;opacity:.75;}
+.hero-deco-tr{position:absolute;top:16px;right:14px;width:68px;opacity:.80;}
+.hero-sparkle-1{position:absolute;top:14%;right:8%;width:22px;animation:twinkle4 3s ease-in-out infinite;}
+.hero-sparkle-2{position:absolute;top:22%;left:6%;width:16px;animation:twinkle4 4s ease-in-out infinite 1s;}
+.hero-sparkle-3{position:absolute;bottom:28%;right:6%;width:18px;animation:twinkle4 3.5s ease-in-out infinite 0.5s;}
+@keyframes twinkle4{0%,100%{opacity:.3;transform:scale(0.7);}50%{opacity:1;transform:scale(1);}}
+.hero-mis{font-family:'Great Vibes',cursive;font-size:42px;color:var(--gold);line-height:1;opacity:0;transform:translateY(18px);}
+.hero-xv{
+  font-family:'Playfair Display',serif;font-weight:900;
+  font-size:clamp(108px,30vw,140px);color:var(--pink);
+  line-height:0.85;letter-spacing:-5px;
+  position:relative;display:inline-block;
+  opacity:0;transform:translateY(18px);
+}
+.hero-bow-xv{position:absolute;top:-14px;right:-24px;width:48px;}
+.hero-name{font-family:'Great Vibes',cursive;font-size:clamp(56px,16vw,74px);color:var(--dark);line-height:1;opacity:0;transform:translateY(18px);}
+.hero-sep{width:56px;height:1px;background:linear-gradient(to right,transparent,var(--pink-light),transparent);margin:18px auto;opacity:0;}
+.hero-date{text-shadow:0 1px 12px rgba(255,255,255,0.98);font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:6px;text-transform:uppercase;color:var(--gold);opacity:0;}
+
+/* ── ORNAMENTO ── */
+.orn-wrap{display:flex;justify-content:center;padding:6px 0;}
+.orn-wrap svg{width:180px;height:22px;}
+
+/* ── SECCIONES ── */
+section{padding:52px 28px;}
+.eyebrow{font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);text-align:center;margin-bottom:6px;}
+.sec-title{font-family:'Great Vibes',cursive;font-size:52px;color:var(--pink);text-align:center;line-height:1.1;margin-bottom:6px;}
+
+/* ── MIRROR FRAMES ── */
+.mirror-frame{
+  border:1.5px solid rgba(163,124,55,0.55);
+  border-radius:5px;
+  position:relative;
+  background:linear-gradient(135deg,rgba(251,241,242,0.72),rgba(255,255,255,0.92));
+  box-shadow:0 8px 38px rgba(183,110,121,0.09),inset 0 1px 0 rgba(255,255,255,0.58);
+}
+.mirror-frame::before{
+  content:'';position:absolute;inset:8px;
+  border:1px solid rgba(183,110,121,0.22);
+  border-radius:3px;pointer-events:none;z-index:0;
+}
+.mf-corner{position:absolute;width:30px;height:30px;pointer-events:none;z-index:3;}
+.mf-tl{top:3px;left:3px;}
+.mf-tr{top:3px;right:3px;transform:scaleX(-1);}
+.mf-bl{bottom:3px;left:3px;transform:scaleY(-1);}
+.mf-br{bottom:3px;right:3px;transform:scale(-1,-1);}
+
+/* ── MENSAJE ── */
+.msg-outer{position:relative;padding:36px 20px 20px;margin-top:8px;}
+.msg-bow-top{position:absolute;top:-24px;left:50%;transform:translateX(-50%);width:96px;}
+.msg-frame{
+  padding:32px 24px;text-align:center;
+  overflow:visible;
+}
+.msg-sparkle-tl{position:absolute;top:10px;left:28px;width:16px;animation:twinkle4 3.2s ease-in-out infinite;}
+.msg-sparkle-tr{position:absolute;top:10px;right:28px;width:12px;animation:twinkle4 4s ease-in-out infinite 1.2s;}
+.msg-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;line-height:1.9;color:var(--text);position:relative;z-index:1;}
+
+/* ── COUNTDOWN ── */
+#scd{text-align:center;}
+.cd-label{font-family:'Great Vibes',cursive;font-size:44px;color:var(--pink);margin-bottom:24px;display:block;}
+.cd-wrap{display:flex;align-items:flex-start;justify-content:center;gap:0;}
+.cd-seg{display:flex;flex-direction:column;align-items:center;min-width:70px;}
+.cd-num{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(52px,15vw,76px);color:var(--pink);line-height:1;font-variant-numeric:tabular-nums;display:block;}
+.cd-lbl{font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-top:5px;}
+.cd-colon{font-family:'Playfair Display',serif;font-size:clamp(44px,13vw,64px);color:var(--pink-light);font-weight:400;line-height:1;padding:0 2px;margin-top:2px;}
+
+/* ── FAMILIA ── */
+.fam-wrap{text-align:center;}
+.fam-block{padding:18px 0;}
+.fam-role{font-family:'Great Vibes',cursive;font-size:40px;color:var(--pink);margin-bottom:8px;display:flex;align-items:center;justify-content:center;gap:10px;}
+.padrinos-rot{position:relative;min-height:96px;display:flex;align-items:center;justify-content:center;}
+.padrino-item{position:absolute;left:0;right:0;top:50%;transform:translateY(calc(-50% + 8px));
+  opacity:0;transition:opacity .95s ease,transform .95s ease;padding:0 8px;pointer-events:none;}
+.padrino-item.is-on{opacity:1;transform:translateY(-50%);}
+.padrinos-dots{position:absolute;left:0;right:0;bottom:-4px;display:flex;gap:7px;justify-content:center;}
+.padrinos-dots i{width:5px;height:5px;border-radius:50%;background:var(--gold);opacity:.28;transition:opacity .5s,transform .5s;}
+.padrinos-dots i.on{opacity:.95;transform:scale(1.35);}
+@media(prefers-reduced-motion:reduce){
+  .padrinos-rot{min-height:0;display:block;}
+  .padrino-item{position:static;opacity:1;transform:none;display:block;}
+  .padrinos-dots{display:none;}
+}
+.fam-names{font-family:'Cormorant Garamond',serif;font-size:16px;line-height:1.95;color:var(--dark);letter-spacing:.5px;}
+.fam-divider{height:1px;background:linear-gradient(to right,transparent,var(--pink-light) 30%,var(--pink-light) 70%,transparent);margin:14px auto;}
+
+/* ── CONEJITO ── */
+.conejito{display:block;pointer-events:none;}
+.conejito-flip{transform:scaleX(-1);}
+
+/* ── MARIPOSA ── */
+.mariposa{display:block;pointer-events:none;animation:mFly 4s ease-in-out infinite;}
+.mariposa-flip{transform:scaleX(-1);}
+.mariposa-2{animation-duration:5s;animation-delay:1s;}
+.mariposa-3{animation-duration:3.5s;animation-delay:0.5s;}
+@keyframes mFly{
+  0%,100%{transform:translateY(0) rotate(-3deg);}
+  50%{transform:translateY(-8px) rotate(3deg);}
+}
+@keyframes mFlyFlip{
+  0%,100%{transform:scaleX(-1) translateY(0) rotate(-3deg);}
+  50%{transform:scaleX(-1) translateY(-8px) rotate(3deg);}
+}
+
+/* ── UBICACION ── */
+.ubic-card{
+  background:linear-gradient(135deg,rgba(251,241,242,0.55),rgba(255,255,255,0.85));
+  border:1.5px solid rgba(163,124,55,0.55);
+  border-radius:5px;
+  padding:30px 22px;margin-bottom:20px;text-align:center;
+  position:relative;overflow:hidden;
+  box-shadow:0 8px 38px rgba(183,110,121,0.09),inset 0 1px 0 rgba(255,255,255,0.58);
+}
+.ubic-card::before{
+  content:'';position:absolute;inset:8px;
+  border:1px solid rgba(183,110,121,0.22);
+  border-radius:3px;pointer-events:none;z-index:0;
+}
+.ubic-icon{margin-bottom:12px;display:block;position:relative;z-index:1;}
+.ubic-tipo{font-family:'Great Vibes',cursive;font-size:38px;color:var(--pink);margin-bottom:8px;position:relative;z-index:1;}
+.ubic-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:var(--dark);margin-bottom:6px;line-height:1.4;position:relative;z-index:1;}
+.ubic-addr{font-family:'Montserrat',sans-serif;font-size:12px;color:var(--text);line-height:1.8;margin-bottom:6px;position:relative;z-index:1;}
+.ubic-hora{font-family:'Playfair Display',serif;font-size:28px;color:var(--pink);font-weight:700;margin:12px 0;position:relative;z-index:1;}
+.btn-pink{
+  display:inline-block;padding:13px 34px;background:var(--pink);color:#fff;
+  border-radius:50px;font-family:'Montserrat',sans-serif;font-size:11px;
+  letter-spacing:5px;text-transform:uppercase;text-decoration:none;
+  border:none;cursor:pointer;margin-top:8px;
+  box-shadow:0 5px 18px rgba(183,110,121,0.32);transition:transform .2s,box-shadow .2s;
+  position:relative;z-index:1;
+}
+.btn-pink:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(183,110,121,0.42);}
+
+/* ── DRESS CODE ── */
+.dc-note{text-align:center;font-family:'Montserrat',sans-serif;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--text);margin-bottom:28px;}
+.dc-icons{display:flex;justify-content:center;gap:36px;margin-bottom:32px;}
+.dc-evitar{background:rgba(251,241,242,0.5);border:1.5px solid var(--border-pink);border-radius:12px;padding:20px 22px;text-align:center;}
+.dc-evitar-title{font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.dc-swatches{display:flex;justify-content:center;gap:20px;}
+.dc-swatch{text-align:center;}
+.dc-swatch .dot{width:52px;height:52px;border-radius:50%;margin:0 auto 7px;box-shadow:0 3px 10px rgba(0,0,0,0.10);}
+.dc-swatch .dot-silver{background:linear-gradient(145deg,#FFFFFF 0%,#D8D8D8 26%,#ADADAD 52%,#E4E4E4 74%,#9A9A9A 100%);border:2px solid rgba(120,120,120,0.30);}
+.dc-swatch .dot-gold{background:linear-gradient(145deg,#F7E7CE 0%,#E8CE86 22%,#D19D01 52%,#F0DCA2 74%,#996515 100%);border:2px solid rgba(153,101,21,0.35);}
+.dc-swatch .dot-champagne{background:linear-gradient(145deg,#FFFDF7 0%,#F2E6D4 28%,#D4C5B2 58%,#EFE3D2 78%,#B7A68F 100%);border:2px solid rgba(160,143,120,0.35);}
+.dc-swatch .dot-rosegold{background:linear-gradient(145deg,#FFF1EF 0%,#FFDBD8 26%,#D9A2A0 54%,#F4CFCB 74%,#B76E79 100%);border:2px solid rgba(183,110,121,0.38);}
+.dc-swatch .lbl{font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--text);opacity:.7;}
+.dc-note2{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:var(--gold);text-align:center;margin-top:14px;letter-spacing:1px;}
+
+/* ── ITINERARIO ── */
+#sitin{padding:52px 28px 40px;}
+.itin-list{max-width:420px;margin:28px auto 0;position:relative;}
+.itin-list::before{
+  content:'';position:absolute;left:29px;top:26px;bottom:26px;width:1px;
+  background:linear-gradient(180deg,transparent,rgba(163,124,55,0.55),rgba(183,110,121,0.45),transparent);
+}
+.itin-item{display:flex;align-items:center;gap:18px;padding:12px 0;position:relative;}
+.itin-ico{
+  flex:0 0 58px;width:58px;height:58px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(145deg,#FFFFFF,rgba(251,241,242,0.9));
+  border:1.5px solid rgba(163,124,55,0.55);
+  box-shadow:0 4px 14px rgba(183,110,121,0.14),inset 0 1px 0 rgba(255,255,255,0.7);
+  position:relative;z-index:1;
+}
+.itin-txt{text-align:left;}
+.itin-hora{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;color:var(--pink);line-height:1.2;}
+.itin-nom{font-family:'Montserrat',sans-serif;font-size:14px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--text);margin-top:3px;line-height:1.4;}
+@media(max-width:360px){.itin-item{gap:14px;}.itin-nom{font-size:13px;letter-spacing:2px;}}
+
+/* ── BUZON ── */
+.buzon-outer{position:relative;padding:40px 20px 20px;}
+.buzon-bow-top{position:absolute;top:-22px;left:50%;transform:translateX(-50%);width:90px;}
+.buzon-card{
+  border:1.5px solid rgba(163,124,55,0.55);
+  border-radius:5px;padding:34px 24px 30px;text-align:center;
+  background:linear-gradient(135deg,rgba(251,241,242,0.72),rgba(255,255,255,0.92));
+  box-shadow:0 8px 38px rgba(183,110,121,0.09),inset 0 1px 0 rgba(255,255,255,0.58);
+  position:relative;overflow:hidden;
+}
+.buzon-card::before{
+  content:'';position:absolute;inset:8px;
+  border:1px solid rgba(183,110,121,0.22);
+  border-radius:3px;pointer-events:none;z-index:0;
+}
+.buzon-icon-wrap{margin-bottom:14px;position:relative;z-index:1;}
+.buzon-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;line-height:1.85;color:var(--text);margin-bottom:0;position:relative;z-index:1;}
+
+/* ── RSVP ── */
+.rsvp-outer{position:relative;padding:52px 0 0;}
+.rsvp-bow-grande{
+  position:absolute;top:-30px;left:50%;transform:translateX(-50%);
+  width:220px;z-index:2;filter:drop-shadow(0 6px 16px rgba(183,110,121,0.30));
+}
+.rsvp-bow-br{
+  position:absolute;bottom:-28px;right:-10px;
+  width:110px;z-index:2;
+  transform:rotate(12deg);
+  filter:drop-shadow(0 4px 10px rgba(183,110,121,0.25));
+}
+.rsvp-frame{
+  border:1.5px solid rgba(163,124,55,0.55);
+  border-radius:5px;padding:34px 22px 30px;
+  background:linear-gradient(135deg,rgba(251,241,242,0.72),rgba(255,255,255,0.92));
+  box-shadow:0 8px 38px rgba(183,110,121,0.09),inset 0 1px 0 rgba(255,255,255,0.58);
+  position:relative;overflow:visible;
+}
+.rsvp-frame::before{
+  content:'';position:absolute;inset:8px;
+  border:1px solid rgba(183,110,121,0.22);
+  border-radius:3px;pointer-events:none;z-index:0;
+}
+.rsvp-frame label{display:block;font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin:16px 0 7px;position:relative;z-index:1;}
+.rsvp-frame label:first-of-type{margin-top:0;}
+.rsvp-frame input,.rsvp-frame select,.rsvp-frame textarea{
+  width:100%;padding:13px 16px;min-height:48px;
+  border:1.5px solid var(--border-pink);border-radius:10px;
+  background:#fff;font-family:'Montserrat',sans-serif;
+  font-size:13px;color:var(--dark);outline:none;transition:border-color .3s;-webkit-appearance:none;
+  position:relative;z-index:1;
+}
+.rsvp-frame input::placeholder,.rsvp-frame textarea::placeholder{color:rgba(93,48,32,0.3);}
+.rsvp-frame input:focus,.rsvp-frame select:focus,.rsvp-frame textarea:focus{border-color:var(--pink);}
+.rsvp-frame select option{background:#fff;color:#2D1B0E;}
+.rsvp-hola{text-align:center;margin-top:30px;font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:500;color:var(--dark);margin-bottom:6px;position:relative;z-index:1;}
+.rsvp-toggle{display:flex;gap:10px;margin:6px 0 4px;position:relative;z-index:1;}
+.rsvp-toggle-btn{flex:1;padding:14px 8px;min-height:48px;border:1.5px solid var(--border-pink);background:#fff;border-radius:10px;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:600;color:var(--text);transition:all .25s;}
+.rsvp-toggle-btn.on{background:var(--pink);border-color:var(--pink);color:#fff;box-shadow:0 6px 18px rgba(183,110,121,0.30);}
+.rsvp-fields{margin-top:6px;}
+.rsvp-fields input{margin-bottom:8px;}
+.rsvp-feedback{text-align:center;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:500;line-height:1.5;margin-top:14px;position:relative;z-index:1;}
+.rsvp-gracias{padding:26px 18px 22px;text-align:center;position:relative;z-index:1;}
+.rsvp-gracias-icon{color:var(--pink);margin:0 auto 10px;display:block;}
+.rsvp-gracias-title{font-family:'Playfair Display',serif;font-size:21px;font-weight:600;color:var(--dark);margin-bottom:8px;line-height:1.35;}
+.rsvp-gracias-sub{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:500;color:var(--text);line-height:1.6;margin-bottom:18px;}
+.rsvp-editar-btn{padding:12px 22px;min-height:44px;border:1.5px solid var(--pink);background:transparent;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:600;color:var(--pink);border-radius:24px;transition:all .25s;}
+.rsvp-editar-btn:hover{background:var(--pink-pale);}
+.rsvp-editar-btn:disabled{opacity:.45;cursor:not-allowed;}
+.rsvp-nokids{text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;font-weight:500;color:var(--text);line-height:1.6;margin:22px auto 0;max-width:420px;}
+.btn-wa{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;margin-top:20px;padding:17px;
+  background:var(--pink);color:#fff;border-radius:50px;border:none;cursor:pointer;
+  font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:5px;text-transform:uppercase;
+  box-shadow:0 6px 22px rgba(183,110,121,0.38);transition:transform .2s;
+  position:relative;z-index:1;
+}
+.btn-wa:hover{transform:translateY(-2px);}
+
+/* ── FOOTER ── */
+footer{padding:52px 20px 64px;text-align:center;}
+.ft-bow{width:80px;margin:0 auto 12px;}
+.ft-name{font-family:'Great Vibes',cursive;font-size:56px;color:var(--pink);}
+.ft-date{font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:6px;text-transform:uppercase;color:var(--gold);margin-top:10px;}
+.ft-credit{font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:2px;color:rgba(93,48,32,0.30);margin-top:18px;}
+
+/* ── MUSIC FAB ── */
+/* ── MUSICA — disco de vinilo ── */
+.vinyl-btn{position:fixed;bottom:22px;right:18px;z-index:999;width:64px;height:64px;border-radius:50%;
+  padding:0;border:none;cursor:pointer;background:transparent;
+  transition:transform .35s cubic-bezier(.2,.7,.2,1);
+  box-shadow:0 6px 20px rgba(196,18,111,.32),0 0 0 1px rgba(217,192,124,.35);}
+.vinyl-btn:hover{transform:scale(1.08);}
+.vinyl-spin{width:100%;height:100%;border-radius:50%;position:relative;}
+.vinyl-btn.is-playing .vinyl-spin{animation:vinylSpin 1.8s linear infinite;}
+@keyframes vinylSpin{to{transform:rotate(360deg);}}
+.vinyl-disc{width:100%;height:100%;border-radius:50%;overflow:hidden;position:relative;
+  background:
+    radial-gradient(circle,#3A2A2C 4%,transparent 4.5%),
+    radial-gradient(circle,#E7C9CD 0%,#B76E79 17%,#7B4049 19%,transparent 19.5%),
+    repeating-radial-gradient(circle,
+      transparent 20%,rgba(255,255,255,.06) 20.8%,transparent 21.5%,
+      transparent 24%,rgba(255,255,255,.04) 24.8%,transparent 25.5%,
+      transparent 28%,rgba(255,255,255,.06) 28.8%,transparent 29.5%,
+      transparent 32%,rgba(255,255,255,.04) 32.8%,transparent 33.5%,
+      transparent 36%,rgba(255,255,255,.06) 36.8%,transparent 37.5%,
+      transparent 40%,rgba(255,255,255,.04) 40.8%,transparent 41.5%,
+      transparent 44%,rgba(255,255,255,.06) 44.8%,transparent 45.5%,
+      transparent 48%,rgba(255,255,255,.04) 48.8%,transparent 49.5%,
+      transparent 52%,rgba(255,255,255,.06) 52.8%,transparent 53.5%,
+      transparent 56%,rgba(255,255,255,.04) 56.8%,transparent 57.5%,
+      transparent 60%,rgba(255,255,255,.06) 60.8%,transparent 61.5%,
+      transparent 64%,rgba(255,255,255,.04) 64.8%,transparent 65.5%,
+      transparent 68%,rgba(255,255,255,.06) 68.8%,transparent 69.5%,
+      transparent 72%,rgba(255,255,255,.04) 72.8%,transparent 73.5%,
+      transparent 76%,rgba(255,255,255,.06) 76.8%,transparent 77.5%,
+      transparent 80%,rgba(255,255,255,.04) 80.8%,transparent 81.5%,
+      transparent 84%,rgba(255,255,255,.06) 84.8%,transparent 85.5%,
+      transparent 88%,rgba(255,255,255,.04) 88.8%,transparent 89.5%,
+      transparent 92%,rgba(255,255,255,.06) 92.8%,transparent 93.5%,
+      transparent 96%,rgba(255,255,255,.04) 96.8%,transparent 97.5%
+    ),
+    radial-gradient(circle,#3A2A2C 0%,#241A1C 60%,#3A2A2C 100%);
+  box-shadow:inset 0 0 8px rgba(0,0,0,.45);}
+.vinyl-sheen{position:absolute;inset:0;border-radius:50%;pointer-events:none;
+  background:linear-gradient(135deg,transparent 30%,rgba(255,255,255,.10) 42%,rgba(255,255,255,.17) 48%,rgba(255,255,255,.10) 54%,transparent 66%);}
+.vinyl-label-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  font-family:'Great Vibes',cursive;font-size:14px;color:#FFFFFF;text-align:center;line-height:1.05;
+  opacity:.9;pointer-events:none;width:30px;}
+.vinyl-label-text small{font-family:'Montserrat',sans-serif;font-size:5px;letter-spacing:.15em;display:block;margin-top:1px;opacity:.75;}
+.vinyl-hole{position:absolute;top:50%;left:50%;width:6px;height:6px;transform:translate(-50%,-50%);
+  border-radius:50%;background:#3A2A2C;box-shadow:0 0 0 1.5px rgba(217,192,124,.55);}
+.vinyl-icons{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:18px;height:18px;pointer-events:none;z-index:2;}
+.vinyl-icons svg{width:100%;height:100%;display:block;}
+.ic-pause{display:none;}
+.vinyl-btn.is-playing .ic-play{display:none;}
+.vinyl-btn.is-playing .ic-pause{display:block;}
+.vinyl-btn.is-playing .vinyl-label-text{opacity:0;transition:opacity .3s;}
+.vinyl-btn::after{content:"";position:absolute;inset:-5px;border-radius:50%;
+  border:1px solid var(--gold);opacity:.4;animation:vinylPulse 3s ease-in-out infinite;}
+.vinyl-btn.is-playing::after{animation-duration:1.6s;}
+@keyframes vinylPulse{0%,100%{transform:scale(1);opacity:.4;}50%{transform:scale(1.12);opacity:.05;}}
+.vinyl-tonearm{position:absolute;top:-4px;right:-2px;width:24px;height:34px;transform-origin:top right;
+  transform:rotate(-28deg);transition:transform .6s cubic-bezier(.2,.7,.2,1);pointer-events:none;z-index:1;}
+.vinyl-btn.is-playing .vinyl-tonearm{transform:rotate(-12deg);}
+.vinyl-tonearm-line{position:absolute;top:2px;right:4px;width:2px;height:28px;border-radius:1px;
+  background:linear-gradient(to bottom,#996515,#E8CE86 40%,#996515);transform:rotate(-5deg);transform-origin:top center;}
+.vinyl-tonearm-head{position:absolute;bottom:0;right:2px;width:5px;height:6px;background:#E8CE86;border-radius:0 0 2px 2px;}
+.vinyl-tonearm-pivot{position:absolute;top:0;right:2px;width:7px;height:7px;border-radius:50%;
+  background:radial-gradient(circle,#F7E7CE,#996515);box-shadow:0 1px 3px rgba(0,0,0,.3);}
+
+/* ── PASES ── */
+.pases-wrap{display:none;margin-top:16px;margin-bottom:4px;position:relative;z-index:1;}
+.pases-card{
+  border:1.5px solid rgba(163,124,55,0.52);
+  border-radius:6px;padding:22px 18px 18px;text-align:center;
+  background:linear-gradient(135deg,rgba(251,241,242,0.75),rgba(255,255,255,0.95));
+  box-shadow:0 6px 28px rgba(183,110,121,0.08),inset 0 1px 0 rgba(255,255,255,0.6);
+  position:relative;
+}
+.pases-card::before{
+  content:'';position:absolute;inset:7px;
+  border:1px solid rgba(183,110,121,0.20);
+  border-radius:3px;pointer-events:none;
+}
+.pases-title{
+  font-family:'Playfair Display',serif;font-weight:700;
+  font-size:20px;letter-spacing:8px;color:var(--pink);
+  text-transform:uppercase;margin-bottom:6px;position:relative;z-index:1;
+}
+.pases-sub{
+  font-family:'Montserrat',sans-serif;font-size:11px;
+  letter-spacing:5px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:16px;position:relative;z-index:1;
+}
+.pases-circles{
+  display:flex;justify-content:center;gap:10px;
+  margin-bottom:14px;position:relative;z-index:1;
+}
+.pases-circle{
+  width:46px;height:46px;border-radius:50%;
+  border:1.5px solid rgba(183,110,121,0.28);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-size:15px;font-weight:700;
+  color:rgba(93,48,32,0.32);background:rgba(255,255,255,0.55);
+}
+.pases-circle.active{
+  background:var(--pink);border-color:var(--pink);color:#fff;
+  box-shadow:0 4px 14px rgba(183,110,121,0.38);
+}
+.pases-honor{
+  font-family:'Montserrat',sans-serif;font-size:11px;
+  letter-spacing:5px;text-transform:uppercase;
+  color:var(--gold);position:relative;z-index:1;
+}
+
+/* ── REVEAL ── */
+.rv{opacity:0;transform:translateY(22px);}
+
+/* ══ LEGIBILIDAD — invitados de todas las edades ══
+   Sube el cuerpo informativo a >=14px (16px en direcciones y formularios),
+   pesos >=500 y contraste >=4.5:1 sobre blanco. No toca las tipografías
+   decorativas (Great Vibes / Playfair de los títulos). */
+
+/* rosa metalico oscurecido: el #B76E79 sobre blanco da 3.75:1 y no pasa en texto chico */
+:root{--rose-ink:#8F4F59;--rose-btn:#9E5A64;}
+
+/* portada */
+.hero-date{font-size:15px;font-weight:600;letter-spacing:4px;}
+.envelope-hint{font-size:14px;letter-spacing:6px;}
+
+/* kickers y etiquetas cortas */
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:4px;}
+.cd-lbl{font-size:13px;font-weight:600;letter-spacing:2px;}
+
+/* ubicacion: direccion y hora son datos esenciales */
+.ubic-name{font-size:18px;line-height:1.45;}
+.ubic-addr{font-size:16px;font-weight:500;line-height:1.75;}
+
+/* itinerario */
+.itin-nom{font-size:15px;}
+.itin-hora{color:var(--rose-ink);}
+
+/* codigo de vestimenta */
+.dc-note{font-size:17px;font-weight:600;letter-spacing:3px;}
+.dc-note2{font-size:15px;}
+.dc-swatch .lbl{font-size:13px;font-weight:600;opacity:.9;}
+.dc-evitar-title{font-size:13px;font-weight:600;letter-spacing:4px;}
+
+/* pases */
+.pases-sub,.pases-honor{font-size:13px;font-weight:600;letter-spacing:3px;}
+
+/* formulario de confirmacion (16px tambien evita el zoom de iOS al enfocar) */
+.rsvp-frame label{font-size:13px;font-weight:600;letter-spacing:3px;}
+.rsvp-frame input,.rsvp-frame select,.rsvp-frame textarea{font-size:16px;font-weight:500;}
+.rsvp-frame input::placeholder{color:rgba(93,48,32,0.55);}
+.rsvp-toggle-btn{font-size:14px;}
+.rsvp-editar-btn{font-size:14px;color:var(--rose-ink);border-color:var(--rose-ink);}
+.rsvp-feedback{font-size:15px;}
+
+/* botones con texto blanco: el fondo necesita ser mas oscuro para llegar a 4.5:1 */
+.btn-pink{font-size:13px;font-weight:600;letter-spacing:3px;background:var(--rose-btn);}
+.btn-wa{font-size:13px;font-weight:600;letter-spacing:2px;background:var(--rose-btn);padding:17px 14px;}
+.dc-swatches{gap:12px;flex-wrap:wrap;}
+@media(max-width:430px){.dc-swatches{gap:14px 10px;}.dc-swatch{flex:0 0 calc(50% - 5px);}.dc-swatch .lbl{letter-spacing:1px;}}
+.rsvp-toggle-btn.on{background:var(--rose-btn);border-color:var(--rose-btn);}
+
+/* pie */
+.gal-hint{opacity:1;}
+.ft-date{font-size:14px;font-weight:600;letter-spacing:4px;}
+.ft-credit{font-size:13px;color:rgba(93,48,32,0.75);}
+</style>
+</head>
+<body>
+
+<!-- ════ SOBRE ════ -->
+<div id="envelope-screen" role="button" aria-label="Toca para abrir tu invitaci&oacute;n">
+  <img id="env-image" src="./sobre.png" alt="Invitacion Joy Caroline Joya">
+  <video id="env-video" src="./sobre-apertura.mp4" playsinline webkit-playsinline muted preload="auto"></video>
+  <p class="envelope-hint" id="env-hint">Toca para abrir</p>
+</div>
+<div id="env-flash"></div>
+
+<!-- ════ INVITACION ════ -->
+<div class="wrap" style="visibility:hidden" id="wrapEl">
+
+  <!-- HERO -->
+  <section class="hero" style="padding:60px 28px 70px;">
+    <!-- Disco ball -->
+    <svg class="hero-deco-tl" viewBox="0 0 60 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="30" y1="0" x2="30" y2="8" stroke="#B0B0B0" stroke-width="2"/>
+      <defs><radialGradient id="dball2" cx="38%" cy="32%"><stop offset="0%" stop-color="#F0F0F0"/><stop offset="55%" stop-color="#B0B0B0"/><stop offset="100%" stop-color="#606060"/></radialGradient><clipPath id="dclip2"><circle cx="30" cy="38" r="24"/></clipPath></defs>
+      <circle cx="30" cy="38" r="24" fill="url(#dball2)"/>
+      <g clip-path="url(#dclip2)" stroke="rgba(255,255,255,0.35)" stroke-width="0.6">
+        <line x1="6" y1="28" x2="54" y2="28"/><line x1="6" y1="35" x2="54" y2="35"/><line x1="6" y1="42" x2="54" y2="42"/><line x1="6" y1="49" x2="54" y2="49"/>
+        <line x1="18" y1="14" x2="18" y2="62"/><line x1="26" y1="14" x2="26" y2="62"/><line x1="34" y1="14" x2="34" y2="62"/><line x1="42" y1="14" x2="42" y2="62"/>
+      </g>
+      <ellipse cx="22" cy="28" rx="7" ry="4" fill="rgba(255,255,255,0.28)"/>
+    </svg>
+    <!-- Cherries -->
+    <svg class="hero-deco-tr" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M32,36 C36,22 50,16 55,8" stroke="#A08A4E" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M58,32 C54,20 52,16 55,8" stroke="#A08A4E" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <ellipse cx="55" cy="8" rx="10" ry="5.5" fill="#B49A5C" transform="rotate(-15 55 8)"/>
+      <defs><radialGradient id="cs1h" cx="35%" cy="35%"><stop offset="0%" stop-color="rgba(255,255,255,0.28)"/><stop offset="100%" stop-color="rgba(0,0,0,0.08)"/></radialGradient></defs>
+      <circle cx="30" cy="50" r="18" fill="#B76E79"/><circle cx="30" cy="50" r="18" fill="url(#cs1h)"/>
+      <circle cx="60" cy="46" r="18" fill="#8F4F59"/>
+      <ellipse cx="24" cy="42" rx="5" ry="3" fill="rgba(255,255,255,0.30)" transform="rotate(-20 24 42)"/>
+    </svg>
+    <svg class="hero-sparkle-1" viewBox="0 0 24 24" fill="#B76E79"><path d="M12 2l1.2 7.8L21 12l-7.8 1.2L12 22l-1.2-8.8L3 12l8.8-1.2z"/></svg>
+    <svg class="hero-sparkle-2" viewBox="0 0 24 24" fill="#B76E79"><path d="M12 2l1.2 7.8L21 12l-7.8 1.2L12 22l-1.2-8.8L3 12l8.8-1.2z"/></svg>
+    <svg class="hero-sparkle-3" viewBox="0 0 24 24" fill="#2D1B0E" style="opacity:0.4;"><path d="M12 2l1.2 7.8L21 12l-7.8 1.2L12 22l-1.2-8.8L3 12l8.8-1.2z"/></svg>
+    <div class="hero-mis" id="hMis">Mis</div>
+    <div class="hero-xv" id="hXv">
+      XV
+      <svg class="hero-bow-xv" viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="bhero1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#EBD1D4"/><stop offset="100%" stop-color="#B76E79"/></linearGradient><linearGradient id="bhero2" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#EBD1D4"/><stop offset="100%" stop-color="#B76E79"/></linearGradient></defs>
+        <path d="M80,50 C70,30 38,10 14,22 C-2,30 8,54 36,58 C56,62 74,54 80,50Z" fill="url(#bhero1)"/>
+        <path d="M80,50 C90,30 122,10 146,22 C162,30 152,54 124,58 C104,62 86,54 80,50Z" fill="url(#bhero2)"/>
+        <path d="M72,58 C58,72 40,82 24,90" stroke="#B76E79" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.75"/>
+        <path d="M88,58 C102,72 120,82 136,90" stroke="#B76E79" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.75"/>
+        <ellipse cx="80" cy="52" rx="13" ry="10" fill="#7B4049"/>
+        <ellipse cx="80" cy="52" rx="7" ry="5.5" fill="#B76E79"/>
+      </svg>
+    </div>
+    <div class="hero-name" id="hName">Joy Caroline</div>
+    <div class="hero-sep" id="hSep"></div>
+    <div class="hero-date" id="hDate">20 de Febrero del 2027</div>
+  </section>
+
+  <!-- ORNAMENTO -->
+  <div class="orn-wrap rv">
+    <svg viewBox="0 0 180 22" fill="none"><path d="M0,11 Q12,4 24,11 Q36,18 48,11 Q60,4 72,11" stroke="#B76E79" stroke-width="0.9" opacity="0.28" fill="none"/><path d="M108,11 Q120,4 132,11 Q144,18 156,11 Q168,4 180,11" stroke="#B76E79" stroke-width="0.9" opacity="0.28" fill="none"/><circle cx="90" cy="11" r="3.5" fill="#B76E79" opacity="0.30"/><circle cx="80" cy="11" r="1.8" fill="#B76E79" opacity="0.18"/><circle cx="100" cy="11" r="1.8" fill="#B76E79" opacity="0.18"/></svg>
+  </div>
+
+  <!-- MENSAJE -->
+  <section id="smsg" style="padding:12px 28px 52px;">
+    <div class="eyebrow rv">Una Palabra de Joy Caroline</div>
+    <h2 class="sec-title rv">Mi Mensaje</h2>
+    <div class="msg-outer rv">
+      <svg class="msg-bow-top" viewBox="0 0 160 100" fill="none">
+        <defs><linearGradient id="bmsg1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#EBD1D4"/><stop offset="100%" stop-color="#B76E79"/></linearGradient><linearGradient id="bmsg2" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#EBD1D4"/><stop offset="100%" stop-color="#B76E79"/></linearGradient></defs>
+        <path d="M80,50 C70,30 38,10 14,22 C-2,30 8,54 36,58 C56,62 74,54 80,50Z" fill="url(#bmsg1)"/>
+        <path d="M80,50 C90,30 122,10 146,22 C162,30 152,54 124,58 C104,62 86,54 80,50Z" fill="url(#bmsg2)"/>
+        <path d="M72,58 C58,72 40,82 24,90" stroke="#B76E79" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.75"/>
+        <path d="M88,58 C102,72 120,82 136,90" stroke="#B76E79" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.75"/>
+        <ellipse cx="80" cy="52" rx="13" ry="10" fill="#7B4049"/>
+        <ellipse cx="80" cy="52" rx="7" ry="5.5" fill="#B76E79"/>
+      </svg>
+      <div class="msg-frame mirror-frame">
+        <!-- Corner ornaments -->
+        <svg class="mf-corner mf-tl" viewBox="0 0 36 36" fill="none"><path d="M4,24 L4,4 L24,4" stroke="rgba(163,124,55,0.72)" stroke-width="1.6" stroke-linecap="round"/><circle cx="4" cy="4" r="2.8" fill="rgba(163,124,55,0.62)"/><path d="M10,4 Q10,10 4,10" stroke="rgba(163,124,55,0.42)" stroke-width="1" fill="none"/><circle cx="24" cy="4" r="1.6" fill="rgba(183,110,121,0.38)"/><circle cx="4" cy="24" r="1.6" fill="rgba(183,110,121,0.38)"/></svg>
+        <svg class="mf-corner mf-tr" viewBox="0 0 36 36" fill="none"><path d="M4,24 L4,4 L24,4" stroke="rgba(163,124,55,0.72)" stroke-width="1.6" stroke-linecap="round"/><circle cx="4" cy="4" r="2.8" fill="rgba(163,124,55,0.62)"/><path d="M10,4 Q10,10 4,10" stroke="rgba(163,124,55,0.42)" stroke-width="1" fill="none"/><circle cx="24" cy="4" r="1.6" fill="rgba(183,110,121,0.38)"/><circle cx="4" cy="24" r="1.6" fill="rgba(183,110,121,0.38)"/></svg>
+        <svg class="mf-corner mf-bl" viewBox="0 0 36 36" fill="none"><path d="M4,24 L4,4 L24,4" stroke="rgba(163,124,55,0.72)" stroke-width="1.6" stroke-linecap="round"/><circle cx="4" cy="4" r="2.8" fill="rgba(163,124,55,0.62)"/><path d="M10,4 Q10,10 4,10" stroke="rgba(163,124,55,0.42)" stroke-width="1" fill="none"/><circle cx="24" cy="4" r="1.6" fill="rgba(183,110,121,0.38)"/><circle cx="4" cy="24" r="1.6" fill="rgba(183,110,121,0.38)"/></svg>
+        <svg class="mf-corner mf-br" viewBox="0 0 36 36" fill="none"><path d="M4,24 L4,4 L24,4" stroke="rgba(163,124,55,0.72)" stroke-width="1.6" stroke-linecap="round"/><circle cx="4" cy="4" r="2.8" fill="rgba(163,124,55,0.62)"/><path d="M10,4 Q10,10 4,10" stroke="rgba(163,124,55,0.42)" stroke-width="1" fill="none"/><circle cx="24" cy="4" r="1.6" fill="rgba(183,110,121,0.38)"/><circle cx="4" cy="24" r="1.6" fill="rgba(183,110,121,0.38)"/></svg>
+        <svg class="msg-sparkle-tl" viewBox="0 0 24 24" fill="#B76E79"><path d="M12 2l1.2 7.8L21 12l-7.8 1.2L12 22l-1.2-8.8L3 12l8.8-1.2z"/></svg>
+        <svg class="msg-sparkle-tr" viewBox="0 0 24 24" fill="#B76E79"><path d="M12 2l1.2 7.8L21 12l-7.8 1.2L12 22l-1.2-8.8L3 12l8.8-1.2z"/></svg>
+        <p class="msg-text">La vida est&aacute; hecha de momentos inolvidables, y uno de los m&aacute;s especiales est&aacute; por llegar. Mis XV A&ntilde;os son un sue&ntilde;o que quiero compartir contigo. Tu presencia har&aacute; este d&iacute;a a&uacute;n m&aacute;s especial.</p>
+      </div>
+    </div>
+    <!-- Mariposita mensaje -->
+    <div style="display:flex;justify-content:flex-end;margin-top:12px;padding-right:8px;">
+      <svg class="mariposa mariposa-flip" width="52" height="42" viewBox="0 0 90 70" fill="none" style="opacity:0.75;">
+        <path d="M45,35 C38,22 24,8 12,14 C2,19 5,33 18,36 C30,39 42,36 45,35Z" fill="#EBD1D4" opacity="0.9"/>
+        <path d="M45,35 C36,26 22,16 14,18 C8,22 10,30 20,34 C32,38 43,36 45,35Z" fill="#B76E79" opacity="0.45"/>
+        <path d="M45,37 C38,46 24,56 14,52 C6,49 10,38 22,36 C34,34 43,36 45,37Z" fill="#E7C9CD" opacity="0.85"/>
+        <path d="M45,37 C40,44 28,52 18,50 C10,48 13,40 22,38 C34,35 43,36 45,37Z" fill="#B76E79" opacity="0.35"/>
+        <path d="M45,35 C52,22 66,8 78,14 C88,19 85,33 72,36 C60,39 48,36 45,35Z" fill="#EBD1D4" opacity="0.9"/>
+        <path d="M45,35 C54,26 68,16 76,18 C82,22 80,30 70,34 C58,38 47,36 45,35Z" fill="#B76E79" opacity="0.45"/>
+        <path d="M45,37 C52,46 66,56 76,52 C84,49 80,38 68,36 C56,34 47,36 45,37Z" fill="#E7C9CD" opacity="0.85"/>
+        <ellipse cx="45" cy="36" rx="3" ry="9" fill="#7B4049"/>
+        <path d="M43,27 C41,20 37,15 35,11" stroke="#7B4049" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <circle cx="35" cy="11" r="2" fill="#B76E79"/>
+        <path d="M47,27 C49,20 53,15 55,11" stroke="#7B4049" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <circle cx="55" cy="11" r="2" fill="#B76E79"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- COUNTDOWN -->
+  <section id="scd">
+    <span class="cd-label rv">&#161;Tan solo faltan!</span>
+    <div class="cd-wrap rv">
+      <div class="cd-seg"><span class="cd-num" id="cdD">00</span><span class="cd-lbl">D&iacute;as</span></div>
+      <span class="cd-colon">:</span>
+      <div class="cd-seg"><span class="cd-num" id="cdH">00</span><span class="cd-lbl">Horas</span></div>
+      <span class="cd-colon">:</span>
+      <div class="cd-seg"><span class="cd-num" id="cdM">00</span><span class="cd-lbl">Min</span></div>
+      <span class="cd-colon">:</span>
+      <div class="cd-seg"><span class="cd-num" id="cdS">00</span><span class="cd-lbl">Seg</span></div>
+    </div>
+  </section>
+
+  <!-- ORNAMENTO -->
+  <div class="orn-wrap rv">
+    <svg viewBox="0 0 180 22" fill="none"><path d="M0,11 Q12,4 24,11 Q36,18 48,11 Q60,4 72,11" stroke="#B76E79" stroke-width="0.9" opacity="0.28" fill="none"/><path d="M108,11 Q120,4 132,11 Q144,18 156,11 Q168,4 180,11" stroke="#B76E79" stroke-width="0.9" opacity="0.28" fill="none"/><circle cx="90" cy="11" r="3.5" fill="#B76E79" opacity="0.30"/><circle cx="80" cy="11" r="1.8" fill="#B76E79" opacity="0.18"/><circle cx="100" cy="11" r="1.8" fill="#B76E79" opacity="0.18"/></svg>
+  </div>
+
+  <!-- FAMILIA -->
+  <section id="sfam" style="position:relative;">
+    <div class="eyebrow rv">Para Este D&iacute;a Tan Especial</div>
+    <h2 class="sec-title rv">Mi Familia</h2>
+    <div class="fam-wrap">
+      <div class="fam-block rv">
+        <div class="fam-role">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#B76E79"><path d="M12 2l1.2 7.8L21 12l-7.8 1.2L12 22l-1.2-8.8L3 12l8.8-1.2z"/></svg>
+          Quincea&ntilde;era
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#B76E79"><path d="M12 2l1.2 7.8L21 12l-7.8 1.2L12 22l-1.2-8.8L3 12l8.8-1.2z"/></svg>
+        </div>
+        <div class="fam-names">Joy Caroline Joya</div>
+      </div>
+      <div class="fam-divider rv"></div>
+      <div class="fam-block rv">
+        <div class="fam-role">Mis Padres</div>
+        <div class="fam-names">Sherry Joya<br>&amp;<br>Juan Joya</div>
+      </div>
+      <div class="fam-divider rv"></div>
+      <div class="fam-block rv">
+        <div class="fam-role">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#2D1B0E" style="opacity:.5"><path d="M12 2l1.2 7.8L21 12l-7.8 1.2L12 22l-1.2-8.8L3 12l8.8-1.2z"/></svg>
+          Mis Padrinos de Honor
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="#2D1B0E" style="opacity:.5"><path d="M12 2l1.2 7.8L21 12l-7.8 1.2L12 22l-1.2-8.8L3 12l8.8-1.2z"/></svg>
+        </div>
+        <div class="fam-names padrinos-rot" id="padrinosRot">
+          <span class="padrino-item is-on">Por confirmar</span>
+          <div class="padrinos-dots" id="padrinosDots" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Conejito esquina -->
+    <div style="display:flex;justify-content:flex-start;margin-top:8px;padding-left:4px;">
+      <svg class="conejito" width="70" height="84" viewBox="0 0 100 120" fill="none" style="opacity:0.85;">
+        <ellipse cx="34" cy="25" rx="12" ry="22" fill="#F0E3DC" transform="rotate(-12 34 25)"/>
+        <ellipse cx="34" cy="25" rx="7" ry="16" fill="#EBD1D4" opacity="0.7" transform="rotate(-12 34 25)"/>
+        <ellipse cx="66" cy="25" rx="12" ry="22" fill="#F0E3DC" transform="rotate(12 66 25)"/>
+        <ellipse cx="66" cy="25" rx="7" ry="16" fill="#EBD1D4" opacity="0.7" transform="rotate(12 66 25)"/>
+        <path d="M70,12 C66,7 60,5 64,9Z" fill="#B76E79" opacity="0.9"/>
+        <path d="M76,12 C80,7 86,5 82,9Z" fill="#B76E79" opacity="0.9"/>
+        <ellipse cx="73" cy="11" rx="4" ry="3" fill="#7B4049"/>
+        <ellipse cx="50" cy="58" rx="28" ry="26" fill="#F7EDE8"/>
+        <ellipse cx="40" cy="55" rx="4.5" ry="5" fill="#2D1B0E" opacity="0.75"/>
+        <ellipse cx="60" cy="55" rx="4.5" ry="5" fill="#2D1B0E" opacity="0.75"/>
+        <circle cx="41.5" cy="53" r="2" fill="#fff" opacity="0.6"/>
+        <circle cx="61.5" cy="53" r="2" fill="#fff" opacity="0.6"/>
+        <ellipse cx="50" cy="62" rx="5" ry="3.5" fill="#D7A4AA"/>
+        <ellipse cx="34" cy="62" rx="7" ry="4" fill="#EFD4D2" opacity="0.5"/>
+        <ellipse cx="66" cy="62" rx="7" ry="4" fill="#EFD4D2" opacity="0.5"/>
+        <ellipse cx="50" cy="98" rx="24" ry="20" fill="#F7EDE8"/>
+        <ellipse cx="26" cy="108" rx="12" ry="7" fill="#F0E3DC"/>
+        <ellipse cx="74" cy="108" rx="12" ry="7" fill="#F0E3DC"/>
+        <circle cx="68" cy="93" r="9" fill="rgba(255,255,255,0.65)"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ORNAMENTO -->
+  <div class="orn-wrap rv">
+    <svg viewBox="0 0 180 22" fill="none"><path d="M0,11 Q12,4 24,11 Q36,18 48,11 Q60,4 72,11" stroke="#B76E79" stroke-width="0.9" opacity="0.28" fill="none"/><path d="M108,11 Q120,4 132,11 Q144,18 156,11 Q168,4 180,11" stroke="#B76E79" stroke-width="0.9" opacity="0.28" fill="none"/><circle cx="90" cy="11" r="3.5" fill="#B76E79" opacity="0.30"/><circle cx="80" cy="11" r="1.8" fill="#B76E79" opacity="0.18"/><circle cx="100" cy="11" r="1.8" fill="#B76E79" opacity="0.18"/></svg>
+  </div>
+
+  <!-- GALERIA -->
+  <section id="sgal">
+    <div class="eyebrow rv">Mis Recuerdos</div>
+    <h2 class="sec-title rv">Mis Momentos</h2>
+    <div class="wheel-scene rv" id="wheelScene">
+      <div class="wheel-ring" id="wheelRing">
+          <div class="wheel-card"><img data-src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-joy-caroline-joya/g01.jpg" alt="Joy Caroline" /></div>
+          <div class="wheel-card"><img data-src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-joy-caroline-joya/g02.jpg" alt="Joy Caroline" /></div>
+          <div class="wheel-card"><img data-src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-joy-caroline-joya/g03.jpg" alt="Joy Caroline" /></div>
+      </div>
+    </div>
+    <p class="gal-hint rv">Arrastra para girar</p>
+  </section>
+
+  <!-- ORNAMENTO -->
+  <div class="orn-wrap rv">
+    <svg viewBox="0 0 180 22" fill="none"><path d="M0,11 Q12,4 24,11 Q36,18 48,11 Q60,4 72,11" stroke="#B76E79" stroke-width="0.9" opacity="0.28" fill="none"/><path d="M108,11 Q120,4 132,11 Q144,18 156,11 Q168,4 180,11" stroke="#B76E79" stroke-width="0.9" opacity="0.28" fill="none"/><circle cx="90" cy="11" r="3.5" fill="#B76E79" opacity="0.30"/><circle cx="80" cy="11" r="1.8" fill="#B76E79" opacity="0.18"/><circle cx="100" cy="11" r="1.8" fill="#B76E79" opacity="0.18"/></svg>
+  </div>
+
+  <!-- UBICACION -->
+  <section id="subic">
+    <div class="eyebrow rv">Donde Nos Encontramos</div>
+    <h2 class="sec-title rv">Ubicaci&oacute;n</h2>
+
+    <!-- Recepcion -->
+    <div class="ubic-card rv">
+      <!-- Corner ornaments -->
+      <svg class="mf-corner mf-tl" viewBox="0 0 36 36" fill="none"><path d="M4,24 L4,4 L24,4" stroke="rgba(163,124,55,0.72)" stroke-width="1.6" stroke-linecap="round"/><circle cx="4" cy="4" r="2.8" fill="rgba(163,124,55,0.62)"/><path d="M10,4 Q10,10 4,10" stroke="rgba(163,124,55,0.42)" stroke-width="1" fill="none"/><circle cx="24" cy="4" r="1.6" fill="rgba(183,110,121,0.38)"/><circle cx="4" cy="24" r="1.6" fill="rgba(183,110,121,0.38)"/></svg>
+      <svg class="mf-corner mf-tr" viewBox="0 0 36 36" fill="none"><path d="M4,24 L4,4 L24,4" stroke="rgba(163,124,55,0.72)" stroke-width="1.6" stroke-linecap="round"/><circle cx="4" cy="4" r="2.8" fill="rgba(163,124,55,0.62)"/><path d="M10,4 Q10,10 4,10" stroke="rgba(163,124,55,0.42)" stroke-width="1" fill="none"/><circle cx="24" cy="4" r="1.6" fill="rgba(183,110,121,0.38)"/><circle cx="4" cy="24" r="1.6" fill="rgba(183,110,121,0.38)"/></svg>
+      <svg class="mf-corner mf-bl" viewBox="0 0 36 36" fill="none"><path d="M4,24 L4,4 L24,4" stroke="rgba(163,124,55,0.72)" stroke-width="1.6" stroke-linecap="round"/><circle cx="4" cy="4" r="2.8" fill="rgba(163,124,55,0.62)"/><path d="M10,4 Q10,10 4,10" stroke="rgba(163,124,55,0.42)" stroke-width="1" fill="none"/><circle cx="24" cy="4" r="1.6" fill="rgba(183,110,121,0.38)"/><circle cx="4" cy="24" r="1.6" fill="rgba(183,110,121,0.38)"/></svg>
+      <svg class="mf-corner mf-br" viewBox="0 0 36 36" fill="none"><path d="M4,24 L4,4 L24,4" stroke="rgba(163,124,55,0.72)" stroke-width="1.6" stroke-linecap="round"/><circle cx="4" cy="4" r="2.8" fill="rgba(163,124,55,0.62)"/><path d="M10,4 Q10,10 4,10" stroke="rgba(163,124,55,0.42)" stroke-width="1" fill="none"/><circle cx="24" cy="4" r="1.6" fill="rgba(183,110,121,0.38)"/><circle cx="4" cy="24" r="1.6" fill="rgba(183,110,121,0.38)"/></svg>
+      <span class="ubic-icon">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+          <rect x="16" y="2" width="8" height="12" rx="1" fill="#B76E79" opacity="0.8"/>
+          <rect x="18" y="0" width="4" height="6" rx="1" fill="#B76E79"/>
+          <path d="M4,16 L20,8 L36,16 L36,38 L4,38 Z" fill="none" stroke="#B76E79" stroke-width="1.5" opacity="0.6"/>
+          <rect x="14" y="24" width="12" height="14" rx="1" fill="#B76E79" opacity="0.35"/>
+          <rect x="8" y="18" width="8" height="8" rx="1" fill="none" stroke="#B76E79" stroke-width="1" opacity="0.5"/>
+          <rect x="24" y="18" width="8" height="8" rx="1" fill="none" stroke="#B76E79" stroke-width="1" opacity="0.5"/>
+        </svg>
+      </span>
+      <div class="ubic-tipo">Bendici&oacute;n</div>
+      <div class="ubic-name">Chandelier&rsquo;s Event Center</div>
+      <div class="ubic-addr">359 Lake Park Rd, Ste 130<br>Lewisville, Texas 75057</div>
+      <div class="ubic-hora">6:00 p.m.</div>
+      <a class="btn-pink" href="https://maps.app.goo.gl/fr2YnE5pfMZUx6tL7?g_st=ic" target="_blank" rel="noopener">Ver Ubicaci&oacute;n</a>
+    </div>
+
+    <!-- Cena -->
+    <div class="ubic-card rv">
+      <!-- Corner ornaments -->
+      <svg class="mf-corner mf-tl" viewBox="0 0 36 36" fill="none"><path d="M4,24 L4,4 L24,4" stroke="rgba(163,124,55,0.72)" stroke-width="1.6" stroke-linecap="round"/><circle cx="4" cy="4" r="2.8" fill="rgba(163,124,55,0.62)"/><path d="M10,4 Q10,10 4,10" stroke="rgba(163,124,55,0.42)" stroke-width="1" fill="none"/><circle cx="24" cy="4" r="1.6" fill="rgba(183,110,121,0.38)"/><circle cx="4" cy="24" r="1.6" fill="rgba(183,110,121,0.38)"/></svg>
+      <svg class="mf-corner mf-tr" viewBox="0 0 36 36" fill="none"><path d="M4,24 L4,4 L24,4" stroke="rgba(163,124,55,0.72)" stroke-width="1.6" stroke-linecap="round"/><circle cx="4" cy="4" r="2.8" fill="rgba(163,124,55,0.62)"/><path d="M10,4 Q10,10 4,10" stroke="rgba(163,124,55,0.42)" stroke-width="1" fill="none"/><circle cx="24" cy="4" r="1.6" fill="rgba(183,110,121,0.38)"/><circle cx="4" cy="24" r="1.6" fill="rgba(183,110,121,0.38)"/></svg>
+      <svg class="mf-corner mf-bl" viewBox="0 0 36 36" fill="none"><path d="M4,24 L4,4 L24,4" stroke="rgba(163,124,55,0.72)" stroke-width="1.6" stroke-linecap="round"/><circle cx="4" cy="4" r="2.8" fill="rgba(163,124,55,0.62)"/><path d="M10,4 Q10,10 4,10" stroke="rgba(163,124,55,0.42)" stroke-width="1" fill="none"/><circle cx="24" cy="4" r="1.6" fill="rgba(183,110,121,0.38)"/><circle cx="4" cy="24" r="1.6" fill="rgba(183,110,121,0.38)"/></svg>
+      <svg class="mf-corner mf-br" viewBox="0 0 36 36" fill="none"><path d="M4,24 L4,4 L24,4" stroke="rgba(163,124,55,0.72)" stroke-width="1.6" stroke-linecap="round"/><circle cx="4" cy="4" r="2.8" fill="rgba(163,124,55,0.62)"/><path d="M10,4 Q10,10 4,10" stroke="rgba(163,124,55,0.42)" stroke-width="1" fill="none"/><circle cx="24" cy="4" r="1.6" fill="rgba(183,110,121,0.38)"/><circle cx="4" cy="24" r="1.6" fill="rgba(183,110,121,0.38)"/></svg>
+      <span class="ubic-icon">
+        <svg width="38" height="38" viewBox="0 0 40 40" fill="none">
+          <rect x="2" y="12" width="36" height="26" rx="3" stroke="#B76E79" stroke-width="1.5" fill="none" opacity="0.55"/>
+          <path d="M2,12 L20,26 L38,12" stroke="#B76E79" stroke-width="1.5" fill="none" opacity="0.55"/>
+          <rect x="10" y="2" width="20" height="14" rx="2" stroke="#B76E79" stroke-width="1.3" fill="rgba(183,110,121,0.07)"/>
+          <line x1="20" y1="2" x2="20" y2="16" stroke="#B76E79" stroke-width="1.3" opacity="0.5"/>
+          <line x1="10" y1="9" x2="30" y2="9" stroke="#B76E79" stroke-width="1" opacity="0.4"/>
+        </svg>
+      </span>
+      <div class="ubic-tipo">Recepci&oacute;n</div>
+      <div class="ubic-name">Chandelier&rsquo;s Event Center</div>
+      <div class="ubic-addr">359 Lake Park Rd, Ste 130<br>Lewisville, Texas 75057</div>
+      <div class="ubic-hora">7:15 p.m.</div>
+      <a class="btn-pink" href="https://maps.app.goo.gl/fr2YnE5pfMZUx6tL7?g_st=ic" target="_blank" rel="noopener">Ver Ubicaci&oacute;n</a>
+    </div>
+  </section>
+
+  <!-- ORNAMENTO -->
+  <div class="orn-wrap rv">
+    <svg viewBox="0 0 180 22" fill="none"><path d="M0,11 Q12,4 24,11 Q36,18 48,11 Q60,4 72,11" stroke="#B76E79" stroke-width="0.9" opacity="0.28" fill="none"/><path d="M108,11 Q120,4 132,11 Q144,18 156,11 Q168,4 180,11" stroke="#B76E79" stroke-width="0.9" opacity="0.28" fill="none"/><circle cx="90" cy="11" r="3.5" fill="#B76E79" opacity="0.30"/><circle cx="80" cy="11" r="1.8" fill="#B76E79" opacity="0.18"/><circle cx="100" cy="11" r="1.8" fill="#B76E79" opacity="0.18"/></svg>
+  </div>
+
+  <!-- ITINERARIO -->
+  <section id="sitin">
+    <div class="eyebrow rv">El Orden del D&iacute;a</div>
+    <h2 class="sec-title rv">Itinerario</h2>
+    <div class="itin-list">
+      <div class="itin-item rv">
+        <span class="itin-ico"><svg width="30" height="30" viewBox="0 0 40 40" fill="none">
+        <rect x="16" y="2" width="8" height="12" rx="1" fill="#B76E79" opacity="0.8"/>
+        <rect x="18" y="0" width="4" height="6" rx="1" fill="#B76E79"/>
+        <path d="M4,16 L20,8 L36,16 L36,38 L4,38 Z" fill="none" stroke="#B76E79" stroke-width="1.6" opacity="0.65"/>
+        <rect x="14" y="24" width="12" height="14" rx="1" fill="#B76E79" opacity="0.32"/>
+      </svg></span>
+        <div class="itin-txt">
+          <div class="itin-hora">6:00 p.m.</div>
+          <div class="itin-nom">Bendici&oacute;n</div>
+        </div>
+      </div>
+      <div class="itin-item rv">
+        <span class="itin-ico"><svg width="30" height="30" viewBox="0 0 44 44" fill="none">
+        <circle cx="22" cy="22" r="13" fill="rgba(183,110,121,0.07)" stroke="#B76E79" stroke-width="1.6" opacity="0.68"/>
+        <circle cx="22" cy="22" r="9" fill="none" stroke="#B76E79" stroke-width="1" opacity="0.48"/>
+        <path d="M8 6 L8 17 M5.5 6 L5.5 12 M10.5 6 L10.5 12 M8 17 L8 38" stroke="#B76E79" stroke-width="1.6" stroke-linecap="round" opacity="0.68"/>
+        <path d="M36 6 C38 9 38 14 36 17 L36 38" stroke="#B76E79" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.68"/>
+      </svg></span>
+        <div class="itin-txt">
+          <div class="itin-hora">7:00 p.m.</div>
+          <div class="itin-nom">Cena</div>
+        </div>
+      </div>
+      <div class="itin-item rv">
+        <span class="itin-ico"><svg width="30" height="30" viewBox="0 0 44 44" fill="none">
+        <path d="M6,32 L9,13 L16,21 L22,9 L28,21 L35,13 L38,32 Z" fill="rgba(183,110,121,0.16)" stroke="#B76E79" stroke-width="1.6" stroke-linejoin="round" opacity="0.85"/>
+        <line x1="6" y1="35" x2="38" y2="35" stroke="#B76E79" stroke-width="1.6" stroke-linecap="round" opacity="0.6"/>
+        <circle cx="9" cy="11" r="2.2" fill="#D4AF37"/><circle cx="22" cy="7" r="2.4" fill="#D4AF37"/><circle cx="35" cy="11" r="2.2" fill="#D4AF37"/>
+      </svg></span>
+        <div class="itin-txt">
+          <div class="itin-hora">8:15 p.m.</div>
+          <div class="itin-nom">Presentaci&oacute;n</div>
+        </div>
+      </div>
+      <div class="itin-item rv">
+        <span class="itin-ico"><svg width="30" height="30" viewBox="0 0 44 44" fill="none">
+        <path d="M18,31 L18,10 L34,7 L34,27" stroke="#B76E79" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.8"/>
+        <line x1="18" y1="16" x2="34" y2="13" stroke="#B76E79" stroke-width="1.6" stroke-linecap="round" opacity="0.55"/>
+        <ellipse cx="13" cy="31" rx="5.6" ry="4.6" fill="rgba(183,110,121,0.22)" stroke="#B76E79" stroke-width="1.6" opacity="0.85"/>
+        <ellipse cx="29" cy="27" rx="5.6" ry="4.6" fill="rgba(183,110,121,0.22)" stroke="#B76E79" stroke-width="1.6" opacity="0.85"/>
+      </svg></span>
+        <div class="itin-txt">
+          <div class="itin-hora">9:00 p.m.</div>
+          <div class="itin-nom">Baile</div>
+        </div>
+      </div>
+      <div class="itin-item rv">
+        <span class="itin-ico"><svg width="30" height="30" viewBox="0 0 44 44" fill="none">
+        <path d="M29,6 A15,15 0 1 0 38,23 A12,12 0 1 1 29,6Z" fill="rgba(183,110,121,0.18)" stroke="#B76E79" stroke-width="1.6" stroke-linejoin="round" opacity="0.88"/>
+        <path d="M13 8l.8 4.6L18 13l-4.2.7L13 18l-.8-4.3L8 13l4.2-.4z" fill="#D4AF37" opacity="0.9"/>
+        <path d="M34 30l.6 3.4L38 34l-3.4.6L34 38l-.6-3.4L30 34l3.4-.6z" fill="#D4AF37" opacity="0.75"/>
+      </svg></span>
+        <div class="itin-txt">
+          <div class="itin-hora">12:00 a.m.</div>
+          <div class="itin-nom">Despedida</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORNAMENTO -->
+  <div class="orn-wrap rv">
+    <svg viewBox="0 0 180 22" fill="none"><path d="M0,11 Q12,4 24,11 Q36,18 48,11 Q60,4 72,11" stroke="#B76E79" stroke-width="0.9" opacity="0.28" fill="none"/><path d="M108,11 Q120,4 132,11 Q144,18 156,11 Q168,4 180,11" stroke="#B76E79" stroke-width="0.9" opacity="0.28" fill="none"/><circle cx="90" cy="11" r="3.5" fill="#B76E79" opacity="0.30"/><circle cx="80" cy="11" r="1.8" fill="#B76E79" opacity="0.18"/><circle cx="100" cy="11" r="1.8" fill="#B76E79" opacity="0.18"/></svg>
+  </div>
+
+  <!-- DRESS CODE -->
+  <section id="sdc" style="position:relative;">
+    <div class="eyebrow rv">Etiqueta</div>
+    <h2 class="sec-title rv">C&oacute;digo de Vestimenta</h2>
+    <!-- Maripositas arriba -->
+    <div style="display:flex;justify-content:space-between;padding:0 12px;margin-bottom:8px;" class="rv">
+      <svg class="mariposa" width="48" height="38" viewBox="0 0 90 70" fill="none" style="opacity:0.72;">
+        <path d="M45,35 C38,22 24,8 12,14 C2,19 5,33 18,36 C30,39 42,36 45,35Z" fill="#EBD1D4" opacity="0.9"/>
+        <path d="M45,35 C36,26 22,16 14,18 C8,22 10,30 20,34 C32,38 43,36 45,35Z" fill="#B76E79" opacity="0.45"/>
+        <path d="M45,37 C38,46 24,56 14,52 C6,49 10,38 22,36 C34,34 43,36 45,37Z" fill="#E7C9CD" opacity="0.85"/>
+        <path d="M45,35 C52,22 66,8 78,14 C88,19 85,33 72,36 C60,39 48,36 45,35Z" fill="#EBD1D4" opacity="0.9"/>
+        <path d="M45,35 C54,26 68,16 76,18 C82,22 80,30 70,34 C58,38 47,36 45,35Z" fill="#B76E79" opacity="0.45"/>
+        <path d="M45,37 C52,46 66,56 76,52 C84,49 80,38 68,36 C56,34 47,36 45,37Z" fill="#E7C9CD" opacity="0.85"/>
+        <ellipse cx="45" cy="36" rx="3" ry="9" fill="#7B4049"/>
+        <path d="M43,27 C41,20 37,15 35,11" stroke="#7B4049" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <circle cx="35" cy="11" r="2" fill="#B76E79"/>
+        <path d="M47,27 C49,20 53,15 55,11" stroke="#7B4049" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+        <circle cx="55" cy="11" r="2" fill="#B76E79"/>
+      </svg>
+      <svg class="mariposa mariposa-2" width="40" height="32" viewBox="0 0 90 70" fill="none" style="opacity:0.60;">
+        <path d="M45,35 C38,22 24,8 12,14 C2,19 5,33 18,36 C30,39 42,36 45,35Z" fill="#EBD1D4" opacity="0.85"/>
+        <path d="M45,37 C38,46 24,56 14,52 C6,49 10,38 22,36 C34,34 43,36 45,37Z" fill="#E7C9CD" opacity="0.8"/>
+        <path d="M45,35 C52,22 66,8 78,14 C88,19 85,33 72,36 C60,39 48,36 45,35Z" fill="#EBD1D4" opacity="0.85"/>
+        <path d="M45,37 C52,46 66,56 76,52 C84,49 80,38 68,36 C56,34 47,36 45,37Z" fill="#E7C9CD" opacity="0.8"/>
+        <ellipse cx="45" cy="36" rx="2.5" ry="8" fill="#8F4F59"/>
+        <path d="M43,27 C41,20 38,16 36,12" stroke="#8F4F59" stroke-width="1" stroke-linecap="round" fill="none"/>
+        <circle cx="36" cy="12" r="1.8" fill="#B76E79"/>
+        <path d="M47,27 C49,20 52,16 54,12" stroke="#8F4F59" stroke-width="1" stroke-linecap="round" fill="none"/>
+        <circle cx="54" cy="12" r="1.8" fill="#B76E79"/>
+      </svg>
+    </div>
+    <div class="dc-note rv">Formal</div>
+    <div class="dc-icons rv">
+      <svg width="60" height="72" viewBox="0 0 60 72" fill="none">
+        <path d="M20,2 L10,18 L2,18 L10,30 L6,70 L30,70 L54,70 L50,30 L58,18 L50,18 L40,2 C38,8 36,10 30,12 C24,10 22,8 20,2Z" fill="#2D1B0E" opacity="0.75"/>
+      </svg>
+      <svg width="60" height="72" viewBox="0 0 60 72" fill="none">
+        <path d="M18,2 L2,20 L12,22 L10,70 L30,70 L50,70 L48,22 L58,20 L42,2 L36,14 L30,18 L24,14 Z" fill="#2D1B0E" opacity="0.75"/>
+        <rect x="27" y="18" width="6" height="28" rx="1" fill="var(--bg)" opacity="0.6"/>
+      </svg>
+    </div>
+    <div class="dc-evitar rv">
+      <div class="dc-evitar-title">Colores Sugeridos</div>
+      <div class="dc-swatches">
+        <div class="dc-swatch"><div class="dot dot-silver"></div><div class="lbl">Silver</div></div>
+        <div class="dc-swatch"><div class="dot dot-gold"></div><div class="lbl">Gold</div></div>
+        <div class="dc-swatch"><div class="dot dot-champagne"></div><div class="lbl">Champagne</div></div>
+        <div class="dc-swatch"><div class="dot dot-rosegold"></div><div class="lbl">Rose Gold</div></div>
+      </div>
+      <div class="dc-note2">Tonos met&aacute;licos para acompa&ntilde;ar la paleta de la noche</div>
+    </div>
+    <!-- Conejito esquina derecha -->
+    <div style="display:flex;justify-content:flex-end;margin-top:16px;padding-right:6px;">
+      <svg class="conejito conejito-flip" width="76" height="90" viewBox="0 0 100 120" fill="none" style="opacity:0.82;">
+        <ellipse cx="34" cy="25" rx="12" ry="22" fill="#F0E3DC" transform="rotate(-12 34 25)"/>
+        <ellipse cx="34" cy="25" rx="7" ry="16" fill="#EBD1D4" opacity="0.7" transform="rotate(-12 34 25)"/>
+        <ellipse cx="66" cy="25" rx="12" ry="22" fill="#F0E3DC" transform="rotate(12 66 25)"/>
+        <ellipse cx="66" cy="25" rx="7" ry="16" fill="#EBD1D4" opacity="0.7" transform="rotate(12 66 25)"/>
+        <path d="M70,12 C66,7 60,5 64,9Z" fill="#B76E79" opacity="0.9"/>
+        <path d="M76,12 C80,7 86,5 82,9Z" fill="#B76E79" opacity="0.9"/>
+        <ellipse cx="73" cy="11" rx="4" ry="3" fill="#7B4049"/>
+        <ellipse cx="50" cy="58" rx="28" ry="26" fill="#F7EDE8"/>
+        <ellipse cx="40" cy="55" rx="4.5" ry="5" fill="#2D1B0E" opacity="0.75"/>
+        <ellipse cx="60" cy="55" rx="4.5" ry="5" fill="#2D1B0E" opacity="0.75"/>
+        <circle cx="41.5" cy="53" r="2" fill="#fff" opacity="0.6"/>
+        <circle cx="61.5" cy="53" r="2" fill="#fff" opacity="0.6"/>
+        <ellipse cx="50" cy="62" rx="5" ry="3.5" fill="#D7A4AA"/>
+        <ellipse cx="34" cy="62" rx="7" ry="4" fill="#EFD4D2" opacity="0.5"/>
+        <ellipse cx="66" cy="62" rx="7" ry="4" fill="#EFD4D2" opacity="0.5"/>
+        <ellipse cx="50" cy="98" rx="24" ry="20" fill="#F7EDE8"/>
+        <ellipse cx="26" cy="108" rx="12" ry="7" fill="#F0E3DC"/>
+        <ellipse cx="74" cy="108" rx="12" ry="7" fill="#F0E3DC"/>
+        <circle cx="68" cy="93" r="9" fill="rgba(255,255,255,0.65)"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ORNAMENTO -->
+  <div class="orn-wrap rv">
+    <svg viewBox="0 0 180 22" fill="none"><path d="M0,11 Q12,4 24,11 Q36,18 48,11 Q60,4 72,11" stroke="#B76E79" stroke-width="0.9" opacity="0.28" fill="none"/><path d="M108,11 Q120,4 132,11 Q144,18 156,11 Q168,4 180,11" stroke="#B76E79" stroke-width="0.9" opacity="0.28" fill="none"/><circle cx="90" cy="11" r="3.5" fill="#B76E79" opacity="0.30"/><circle cx="80" cy="11" r="1.8" fill="#B76E79" opacity="0.18"/><circle cx="100" cy="11" r="1.8" fill="#B76E79" opacity="0.18"/></svg>
+  </div>
+
+  <!-- BUZON -->
+  <section id="sbuzon" style="padding:52px 28px 40px;">
+    <div class="eyebrow rv">Con Cari&ntilde;o</div>
+    <h2 class="sec-title rv">Lluvia de Sobres</h2>
+    <div class="buzon-outer rv">
+      <svg class="buzon-bow-top" viewBox="0 0 160 100" fill="none">
+        <defs><linearGradient id="bbuz1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#EBD1D4"/><stop offset="100%" stop-color="#B76E79"/></linearGradient><linearGradient id="bbuz2" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#EBD1D4"/><stop offset="100%" stop-color="#B76E79"/></linearGradient></defs>
+        <path d="M80,50 C70,30 38,10 14,22 C-2,30 8,54 36,58 C56,62 74,54 80,50Z" fill="url(#bbuz1)"/>
+        <path d="M80,50 C90,30 122,10 146,22 C162,30 152,54 124,58 C104,62 86,54 80,50Z" fill="url(#bbuz2)"/>
+        <path d="M72,58 C58,72 40,82 24,90" stroke="#B76E79" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.75"/>
+        <path d="M88,58 C102,72 120,82 136,90" stroke="#B76E79" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.75"/>
+        <ellipse cx="80" cy="52" rx="13" ry="10" fill="#7B4049"/>
+        <ellipse cx="80" cy="52" rx="7" ry="5.5" fill="#B76E79"/>
+      </svg>
+      <div class="buzon-card">
+        <!-- Corner ornaments -->
+        <svg class="mf-corner mf-tl" viewBox="0 0 36 36" fill="none"><path d="M4,24 L4,4 L24,4" stroke="rgba(163,124,55,0.72)" stroke-width="1.6" stroke-linecap="round"/><circle cx="4" cy="4" r="2.8" fill="rgba(163,124,55,0.62)"/><path d="M10,4 Q10,10 4,10" stroke="rgba(163,124,55,0.42)" stroke-width="1" fill="none"/><circle cx="24" cy="4" r="1.6" fill="rgba(183,110,121,0.38)"/><circle cx="4" cy="24" r="1.6" fill="rgba(183,110,121,0.38)"/></svg>
+        <svg class="mf-corner mf-tr" viewBox="0 0 36 36" fill="none"><path d="M4,24 L4,4 L24,4" stroke="rgba(163,124,55,0.72)" stroke-width="1.6" stroke-linecap="round"/><circle cx="4" cy="4" r="2.8" fill="rgba(163,124,55,0.62)"/><path d="M10,4 Q10,10 4,10" stroke="rgba(163,124,55,0.42)" stroke-width="1" fill="none"/><circle cx="24" cy="4" r="1.6" fill="rgba(183,110,121,0.38)"/><circle cx="4" cy="24" r="1.6" fill="rgba(183,110,121,0.38)"/></svg>
+        <svg class="mf-corner mf-bl" viewBox="0 0 36 36" fill="none"><path d="M4,24 L4,4 L24,4" stroke="rgba(163,124,55,0.72)" stroke-width="1.6" stroke-linecap="round"/><circle cx="4" cy="4" r="2.8" fill="rgba(163,124,55,0.62)"/><path d="M10,4 Q10,10 4,10" stroke="rgba(163,124,55,0.42)" stroke-width="1" fill="none"/><circle cx="24" cy="4" r="1.6" fill="rgba(183,110,121,0.38)"/><circle cx="4" cy="24" r="1.6" fill="rgba(183,110,121,0.38)"/></svg>
+        <svg class="mf-corner mf-br" viewBox="0 0 36 36" fill="none"><path d="M4,24 L4,4 L24,4" stroke="rgba(163,124,55,0.72)" stroke-width="1.6" stroke-linecap="round"/><circle cx="4" cy="4" r="2.8" fill="rgba(163,124,55,0.62)"/><path d="M10,4 Q10,10 4,10" stroke="rgba(163,124,55,0.42)" stroke-width="1" fill="none"/><circle cx="24" cy="4" r="1.6" fill="rgba(183,110,121,0.38)"/><circle cx="4" cy="24" r="1.6" fill="rgba(183,110,121,0.38)"/></svg>
+        <div class="buzon-icon-wrap">
+          <!-- Gift / money box icon -->
+          <svg width="56" height="52" viewBox="0 0 56 52" fill="none">
+            <rect x="6" y="20" width="44" height="28" rx="3" stroke="#B76E79" stroke-width="1.8" fill="rgba(183,110,121,0.07)" opacity="0.7"/>
+            <rect x="4" y="13" width="48" height="9" rx="2" stroke="#B76E79" stroke-width="1.5" fill="rgba(183,110,121,0.07)" opacity="0.7"/>
+            <rect x="19" y="12" width="18" height="4" rx="2" fill="#B76E79" opacity="0.32"/>
+            <line x1="28" y1="13" x2="28" y2="48" stroke="#B76E79" stroke-width="1.5" opacity="0.38"/>
+            <line x1="6" y1="26" x2="50" y2="26" stroke="#B76E79" stroke-width="1" opacity="0.24"/>
+            <path d="M28,13 C22,7 14,6 16,11Z" fill="#B76E79" opacity="0.72"/>
+            <path d="M28,13 C34,7 42,6 40,11Z" fill="#B76E79" opacity="0.72"/>
+            <circle cx="28" cy="13" r="3.5" fill="#7B4049" opacity="0.80"/>
+            <ellipse cx="26.5" cy="11.5" rx="1.5" ry="1" fill="rgba(255,255,255,0.38)"/>
+          </svg>
+        </div>
+        <p class="buzon-text">En el festejo encontrar&aacute;s un hermoso buz&oacute;n especialmente decorado donde podr&aacute;s depositar tu sobre.<br><br>Tu cari&ntilde;o y presencia son lo m&aacute;s valioso para Joy Caroline y su familia.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORNAMENTO -->
+  <div class="orn-wrap rv">
+    <svg viewBox="0 0 180 22" fill="none"><path d="M0,11 Q12,4 24,11 Q36,18 48,11 Q60,4 72,11" stroke="#B76E79" stroke-width="0.9" opacity="0.28" fill="none"/><path d="M108,11 Q120,4 132,11 Q144,18 156,11 Q168,4 180,11" stroke="#B76E79" stroke-width="0.9" opacity="0.28" fill="none"/><circle cx="90" cy="11" r="3.5" fill="#B76E79" opacity="0.30"/><circle cx="80" cy="11" r="1.8" fill="#B76E79" opacity="0.18"/><circle cx="100" cy="11" r="1.8" fill="#B76E79" opacity="0.18"/></svg>
+  </div>
+
+  <!-- RSVP -->
+  <section id="srsvp" style="padding:20px 28px 70px;">
+    <div class="eyebrow rv">Confirma Tu Asistencia</div>
+    <h2 class="sec-title rv">R.S.V.P.</h2>
+    <p style="text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:var(--gold);margin-bottom:32px;" class="rv">&#161;Nos encantar&iacute;a contar con tu presencia!</p>
+    <div class="rsvp-outer rv">
+
+      <!-- MOÑO GRANDE -->
+      <svg class="rsvp-bow-grande" viewBox="0 0 240 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="rbl" cx="28%" cy="38%"><stop offset="0%" stop-color="#FAF1F2"/><stop offset="55%" stop-color="#CC949B"/><stop offset="100%" stop-color="#B76E79"/></radialGradient>
+          <radialGradient id="rbr" cx="72%" cy="38%"><stop offset="0%" stop-color="#FAF1F2"/><stop offset="55%" stop-color="#CC949B"/><stop offset="100%" stop-color="#8F4F59"/></radialGradient>
+          <radialGradient id="rblf" cx="28%" cy="62%"><stop offset="0%" stop-color="#E7C9CD"/><stop offset="100%" stop-color="#7B4049"/></radialGradient>
+          <radialGradient id="rbrf" cx="72%" cy="62%"><stop offset="0%" stop-color="#E7C9CD"/><stop offset="100%" stop-color="#7B4049"/></radialGradient>
+        </defs>
+        <path d="M120,75 C108,52 76,28 46,40 C22,50 28,76 56,80 C82,84 112,76 120,75Z" fill="url(#rbl)"/>
+        <path d="M120,79 C106,90 80,98 56,90 C36,83 38,68 58,70 C82,72 112,78 120,79Z" fill="url(#rblf)" opacity="0.75"/>
+        <path d="M120,75 C132,52 164,28 194,40 C218,50 212,76 184,80 C158,84 128,76 120,75Z" fill="url(#rbr)"/>
+        <path d="M120,79 C134,90 160,98 184,90 C204,83 202,68 182,70 C158,72 128,78 120,79Z" fill="url(#rbrf)" opacity="0.75"/>
+        <path d="M110,86 C90,108 64,126 40,140" stroke="#B76E79" stroke-width="9" stroke-linecap="round" fill="none"/>
+        <path d="M115,88 C98,110 76,128 54,142" stroke="#EBD1D4" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.7"/>
+        <path d="M130,86 C150,108 176,126 200,140" stroke="#B76E79" stroke-width="9" stroke-linecap="round" fill="none"/>
+        <path d="M125,88 C142,110 164,128 186,142" stroke="#EBD1D4" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.7"/>
+        <ellipse cx="120" cy="78" rx="20" ry="16" fill="#7B4049"/>
+        <ellipse cx="120" cy="78" rx="11" ry="9" fill="#B76E79"/>
+        <path d="M58,50 C75,43 96,48 112,60" stroke="rgba(255,255,255,0.32)" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+        <path d="M182,50 C165,43 144,48 128,60" stroke="rgba(255,255,255,0.32)" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+        <ellipse cx="114" cy="72" rx="5" ry="3.5" fill="rgba(255,255,255,0.30)"/>
+      </svg>
+
+      <div class="rsvp-frame">
+        <!-- Corner ornaments -->
+        <svg class="mf-corner mf-tl" viewBox="0 0 36 36" fill="none"><path d="M4,24 L4,4 L24,4" stroke="rgba(163,124,55,0.72)" stroke-width="1.6" stroke-linecap="round"/><circle cx="4" cy="4" r="2.8" fill="rgba(163,124,55,0.62)"/><path d="M10,4 Q10,10 4,10" stroke="rgba(163,124,55,0.42)" stroke-width="1" fill="none"/><circle cx="24" cy="4" r="1.6" fill="rgba(183,110,121,0.38)"/><circle cx="4" cy="24" r="1.6" fill="rgba(183,110,121,0.38)"/></svg>
+        <svg class="mf-corner mf-tr" viewBox="0 0 36 36" fill="none"><path d="M4,24 L4,4 L24,4" stroke="rgba(163,124,55,0.72)" stroke-width="1.6" stroke-linecap="round"/><circle cx="4" cy="4" r="2.8" fill="rgba(163,124,55,0.62)"/><path d="M10,4 Q10,10 4,10" stroke="rgba(163,124,55,0.42)" stroke-width="1" fill="none"/><circle cx="24" cy="4" r="1.6" fill="rgba(183,110,121,0.38)"/><circle cx="4" cy="24" r="1.6" fill="rgba(183,110,121,0.38)"/></svg>
+        <svg class="mf-corner mf-bl" viewBox="0 0 36 36" fill="none"><path d="M4,24 L4,4 L24,4" stroke="rgba(163,124,55,0.72)" stroke-width="1.6" stroke-linecap="round"/><circle cx="4" cy="4" r="2.8" fill="rgba(163,124,55,0.62)"/><path d="M10,4 Q10,10 4,10" stroke="rgba(163,124,55,0.42)" stroke-width="1" fill="none"/><circle cx="24" cy="4" r="1.6" fill="rgba(183,110,121,0.38)"/><circle cx="4" cy="24" r="1.6" fill="rgba(183,110,121,0.38)"/></svg>
+        <svg class="mf-corner mf-br" viewBox="0 0 36 36" fill="none"><path d="M4,24 L4,4 L24,4" stroke="rgba(163,124,55,0.72)" stroke-width="1.6" stroke-linecap="round"/><circle cx="4" cy="4" r="2.8" fill="rgba(163,124,55,0.62)"/><path d="M10,4 Q10,10 4,10" stroke="rgba(163,124,55,0.42)" stroke-width="1" fill="none"/><circle cx="24" cy="4" r="1.6" fill="rgba(183,110,121,0.38)"/><circle cx="4" cy="24" r="1.6" fill="rgba(183,110,121,0.38)"/></svg>
+        <p class="rsvp-hola" id="rsvpHola"></p>
+        <!-- Pases (visible solo si ?pases=N esta en la URL) -->
+        <div class="pases-wrap" id="pasesWrap">
+          <div class="pases-card">
+            <div class="pases-title">Pases</div>
+            <div class="pases-sub">Hemos reservado</div>
+            <div class="pases-circles" id="pasesCircles"></div>
+            <div class="pases-honor">Asientos en tu honor</div>
+          </div>
+        </div>
+        <div id="rsvpBandeja">
+          <label>&iquest;Nos acompa&ntilde;ar&aacute;s?</label>
+          <div class="rsvp-toggle">
+            <button class="rsvp-toggle-btn" id="btnYes" type="button">S&iacute;, asistir&eacute;</button>
+            <button class="rsvp-toggle-btn" id="btnNo" type="button">No podr&eacute; asistir</button>
+          </div>
+          <div class="rsvp-fields" id="rsvpFields" style="display:none"></div>
+          <button class="btn-wa" id="rsvpBtn" type="button"><span id="rsvpBtnText">Confirmar asistencia</span></button>
+        </div>
+        <div class="rsvp-gracias" id="rsvpGracias" style="display:none">
+          <svg class="rsvp-gracias-icon" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="8.5 12.5 11 15 16 9.5"/></svg>
+          <p class="rsvp-gracias-title" id="rsvpGraciasTitle"></p>
+          <p class="rsvp-gracias-sub" id="rsvpGraciasSub"></p>
+          <button class="rsvp-editar-btn" id="rsvpEditarBtn" type="button">Modificar mi respuesta</button>
+        </div>
+        <p class="rsvp-feedback" id="rsvpFeedback"></p>
+      </div>
+
+      <!-- Conejito esquina inferior-derecha del RSVP -->
+      <svg class="rsvp-bow-br conejito-flip" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter:drop-shadow(0 4px 10px rgba(183,110,121,0.20));">
+        <ellipse cx="34" cy="25" rx="12" ry="22" fill="#F0E3DC" transform="rotate(-12 34 25)"/>
+        <ellipse cx="34" cy="25" rx="7" ry="16" fill="#EBD1D4" opacity="0.7" transform="rotate(-12 34 25)"/>
+        <ellipse cx="66" cy="25" rx="12" ry="22" fill="#F0E3DC" transform="rotate(12 66 25)"/>
+        <ellipse cx="66" cy="25" rx="7" ry="16" fill="#EBD1D4" opacity="0.7" transform="rotate(12 66 25)"/>
+        <path d="M70,12 C66,7 60,5 64,9Z" fill="#B76E79" opacity="0.9"/>
+        <path d="M76,12 C80,7 86,5 82,9Z" fill="#B76E79" opacity="0.9"/>
+        <ellipse cx="73" cy="11" rx="4" ry="3" fill="#7B4049"/>
+        <ellipse cx="50" cy="58" rx="28" ry="26" fill="#F7EDE8"/>
+        <ellipse cx="40" cy="55" rx="4.5" ry="5" fill="#2D1B0E" opacity="0.75"/>
+        <ellipse cx="60" cy="55" rx="4.5" ry="5" fill="#2D1B0E" opacity="0.75"/>
+        <circle cx="41.5" cy="53" r="2" fill="#fff" opacity="0.6"/>
+        <circle cx="61.5" cy="53" r="2" fill="#fff" opacity="0.6"/>
+        <ellipse cx="50" cy="62" rx="5" ry="3.5" fill="#D7A4AA"/>
+        <ellipse cx="34" cy="62" rx="7" ry="4" fill="#EFD4D2" opacity="0.5"/>
+        <ellipse cx="66" cy="62" rx="7" ry="4" fill="#EFD4D2" opacity="0.5"/>
+        <ellipse cx="50" cy="98" rx="24" ry="20" fill="#F7EDE8"/>
+        <ellipse cx="26" cy="108" rx="12" ry="7" fill="#F0E3DC"/>
+        <ellipse cx="74" cy="108" rx="12" ry="7" fill="#F0E3DC"/>
+        <circle cx="68" cy="93" r="9" fill="rgba(255,255,255,0.65)"/>
+      </svg>
+
+    </div>
+
+    <!-- Maripositas bajo el RSVP -->
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:18px;padding:0 8px;">
+      <svg class="mariposa mariposa-3" width="42" height="34" viewBox="0 0 90 70" fill="none" style="opacity:0.65;">
+        <path d="M45,35 C38,22 24,8 12,14 C2,19 5,33 18,36 C30,39 42,36 45,35Z" fill="#EBD1D4" opacity="0.9"/>
+        <path d="M45,37 C38,46 24,56 14,52 C6,49 10,38 22,36 C34,34 43,36 45,37Z" fill="#E7C9CD" opacity="0.85"/>
+        <path d="M45,35 C52,22 66,8 78,14 C88,19 85,33 72,36 C60,39 48,36 45,35Z" fill="#EBD1D4" opacity="0.9"/>
+        <path d="M45,37 C52,46 66,56 76,52 C84,49 80,38 68,36 C56,34 47,36 45,37Z" fill="#E7C9CD" opacity="0.85"/>
+        <ellipse cx="45" cy="36" rx="2.5" ry="8" fill="#8F4F59"/>
+        <path d="M43,27 C41,20 37,15 35,11" stroke="#8F4F59" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+        <circle cx="35" cy="11" r="1.8" fill="#B76E79"/>
+        <path d="M47,27 C49,20 53,15 55,11" stroke="#8F4F59" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+        <circle cx="55" cy="11" r="1.8" fill="#B76E79"/>
+      </svg>
+      <svg class="mariposa mariposa-flip mariposa-2" width="36" height="28" viewBox="0 0 90 70" fill="none" style="opacity:0.55;">
+        <path d="M45,35 C38,22 24,8 12,14 C2,19 5,33 18,36 C30,39 42,36 45,35Z" fill="#EBD1D4" opacity="0.85"/>
+        <path d="M45,37 C38,46 24,56 14,52 C6,49 10,38 22,36 C34,34 43,36 45,37Z" fill="#EBD1D4" opacity="0.8"/>
+        <path d="M45,35 C52,22 66,8 78,14 C88,19 85,33 72,36 C60,39 48,36 45,35Z" fill="#EBD1D4" opacity="0.85"/>
+        <path d="M45,37 C52,46 66,56 76,52 C84,49 80,38 68,36 C56,34 47,36 45,37Z" fill="#EBD1D4" opacity="0.8"/>
+        <ellipse cx="45" cy="36" rx="2.5" ry="7" fill="#7B4049"/>
+        <path d="M43,27 C41,21 38,16 36,13" stroke="#7B4049" stroke-width="1" stroke-linecap="round" fill="none"/>
+        <circle cx="36" cy="13" r="1.5" fill="#B76E79"/>
+        <path d="M47,27 C49,21 52,16 54,13" stroke="#7B4049" stroke-width="1" stroke-linecap="round" fill="none"/>
+        <circle cx="54" cy="13" r="1.5" fill="#B76E79"/>
+      </svg>
+    </div>
+    <p class="rsvp-nokids rv">Por favor confirma antes del <strong>15 de enero de 2027</strong>.</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <svg class="ft-bow" viewBox="0 0 160 100" fill="none">
+      <defs><linearGradient id="bft1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#EBD1D4"/><stop offset="100%" stop-color="#B76E79"/></linearGradient><linearGradient id="bft2" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#EBD1D4"/><stop offset="100%" stop-color="#B76E79"/></linearGradient></defs>
+      <path d="M80,50 C70,30 38,10 14,22 C-2,30 8,54 36,58 C56,62 74,54 80,50Z" fill="url(#bft1)"/>
+      <path d="M80,50 C90,30 122,10 146,22 C162,30 152,54 124,58 C104,62 86,54 80,50Z" fill="url(#bft2)"/>
+      <path d="M72,58 C58,72 40,82 24,90" stroke="#B76E79" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.75"/>
+      <path d="M88,58 C102,72 120,82 136,90" stroke="#B76E79" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.75"/>
+      <ellipse cx="80" cy="52" rx="13" ry="10" fill="#7B4049"/>
+      <ellipse cx="80" cy="52" rx="7" ry="5.5" fill="#B76E79"/>
+    </svg>
+    <div class="ft-name">Joy Caroline</div>
+    <div class="ft-date">20 &middot; Febrero &middot; 2027</div>
+    <div class="ft-credit">@elysium.invitaciones</div>
+  </footer>
+
+</div><!-- /wrap -->
+
+<!-- MUSIC FAB -->
+<button class="vinyl-btn" id="musicFab" type="button" aria-label="Reproducir m&uacute;sica de la invitaci&oacute;n">
+  <div class="vinyl-tonearm">
+    <div class="vinyl-tonearm-pivot"></div>
+    <div class="vinyl-tonearm-line"></div>
+    <div class="vinyl-tonearm-head"></div>
+  </div>
+  <div class="vinyl-spin">
+    <div class="vinyl-disc">
+      <div class="vinyl-sheen"></div>
+      <div class="vinyl-label-text">JJ<small>2027</small></div>
+      <div class="vinyl-hole"></div>
+    </div>
+  </div>
+  <div class="vinyl-icons">
+    <svg class="ic-play" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M8 5v14l11-7z"/></svg>
+    <svg class="ic-pause" viewBox="0 0 24 24" fill="#FFFFFF"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+  </div>
+</button>
+<audio id="bgAudio" loop preload="none">
+  <source src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/audio/xv-joy-caroline-joya/cancion.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+window.scrollTo(0,0);
+history.scrollRestoration='manual';
+gsap.registerPlugin(ScrollTrigger);
+
+/* ── ENVELOPE ── */
+(function(){
+  var envScreen=document.getElementById('envelope-screen');
+  var envImage=document.getElementById('env-image');
+  var envVideo=document.getElementById('env-video');
+  var hint=document.getElementById('env-hint');
+  var opened=false,invitationReady=false;
+
+  gsap.timeline()
+    .to(envScreen,{opacity:1,duration:1.2,ease:'power2.out',delay:0.3})
+    .to(hint,{opacity:1,duration:0.9,ease:'power2.out'},'-=0.5');
+
+  /* Al terminar el video: desvanece el sobre y revela la invitacion lentamente */
+  envVideo.addEventListener('ended',function(){
+    if(invitationReady)return; invitationReady=true;
+    var wrap=document.getElementById('wrapEl');
+    wrap.style.visibility='visible';
+    /* Crossfade: el sobre se desvanece mientras la invitacion aparece debajo */
+    envScreen.style.pointerEvents='none';
+    gsap.to(envScreen,{opacity:0,duration:2.4,ease:'power1.inOut',onComplete:function(){
+      envScreen.style.display='none';
+    }});
+    /* Iniciar animaciones de la pagina */
+    launchPage();
+    /* Musica automatica a volumen bajo */
+    var bgAudio=document.getElementById('bgAudio');
+    bgAudio.volume=0.22;
+    bgAudio.play().catch(function(){});
+  });
+
+  function openEnvelope(){
+    if(opened)return; opened=true;
+    gsap.to(hint,{opacity:0,duration:0.2});
+    var pp=envVideo.play();
+    gsap.to(envImage,{opacity:0,duration:0.55,ease:'power2.inOut',onComplete:function(){envImage.style.display='none';}});
+    gsap.to(envVideo,{opacity:1,duration:0.55,ease:'power2.inOut'});
+    if(pp!==undefined)pp.catch(function(){
+      /* Si el video falla, revelar directamente */
+      if(!invitationReady){ invitationReady=true; document.getElementById('wrapEl').style.visibility='visible'; launchPage(); }
+    });
+  }
+  /* Guard: si el video nunca dispara "ended" (iOS en segundo plano, etc.)
+     el sobre no debe quedarse encima bloqueando el scroll */
+  function safetyReveal(){
+    if(invitationReady)return;
+    var ev=new Event('ended');envVideo.dispatchEvent(ev);
+  }
+  envScreen.addEventListener('click',function(){setTimeout(safetyReveal,12000);});
+  envScreen.addEventListener('click',openEnvelope);
+  envScreen.addEventListener('touchstart',function(e){e.preventDefault();openEnvelope();},{passive:false});
+}());
+
+/* ── LAUNCH PAGE ── */
+function launchPage(){
+  initSparkles();
+  gsap.timeline({defaults:{ease:'power3.out'}})
+    .to('#hMis',{opacity:1,y:0,duration:1.2})
+    .to('#hXv', {opacity:1,y:0,duration:1.0},'-=0.8')
+    .to('#hName',{opacity:1,y:0,duration:1.0},'-=0.7')
+    .to('#hSep', {opacity:1,duration:0.8},'-=0.4')
+    .to('#hDate',{opacity:1,duration:0.8},'-=0.5');
+  document.querySelectorAll('.rv').forEach(function(el){
+    gsap.fromTo(el,{y:26,opacity:0},{y:0,opacity:1,duration:1.1,ease:'power2.out',
+      scrollTrigger:{trigger:el,start:'top 88%'}});
+  });
+}
+
+/* ── SPARKLES ── */
+function initSparkles(){
+  var wrap=document.getElementById('wrapEl');
+  var h=wrap.scrollHeight||7000;
+  var colors=['#B76E79','#B76E79','#B76E79','#2D1B0E'];
+  for(var i=0;i<55;i++){
+    var sp=document.createElementNS('http://www.w3.org/2000/svg','svg');
+    var sz=(Math.random()*14+8).toFixed(0);
+    var col=colors[Math.floor(Math.random()*colors.length)];
+    var op=(Math.random()*0.30+0.10).toFixed(2);
+    sp.setAttribute('viewBox','0 0 24 24');
+    sp.setAttribute('fill',col);
+    sp.style.cssText=
+      'position:absolute;left:'+Math.random()*100+'%;top:'+Math.floor(Math.random()*h)+'px;'+
+      'width:'+sz+'px;height:'+sz+'px;opacity:'+op+';pointer-events:none;z-index:0;'+
+      'animation:twinkle4 '+(Math.random()*4+2).toFixed(1)+'s ease-in-out infinite;'+
+      'animation-delay:'+(Math.random()*6).toFixed(1)+'s;';
+    var path=document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('d','M12 2l1.2 7.8L21 12l-7.8 1.2L12 22l-1.2-8.8L3 12l8.8-1.2z');
+    sp.appendChild(path);
+    wrap.appendChild(sp);
+  }
+}
+
+/* ── COUNTDOWN ── */
+(function(){
+  var target=new Date('2027-02-20T18:00:00-06:00').getTime();
+  function tick(){
+    var d=target-Date.now(); if(d<=0){d=0;}
+    document.getElementById('cdD').textContent=String(Math.floor(d/86400000)).padStart(2,'0');
+    document.getElementById('cdH').textContent=String(Math.floor(d%86400000/3600000)).padStart(2,'0');
+    document.getElementById('cdM').textContent=String(Math.floor(d%3600000/60000)).padStart(2,'0');
+    document.getElementById('cdS').textContent=String(Math.floor(d%60000/1000)).padStart(2,'0');
+  }
+  tick(); setInterval(tick,1000);
+}());
+
+/* ── PADRINOS — rotador con fade ── */
+(function(){
+  var wrap=document.getElementById('padrinosRot');
+  if(!wrap)return;
+  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var items=wrap.querySelectorAll('.padrino-item');
+  if(items.length<2)return;
+  var dots=document.getElementById('padrinosDots'),ds=[];
+  for(var i=0;i<items.length;i++){
+    var d=document.createElement('i');
+    if(i===0)d.className='on';
+    dots.appendChild(d);ds.push(d);
+  }
+  var idx=0,visible=true;
+  if(window.IntersectionObserver){
+    new IntersectionObserver(function(es){visible=es[0].isIntersecting;},{threshold:0.15}).observe(wrap);
+  }
+  setInterval(function(){
+    if(!visible)return;
+    items[idx].classList.remove('is-on');
+    ds[idx].classList.remove('on');
+    var next=(idx+1)%items.length;
+    setTimeout(function(){
+      items[next].classList.add('is-on');
+      ds[next].classList.add('on');
+    },1000);
+    idx=next;
+  },3600);
+})();
+
+/* ── GALERIA — RUEDA 3D ── */
+(function(){
+  var ring=document.getElementById('wheelRing');
+  if(!ring)return;
+  var cards=ring.querySelectorAll('.wheel-card');
+  var n=cards.length;if(!n)return;
+  /* data-src: loading="lazy" nunca dispara en tarjetas con translateZ */
+  cards.forEach(function(c){var im=c.querySelector('img');if(im&&im.dataset.src)im.src=im.dataset.src;});
+  var cw=cards[0].offsetWidth||168;
+  var radius=Math.max(190,Math.round((cw/2)/Math.tan(Math.PI/n)));
+  cards.forEach(function(card,i){
+    card.style.transform='rotateY('+(360/n*i)+'deg) translateZ('+radius+'px)';
+  });
+  var rot=0,vel=0,isDrag=false,startX=0,startRot=0,lastX=0,rafId=null,auto=true;
+  function setRot(){ring.style.transform='translateZ(-'+radius+'px) rotateY('+rot+'deg)';}
+  setRot();
+  function inertia(){
+    if(isDrag)return;
+    rot+=vel;vel*=0.94;setRot();
+    if(Math.abs(vel)>0.05)rafId=requestAnimationFrame(inertia);
+  }
+  function down(x){isDrag=true;auto=false;ring.classList.add('dragging');startX=x;lastX=x;startRot=rot;vel=0;if(rafId)cancelAnimationFrame(rafId);}
+  function move(x){if(!isDrag)return;rot=startRot+(x-startX)*0.45;vel=(x-lastX)*0.5;lastX=x;setRot();}
+  function up(){if(!isDrag)return;isDrag=false;ring.classList.remove('dragging');rafId=requestAnimationFrame(inertia);}
+  ring.addEventListener('mousedown',function(e){e.preventDefault();down(e.clientX);});
+  window.addEventListener('mousemove',function(e){move(e.clientX);});
+  window.addEventListener('mouseup',up);
+  ring.addEventListener('touchstart',function(e){down(e.touches[0].clientX);},{passive:true});
+  ring.addEventListener('touchmove',function(e){move(e.touches[0].clientX);},{passive:true});
+  ring.addEventListener('touchend',up);
+  var visible=false;
+  if(window.IntersectionObserver){
+    new IntersectionObserver(function(es){visible=es[0].isIntersecting;},{threshold:0.05})
+      .observe(document.getElementById('sgal'));
+  }else{visible=true;}
+  (function spin(){if(visible&&auto&&!isDrag){rot+=0.12;setRot();}requestAnimationFrame(spin);})();
+})();
+
+/* ── RSVP — Panel de Invitados ── */
+(function(){
+  var PANEL_API='https://panel-invitados.vercel.app/api/confirmar';
+  var RSVP_URL='https://xv-joy-caroline-joya.vercel.app';
+  var DEADLINE=new Date('2027-01-16T00:00:00-06:00').getTime();
+  var frozen=Date.now()>DEADLINE;
+
+  var qs=new URLSearchParams(window.location.search);
+  var urlPara=(qs.get('para')||'').trim();
+  var p=parseInt(qs.get('pases'),10);
+  var pases=(!isNaN(p)&&p>0)?Math.min(p,10):1;
+
+  var holaEl=document.getElementById('rsvpHola');
+  var bandeja=document.getElementById('rsvpBandeja');
+  var gracias=document.getElementById('rsvpGracias');
+  var gTitle=document.getElementById('rsvpGraciasTitle');
+  var gSub=document.getElementById('rsvpGraciasSub');
+  var editarBtn=document.getElementById('rsvpEditarBtn');
+  var fieldsEl=document.getElementById('rsvpFields');
+  var btnYes=document.getElementById('btnYes');
+  var btnNo=document.getElementById('btnNo');
+  var btn=document.getElementById('rsvpBtn');
+  var btnText=document.getElementById('rsvpBtnText');
+  var fb=document.getElementById('rsvpFeedback');
+  var estado=null,bloqueado=false;
+
+  if(urlPara)holaEl.textContent='\u00a1Hola, '+urlPara+'!';
+
+  /* circulos de pases */
+  if(!isNaN(p)&&p>0){
+    var circles=document.getElementById('pasesCircles');
+    for(var i=1;i<=Math.min(pases,10);i++){
+      var c=document.createElement('div');
+      c.className='pases-circle active';
+      circles.appendChild(c);
+    }
+    document.getElementById('pasesWrap').style.display='block';
+  }
+
+  /* campos de nombres */
+  for(var j=1;j<=pases;j++){
+    var inp=document.createElement('input');
+    inp.type='text';inp.id='rsvpName'+j;
+    inp.placeholder='Nombre completo del invitado '+j;
+    inp.autocomplete='name';
+    if(j===1&&urlPara)inp.value=urlPara;
+    fieldsEl.appendChild(inp);
+  }
+  function getNombres(){
+    var out=[];
+    for(var j=1;j<=pases;j++){
+      var v=document.getElementById('rsvpName'+j).value.trim();
+      if(v)out.push(v);
+    }
+    return out;
+  }
+  function setNombres(arr){
+    for(var j=1;j<=pases;j++){
+      var el=document.getElementById('rsvpName'+j);
+      el.value=(arr&&arr[j-1])?arr[j-1]:(j===1&&urlPara?urlPara:'');
+    }
+  }
+  function setFb(msg,col){fb.textContent=msg;fb.style.color=col||'var(--text)';}
+  function cerrarPorBloqueo(){
+    bloqueado=true;
+    btn.disabled=true;btnYes.disabled=true;btnNo.disabled=true;editarBtn.disabled=true;
+    setFb('Tu respuesta ya qued\u00f3 registrada y no se puede modificar. Si necesitas un cambio, contacta a la familia.','#8F4F59');
+  }
+
+  function select(e){
+    estado=e;
+    btnYes.classList.toggle('on',e==='confirmado');
+    btnNo.classList.toggle('on',e==='declino');
+    fieldsEl.style.display=(e==='confirmado')?'block':'none';
+    if(e==='declino')setNombres([]);
+  }
+  btnYes.addEventListener('click',function(){if(!frozen&&!bloqueado)select('confirmado');});
+  btnNo.addEventListener('click',function(){if(!frozen&&!bloqueado)select('declino');});
+
+  function mostrarGracias(e,nombres){
+    if(e==='confirmado'){
+      gTitle.textContent='\u00a1Gracias por confirmar!';
+      gSub.textContent=(nombres.length<=1)
+        ?('Te esperamos, '+(nombres[0]||urlPara||'')+'.')
+        :('Confirmamos '+nombres.length+' lugares: '+nombres.join(', ')+'.');
+    }else{
+      gTitle.textContent='Gracias por avisarnos';
+      gSub.textContent='Lamentamos que no puedas acompa\u00f1arnos. Te vamos a extra\u00f1ar.';
+    }
+    bandeja.style.display='none';
+    gracias.style.display='';
+    editarBtn.disabled=frozen||bloqueado;
+  }
+  editarBtn.addEventListener('click',function(){
+    if(frozen||bloqueado)return;
+    gracias.style.display='none';
+    bandeja.style.display='';
+    setFb('','');
+  });
+
+  /* precarga */
+  btn.disabled=true;
+  if(urlPara){
+    fetch(PANEL_API+'?nombre='+encodeURIComponent(urlPara)+'&url_boda='+encodeURIComponent(RSVP_URL))
+      .then(function(r){return r.json();})
+      .then(function(d){
+        var inv=d&&(d.invitado||d);
+        if(inv&&inv.pases&&!isNaN(inv.pases)){/* el panel manda los pases reales */}
+        if(inv&&inv.estado){
+          select(inv.estado);
+          setNombres(inv.nombres_confirmados||[]);
+          btnText.textContent='Actualizar respuesta';
+          mostrarGracias(inv.estado,inv.nombres_confirmados||[]);
+        }
+        if(inv&&inv.bloqueado)cerrarPorBloqueo();
+      })
+      .catch(function(){})
+      .then(function(){if(!bloqueado)btn.disabled=frozen;});
+  }else{
+    btn.disabled=frozen;
+  }
+  if(frozen){
+    btnYes.disabled=true;btnNo.disabled=true;
+    setFb('El periodo de confirmaci\u00f3n cerr\u00f3 el 15 de enero de 2027.','var(--gold)');
+  }
+
+  btn.addEventListener('click',function(){
+    if(frozen)return;
+    if(!estado){setFb('Por favor elige si podr\u00e1s acompa\u00f1arnos.','#7B4049');return;}
+    var nombres=getNombres();
+    if(estado==='confirmado'&&nombres.length===0){
+      setFb('Escribe al menos un nombre.','#7B4049');return;
+    }
+    btn.disabled=true;btnText.textContent='Enviando...';
+    fetch(PANEL_API,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        nombre:urlPara||(nombres[0]||'Invitado'),
+        url_boda:RSVP_URL,
+        estado:estado,
+        pases_confirmados:(estado==='confirmado')?nombres.length:0,
+        nombres_confirmados:(estado==='confirmado')?nombres:[]
+      })
+    })
+    .then(function(r){return r.json().catch(function(){return {};}).then(function(d){return {ok:r.ok,data:d};});})
+    .then(function(res){
+      if(res.ok){
+        setFb('','');
+        btnText.textContent='Actualizar respuesta';
+        btn.disabled=false;
+        mostrarGracias(estado,nombres);
+        return;
+      }
+      btn.disabled=false;btnText.textContent='Confirmar asistencia';
+      var err=(res.data&&(res.data.error||res.data.code))||'';
+      if(err==='respuestas_cerradas'){cerrarPorBloqueo();return;}
+      setFb(
+        err==='no_match'
+          ? 'No pudimos identificar tu invitaci\u00f3n. Abre el enlace personalizado que te enviaron; ese es el \u00fanico que registra tu confirmaci\u00f3n.'
+          : err==='invitacion_borrada'
+            ? 'Esta invitaci\u00f3n ya no est\u00e1 activa. Contacta a la familia para que te env\u00eden un enlace nuevo.'
+            : 'Hubo un problema al enviar. Int\u00e9ntalo de nuevo.',
+        '#8F4F59');
+    })
+    .catch(function(){
+      btn.disabled=false;btnText.textContent='Confirmar asistencia';
+      setFb('Sin conexi\u00f3n. Verifica tu internet e int\u00e9ntalo de nuevo.','#8F4F59');
+    });
+  });
+})();
+
+/* ── MUSICA ── */
+var fab=document.getElementById('musicFab'),audio=document.getElementById('bgAudio');
+audio.volume=0.22;
+fab.addEventListener('click',function(){
+  if(audio.paused){
+    audio.play().catch(function(){});
+    fab.classList.add('is-playing');
+  } else {
+    audio.pause();
+    fab.classList.remove('is-playing');
+  }
+});
+audio.addEventListener('play',function(){fab.classList.add('is-playing');});
+audio.addEventListener('pause',function(){fab.classList.remove('is-playing');});
+</script>
+</body>
+</html>
