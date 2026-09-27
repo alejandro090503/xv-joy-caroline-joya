@@ -50,19 +50,7 @@ body{font-family:'Montserrat',sans-serif;font-weight:500;color:#2D1B0E;backgroun
 .hero>.hero-veil2{position:absolute;inset:0;z-index:1;}
 .hero-sparkle-1,.hero-sparkle-2,.hero-sparkle-3{z-index:3;}
 
-/* ── GALERIA — RUEDA 3D ── */
-#sgal{padding:52px 0 26px;text-align:center;position:relative;overflow:hidden;overflow-anchor:none;}
-.wheel-scene{overflow-anchor:none;position:relative;width:100%;height:330px;margin:26px auto 0;perspective:1100px;transform-style:preserve-3d;}
-.wheel-ring{overflow-anchor:none;position:absolute;width:100%;height:100%;transform-style:preserve-3d;cursor:grab;}
-.wheel-ring.dragging{cursor:grabbing;}
-.wheel-card{position:absolute;width:168px;height:236px;left:50%;top:50%;margin-left:-84px;margin-top:-118px;
-  border-radius:14px;overflow:hidden;border:2px solid rgba(183,110,121,0.30);
-  box-shadow:0 12px 34px rgba(183,110,121,0.20);background:var(--pink-pale);
-  user-select:none;-webkit-user-select:none;}
-.wheel-card img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;pointer-events:none;}
-.gal-hint{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;font-weight:500;
-  letter-spacing:2px;color:var(--gold);margin-top:22px;opacity:.9;}
-@media(min-width:420px){.wheel-scene{height:360px;}.wheel-card{width:186px;height:260px;margin-left:-93px;margin-top:-130px;}}
+@media(min-width:420px){}
 
 /* ══ RESPLANDOR DE ORO — barrido de luz sobre los titulos ══ */
 @keyframes goldSweep{
@@ -144,7 +132,7 @@ body{font-family:'Montserrat',sans-serif;font-weight:500;color:#2D1B0E;backgroun
   min-height:100dvh;display:flex;flex-direction:column;
   align-items:center;justify-content:center;
   text-align:center;padding:60px 28px 70px;position:relative;
-  background:linear-gradient(180deg,rgba(247,231,206,0.30) 0%,transparent 100%);
+  background:none;
 }
 .hero-sparkle-1{position:absolute;top:14%;right:8%;width:22px;animation:twinkle4 3s ease-in-out infinite;}
 .hero-sparkle-2{position:absolute;top:22%;left:6%;width:16px;animation:twinkle4 4s ease-in-out infinite 1s;}
@@ -261,7 +249,15 @@ section{padding:52px 28px;}
 
 /* ── DRESS CODE ── */
 .dc-note{text-align:center;font-family:'Montserrat',sans-serif;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--text);margin-bottom:28px;}
-.dc-icons{display:flex;justify-content:center;gap:36px;margin-bottom:32px;}
+.dc-icons{display:flex;justify-content:center;align-items:flex-end;gap:26px;margin-bottom:32px;}
+.dc-fig{position:relative;margin:0;height:min(42vw,168px);display:flex;align-items:flex-end;}
+.dc-fig img{height:100%;width:auto;display:block;object-fit:contain;
+  filter:drop-shadow(0 10px 18px rgba(183,110,121,.18));}
+/* un halo champan bajo cada dibujo, del mismo aire que los retratos */
+.dc-fig::after{content:"";position:absolute;left:50%;bottom:-6px;
+  width:88%;height:16px;margin-left:-44%;border-radius:50%;
+  background:radial-gradient(ellipse at center,rgba(212,175,55,.34) 0%,rgba(247,231,206,.24) 48%,transparent 74%);
+  filter:blur(5px);pointer-events:none;}
 .dc-evitar{background:rgba(251,241,242,0.5);border:1.5px solid var(--border-pink);border-radius:12px;padding:20px 22px;text-align:center;}
 .dc-evitar-title{font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
 .dc-swatches{display:flex;justify-content:center;gap:20px;}
@@ -531,18 +527,208 @@ footer{padding:52px 20px 64px;text-align:center;}
 .rsvp-toggle-btn.on{background:var(--rose-btn);border-color:var(--rose-btn);}
 
 /* pie */
-.gal-hint{opacity:1;}
 .ft-date{font-size:14px;font-weight:600;letter-spacing:4px;}
 .ft-credit{font-size:13px;color:rgba(93,48,32,0.75);}
+
+/* ══ TINTA DE ALCOHOL — marco de portada y fondos por seccion ══ */
+
+/* El marco es una caja con la proporcion exacta del asset (768x1376): asi el
+   texto cae SIEMPRE dentro del oval, sin importar el alto de la pantalla. */
+.hero-cuadro{position:relative;z-index:2;
+  width:min(100%,420px);
+  aspect-ratio:768/1376;
+  background:url('https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-joy-caroline-joya/hero-marco.jpg') center/100% 100% no-repeat;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:25% 15% 32%;
+  animation:marcoRespira 11s ease-in-out infinite;}
+@keyframes marcoRespira{0%,100%{transform:scale(1);}50%{transform:scale(1.012);}}
+@media(prefers-reduced-motion:reduce){.hero-cuadro{animation:none;}}
+
+#smsg{position:relative;overflow:hidden;}
+#smsg::before{content:"";position:absolute;inset:-2px;
+  background:url('https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-joy-caroline-joya/bg-arco.jpg') center/cover no-repeat;
+  opacity:0.46;pointer-events:none;z-index:0;
+  mask-image:linear-gradient(to right,transparent 0%,#000 16%,#000 84%,transparent 100%),linear-gradient(to bottom,transparent 0%,#000 14%,#000 86%,transparent 100%);mask-composite:intersect;
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 16%,#000 84%,transparent 100%),linear-gradient(to bottom,transparent 0%,#000 14%,#000 86%,transparent 100%);-webkit-mask-composite:destination-in;}
+#smsg>*{position:relative;z-index:1;}
+#scd{position:relative;overflow:hidden;}
+#scd::before{content:"";position:absolute;inset:-2px;
+  background:url('https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-joy-caroline-joya/bg-bandas.jpg') center/cover no-repeat;
+  opacity:0.40;pointer-events:none;z-index:0;
+  mask-image:linear-gradient(to right,transparent 0%,#000 16%,#000 84%,transparent 100%),linear-gradient(to bottom,transparent 0%,#000 14%,#000 86%,transparent 100%);mask-composite:intersect;
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 16%,#000 84%,transparent 100%),linear-gradient(to bottom,transparent 0%,#000 14%,#000 86%,transparent 100%);-webkit-mask-composite:destination-in;}
+#scd>*{position:relative;z-index:1;}
+#sfam{position:relative;overflow:hidden;}
+#sfam::before{content:"";position:absolute;inset:-2px;
+  background:url('https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-joy-caroline-joya/bg-diag-no.jpg') center/cover no-repeat;
+  opacity:0.42;pointer-events:none;z-index:0;
+  mask-image:linear-gradient(to right,transparent 0%,#000 16%,#000 84%,transparent 100%),linear-gradient(to bottom,transparent 0%,#000 14%,#000 86%,transparent 100%);mask-composite:intersect;
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 16%,#000 84%,transparent 100%),linear-gradient(to bottom,transparent 0%,#000 14%,#000 86%,transparent 100%);-webkit-mask-composite:destination-in;}
+#sfam>*{position:relative;z-index:1;}
+#subic{position:relative;overflow:hidden;}
+#subic::before{content:"";position:absolute;inset:-2px;
+  background:url('https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-joy-caroline-joya/bg-textura.jpg') center/cover no-repeat;
+  opacity:0.30;pointer-events:none;z-index:0;
+  mask-image:linear-gradient(to right,transparent 0%,#000 16%,#000 84%,transparent 100%),linear-gradient(to bottom,transparent 0%,#000 14%,#000 86%,transparent 100%);mask-composite:intersect;
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 16%,#000 84%,transparent 100%),linear-gradient(to bottom,transparent 0%,#000 14%,#000 86%,transparent 100%);-webkit-mask-composite:destination-in;}
+#subic>*{position:relative;z-index:1;}
+#sitin{position:relative;overflow:hidden;}
+#sitin::before{content:"";position:absolute;inset:-2px;
+  background:url('https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-joy-caroline-joya/bg-rio-centro.jpg') center/cover no-repeat;
+  opacity:0.38;pointer-events:none;z-index:0;
+  mask-image:linear-gradient(to right,transparent 0%,#000 16%,#000 84%,transparent 100%),linear-gradient(to bottom,transparent 0%,#000 14%,#000 86%,transparent 100%);mask-composite:intersect;
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 16%,#000 84%,transparent 100%),linear-gradient(to bottom,transparent 0%,#000 14%,#000 86%,transparent 100%);-webkit-mask-composite:destination-in;}
+#sitin>*{position:relative;z-index:1;}
+#sdc{position:relative;overflow:hidden;}
+#sdc::before{content:"";position:absolute;inset:-2px;
+  background:url('https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-joy-caroline-joya/bg-diag-sup.jpg') center/cover no-repeat;
+  opacity:0.42;pointer-events:none;z-index:0;
+  mask-image:linear-gradient(to right,transparent 0%,#000 16%,#000 84%,transparent 100%),linear-gradient(to bottom,transparent 0%,#000 14%,#000 86%,transparent 100%);mask-composite:intersect;
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 16%,#000 84%,transparent 100%),linear-gradient(to bottom,transparent 0%,#000 14%,#000 86%,transparent 100%);-webkit-mask-composite:destination-in;}
+#sdc>*{position:relative;z-index:1;}
+#sbuzon{position:relative;overflow:hidden;}
+#sbuzon::before{content:"";position:absolute;inset:-2px;
+  background:url('https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-joy-caroline-joya/bg-marco.jpg') center/cover no-repeat;
+  opacity:0.46;pointer-events:none;z-index:0;
+  mask-image:linear-gradient(to right,transparent 0%,#000 16%,#000 84%,transparent 100%),linear-gradient(to bottom,transparent 0%,#000 14%,#000 86%,transparent 100%);mask-composite:intersect;
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 16%,#000 84%,transparent 100%),linear-gradient(to bottom,transparent 0%,#000 14%,#000 86%,transparent 100%);-webkit-mask-composite:destination-in;}
+#sbuzon>*{position:relative;z-index:1;}
+#srsvp{position:relative;overflow:hidden;}
+#srsvp::before{content:"";position:absolute;inset:-2px;
+  background:url('https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-joy-caroline-joya/bg-diag-ne.jpg') center/cover no-repeat;
+  opacity:0.44;pointer-events:none;z-index:0;
+  mask-image:linear-gradient(to right,transparent 0%,#000 16%,#000 84%,transparent 100%),linear-gradient(to bottom,transparent 0%,#000 14%,#000 86%,transparent 100%);mask-composite:intersect;
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 16%,#000 84%,transparent 100%),linear-gradient(to bottom,transparent 0%,#000 14%,#000 86%,transparent 100%);-webkit-mask-composite:destination-in;}
+#srsvp>*{position:relative;z-index:1;}
+
+/* el pie de cada seccion funde a blanco para que no haya cortes duros */
+.wrap section{position:relative;}
+.wrap section::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:70px;
+  pointer-events:none;z-index:2;
+  background:linear-gradient(to bottom,transparent,var(--bg));}
+.hero::after{display:none;}
+
+/* el footer cierra con el zocalo de tinta */
+footer{position:relative;overflow:hidden;}
+footer::before{content:"";position:absolute;inset:-2px;
+  background:url('https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-joy-caroline-joya/bg-zocalo.jpg') center/cover no-repeat;
+  opacity:.44;pointer-events:none;z-index:0;
+  mask-image:linear-gradient(to right,transparent 0%,#000 14%,#000 86%,transparent 100%);
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 14%,#000 86%,transparent 100%);}
+footer>*{position:relative;z-index:1;}
+
+/* ══ MOMENTOS — retratos que levitan ══
+   Un retrato suelto, sin tarjeta ni titulo: flota, respira y suelta destellos.
+   Se reparten al inicio, a la mitad y al final del recorrido. */
+.momento{position:relative;display:flex;justify-content:center;align-items:flex-end;
+  padding:30px 28px 40px;pointer-events:none;}
+.mom-foto{position:relative;z-index:2;
+  width:min(58vw,218px);aspect-ratio:3/4;margin:0;
+  border-radius:999px 999px 16px 16px;
+  overflow:hidden;
+  border:1.5px solid rgba(163,124,55,.55);
+  box-shadow:0 22px 46px rgba(183,110,121,.22),
+             0 6px 16px rgba(153,101,21,.12),
+             inset 0 0 0 4px rgba(255,255,255,.78);
+  animation:levita 7s ease-in-out infinite;}
+.mom-foto img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block;}
+/* el halo que queda debajo delata que la foto esta en el aire */
+.mom-halo{position:absolute;z-index:1;bottom:26px;left:50%;
+  width:min(46vw,172px);height:26px;margin-left:min(-23vw,-86px);
+  border-radius:50%;
+  background:radial-gradient(ellipse at center,rgba(212,175,55,.42) 0%,rgba(247,231,206,.30) 45%,transparent 72%);
+  filter:blur(7px);
+  animation:halo 7s ease-in-out infinite;}
+@keyframes levita{0%,100%{transform:translateY(0);}50%{transform:translateY(-15px);}}
+@keyframes halo{0%,100%{transform:scaleX(1);opacity:.62;}50%{transform:scaleX(.8);opacity:.34;}}
+/* destellos finos alrededor */
+.mom-chispa{position:absolute;z-index:3;width:12px;height:12px;pointer-events:none;opacity:0;
+  background:
+    linear-gradient(to right,transparent 0,rgba(247,231,206,.98) 50%,transparent 100%) center/100% 1.2px no-repeat,
+    linear-gradient(to bottom,transparent 0,rgba(247,231,206,.98) 50%,transparent 100%) center/1.2px 100% no-repeat;
+  filter:drop-shadow(0 0 4px rgba(212,175,55,.95));
+  animation:chispear 5.6s ease-in-out infinite;}
+.mom-chispa.c1{top:16%;left:19%;animation-delay:.2s;}
+.mom-chispa.c2{top:34%;right:17%;width:9px;height:9px;animation-delay:1.9s;}
+.mom-chispa.c3{bottom:32%;left:22%;width:15px;height:15px;animation-delay:3.3s;}
+.mom-chispa.c4{bottom:20%;right:21%;width:10px;height:10px;animation-delay:4.6s;}
+@keyframes chispear{0%,100%{opacity:0;transform:scale(.5) rotate(0deg);}
+  50%{opacity:.95;transform:scale(1) rotate(45deg);}}
+/* cada retrato respira a su ritmo */
+.momento:nth-of-type(odd) .mom-foto{animation-duration:8s;}
+.momento:nth-of-type(odd) .mom-halo{animation-duration:8s;}
+.momento.mom-2 .mom-foto,.momento.mom-2 .mom-halo{animation-delay:1.2s;}
+.momento.mom-3 .mom-foto,.momento.mom-3 .mom-halo{animation-delay:2.4s;}
+.momento.mom-2 .mom-foto{border-radius:16px 16px 999px 999px;}
+.momento.mom-3 .mom-foto{border-radius:999px;}
+@media(prefers-reduced-motion:reduce){
+  .mom-foto,.mom-halo,.mom-chispa{animation:none;}
+  .mom-chispa{opacity:.75;}
+}
+
+/* ══ PORTADA — la tipografia se ajusta al hueco del oval ══
+   Las medidas cuelgan de .hero-cuadro: fuera del marco no cambian. */
+.hero-cuadro .hero-mis{font-size:clamp(30px,8.6vw,40px);line-height:1;margin-bottom:-2px;}
+.hero-cuadro .hero-xv{font-size:clamp(74px,21vw,100px);line-height:.86;letter-spacing:-4px;}
+.hero-cuadro .hero-name{font-size:clamp(38px,11.4vw,52px);line-height:1.06;margin-top:2px;}
+.hero-cuadro .hero-sep{margin:12px auto 10px;}
+.hero-cuadro .hero-date{font-size:clamp(12.5px,3.4vw,14px);letter-spacing:1.8px;white-space:nowrap;}
+
+/* ══ IDIOMA ══ */
+#lang-screen{position:fixed;inset:0;z-index:10050;display:flex;align-items:center;justify-content:center;
+  padding:28px;background:#FFFFFF;}
+#lang-screen.se-va{opacity:0;transition:opacity .5s ease;pointer-events:none;}
+.lang-card{width:min(100%,360px);text-align:center;padding:40px 26px 34px;position:relative;
+  border:1.5px solid rgba(163,124,55,.55);border-radius:6px;
+  background:linear-gradient(135deg,rgba(251,241,242,.6),rgba(255,255,255,.95));
+  box-shadow:0 14px 48px rgba(183,110,121,.14),inset 0 1px 0 rgba(255,255,255,.7);}
+.lang-card::before{content:'';position:absolute;inset:8px;border:1px solid rgba(183,110,121,.22);border-radius:4px;pointer-events:none;}
+.lang-orn{font-size:20px;color:var(--gold);opacity:.75;margin-bottom:10px;}
+.lang-kicker{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:600;letter-spacing:4px;
+  text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+.lang-q{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--dark);
+  line-height:1.4;margin-bottom:24px;}
+.lang-q span{display:block;font-style:italic;font-size:17px;font-weight:500;color:var(--text);opacity:.8;}
+.lang-btns{display:flex;flex-direction:column;gap:11px;}
+.lang-btn{width:100%;padding:16px;min-height:50px;cursor:pointer;
+  font-family:'Montserrat',sans-serif;font-size:14px;font-weight:600;letter-spacing:2px;
+  border-radius:50px;border:1.5px solid var(--rose-btn);background:transparent;color:var(--rose-ink);
+  transition:background .25s,color .25s,transform .2s;}
+.lang-btn:hover,.lang-btn:focus-visible{background:var(--rose-btn);color:#fff;transform:translateY(-2px);}
+.lang-switch{position:fixed;left:16px;bottom:26px;z-index:999;display:flex;align-items:center;gap:3px;
+  padding:7px 12px;border-radius:40px;
+  background:rgba(255,255,255,.92);border:1px solid rgba(163,124,55,.45);
+  box-shadow:0 5px 16px rgba(183,110,121,.16);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  transition:opacity .35s,transform .35s;}
+.lang-switch.escondido{opacity:0;transform:translateY(14px);pointer-events:none;}
+.lang-switch button{border:none;background:none;cursor:pointer;padding:3px 5px;
+  font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600;letter-spacing:1px;
+  color:var(--text);opacity:.5;transition:opacity .25s,color .25s;}
+.lang-switch button.on{opacity:1;color:var(--rose-ink);}
+.lang-switch span{color:rgba(163,124,55,.5);font-size:12px;}
 </style>
 </head>
 <body>
 
+<!-- ════ IDIOMA ════ -->
+<div id="lang-screen">
+  <div class="lang-card">
+    <div class="lang-orn">&#10022;</div>
+    <p class="lang-kicker">Joy Caroline &middot; XV</p>
+    <p class="lang-q">Elige tu idioma<span>Choose your language</span></p>
+    <div class="lang-btns">
+      <button type="button" class="lang-btn" data-lang="es">Espa&ntilde;ol</button>
+      <button type="button" class="lang-btn" data-lang="en">English</button>
+    </div>
+  </div>
+</div>
+
 <!-- ════ SOBRE ════ -->
-<div id="envelope-screen" role="button" aria-label="Toca para abrir tu invitaci&oacute;n">
+<div id="envelope-screen" role="button" aria-label="Toca para abrir tu invitaci&oacute;n" data-en-aria="Tap to open your invitation">
   <img id="env-image" src="./sobre.png" alt="Invitacion Joy Caroline Joya">
   <video id="env-video" src="./sobre-apertura.mp4" playsinline webkit-playsinline muted preload="auto"></video>
-  <p class="envelope-hint" id="env-hint">Toca para abrir</p>
+  <p class="envelope-hint" id="env-hint" data-en="Tap to open">Toca para abrir</p>
 </div>
 <div id="env-flash"></div>
 
@@ -554,13 +740,15 @@ footer{padding:52px 20px 64px;text-align:center;}
     <svg class="hero-sparkle-1" viewBox="0 0 24 24" fill="#B76E79"><path d="M12 2l1.2 7.8L21 12l-7.8 1.2L12 22l-1.2-8.8L3 12l8.8-1.2z"/></svg>
     <svg class="hero-sparkle-2" viewBox="0 0 24 24" fill="#B76E79"><path d="M12 2l1.2 7.8L21 12l-7.8 1.2L12 22l-1.2-8.8L3 12l8.8-1.2z"/></svg>
     <svg class="hero-sparkle-3" viewBox="0 0 24 24" fill="#2D1B0E" style="opacity:0.4;"><path d="M12 2l1.2 7.8L21 12l-7.8 1.2L12 22l-1.2-8.8L3 12l8.8-1.2z"/></svg>
-    <div class="hero-mis" id="hMis">Mis</div>
-    <div class="hero-xv" id="hXv">
-      XV
+    <div class="hero-cuadro">
+      <div class="hero-mis" id="hMis" data-en="My">Mis</div>
+      <div class="hero-xv" id="hXv">
+        XV
+      </div>
+      <div class="hero-name" id="hName">Joy Caroline</div>
+      <div class="hero-sep" id="hSep"></div>
+      <div class="hero-date" id="hDate" data-en="February 20th, 2027">20 de Febrero del 2027</div>
     </div>
-    <div class="hero-name" id="hName">Joy Caroline</div>
-    <div class="hero-sep" id="hSep"></div>
-    <div class="hero-date" id="hDate">20 de Febrero del 2027</div>
   </section>
 
   <!-- ORNAMENTO -->
@@ -570,8 +758,8 @@ footer{padding:52px 20px 64px;text-align:center;}
 
   <!-- MENSAJE -->
   <section id="smsg" style="padding:12px 28px 52px;">
-    <div class="eyebrow rv">Una Palabra de Joy Caroline</div>
-    <h2 class="sec-title rv">Mi Mensaje</h2>
+    <div class="eyebrow rv" data-en="A Word from Joy Caroline">Una Palabra de Joy Caroline</div>
+    <h2 class="sec-title rv" data-en="My Message">Mi Mensaje</h2>
     <div class="msg-outer rv">
       <div class="msg-frame mirror-frame">
         <!-- Corner ornaments -->
@@ -581,22 +769,30 @@ footer{padding:52px 20px 64px;text-align:center;}
         <svg class="mf-corner mf-br" viewBox="0 0 36 36" fill="none"><path d="M4,24 L4,4 L24,4" stroke="rgba(163,124,55,0.72)" stroke-width="1.6" stroke-linecap="round"/><circle cx="4" cy="4" r="2.8" fill="rgba(163,124,55,0.62)"/><path d="M10,4 Q10,10 4,10" stroke="rgba(163,124,55,0.42)" stroke-width="1" fill="none"/><circle cx="24" cy="4" r="1.6" fill="rgba(183,110,121,0.38)"/><circle cx="4" cy="24" r="1.6" fill="rgba(183,110,121,0.38)"/></svg>
         <svg class="msg-sparkle-tl" viewBox="0 0 24 24" fill="#B76E79"><path d="M12 2l1.2 7.8L21 12l-7.8 1.2L12 22l-1.2-8.8L3 12l8.8-1.2z"/></svg>
         <svg class="msg-sparkle-tr" viewBox="0 0 24 24" fill="#B76E79"><path d="M12 2l1.2 7.8L21 12l-7.8 1.2L12 22l-1.2-8.8L3 12l8.8-1.2z"/></svg>
-        <p class="msg-text">La vida est&aacute; hecha de momentos inolvidables, y uno de los m&aacute;s especiales est&aacute; por llegar. Mis XV A&ntilde;os son un sue&ntilde;o que quiero compartir contigo. Tu presencia har&aacute; este d&iacute;a a&uacute;n m&aacute;s especial.</p>
+        <p class="msg-text" data-en="Life is made of unforgettable moments, and one of the most special ones is about to arrive. My Quincea&ntilde;era is a dream I want to share with you. Your presence will make this day even more special.">La vida est&aacute; hecha de momentos inolvidables, y uno de los m&aacute;s especiales est&aacute; por llegar. Mis XV A&ntilde;os son un sue&ntilde;o que quiero compartir contigo. Tu presencia har&aacute; este d&iacute;a a&uacute;n m&aacute;s especial.</p>
       </div>
     </div>
   </section>
 
+  <!-- MOMENTO 1 -->
+  <div class="momento mom-1 rv">
+    <div class="mom-halo"></div>
+    <figure class="mom-foto"><img data-src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-joy-caroline-joya/g01.jpg" alt="Joy Caroline"></figure>
+    <span class="mom-chispa c1"></span><span class="mom-chispa c2"></span>
+    <span class="mom-chispa c3"></span><span class="mom-chispa c4"></span>
+  </div>
+
   <!-- COUNTDOWN -->
   <section id="scd">
-    <span class="cd-label rv">&#161;Tan solo faltan!</span>
+    <span class="cd-label rv" data-en="Only this long to go!">&#161;Tan solo faltan!</span>
     <div class="cd-wrap rv">
-      <div class="cd-seg"><span class="cd-num" id="cdD">00</span><span class="cd-lbl">D&iacute;as</span></div>
+      <div class="cd-seg"><span class="cd-num" id="cdD">00</span><span class="cd-lbl" data-en="Days">D&iacute;as</span></div>
       <span class="cd-colon">:</span>
-      <div class="cd-seg"><span class="cd-num" id="cdH">00</span><span class="cd-lbl">Horas</span></div>
+      <div class="cd-seg"><span class="cd-num" id="cdH">00</span><span class="cd-lbl" data-en="Hours">Horas</span></div>
       <span class="cd-colon">:</span>
-      <div class="cd-seg"><span class="cd-num" id="cdM">00</span><span class="cd-lbl">Min</span></div>
+      <div class="cd-seg"><span class="cd-num" id="cdM">00</span><span class="cd-lbl" data-en="Min">Min</span></div>
       <span class="cd-colon">:</span>
-      <div class="cd-seg"><span class="cd-num" id="cdS">00</span><span class="cd-lbl">Seg</span></div>
+      <div class="cd-seg"><span class="cd-num" id="cdS">00</span><span class="cd-lbl" data-en="Sec">Seg</span></div>
     </div>
   </section>
 
@@ -607,31 +803,31 @@ footer{padding:52px 20px 64px;text-align:center;}
 
   <!-- FAMILIA -->
   <section id="sfam" style="position:relative;">
-    <div class="eyebrow rv">Para Este D&iacute;a Tan Especial</div>
-    <h2 class="sec-title rv">Mi Familia</h2>
+    <div class="eyebrow rv" data-en="For This Very Special Day">Para Este D&iacute;a Tan Especial</div>
+    <h2 class="sec-title rv" data-en="My Family">Mi Familia</h2>
     <div class="fam-wrap">
       <div class="fam-block rv">
         <div class="fam-role">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="#B76E79"><path d="M12 2l1.2 7.8L21 12l-7.8 1.2L12 22l-1.2-8.8L3 12l8.8-1.2z"/></svg>
-          Quincea&ntilde;era
+          <span data-en="Quincea&ntilde;era">Quincea&ntilde;era</span>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="#B76E79"><path d="M12 2l1.2 7.8L21 12l-7.8 1.2L12 22l-1.2-8.8L3 12l8.8-1.2z"/></svg>
         </div>
         <div class="fam-names">Joy Caroline Joya</div>
       </div>
       <div class="fam-divider rv"></div>
       <div class="fam-block rv">
-        <div class="fam-role">Mis Padres</div>
+        <div class="fam-role" data-en="My Parents">Mis Padres</div>
         <div class="fam-names">Sherry Joya<br>&amp;<br>Juan Joya</div>
       </div>
       <div class="fam-divider rv"></div>
       <div class="fam-block rv">
         <div class="fam-role">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="#2D1B0E" style="opacity:.5"><path d="M12 2l1.2 7.8L21 12l-7.8 1.2L12 22l-1.2-8.8L3 12l8.8-1.2z"/></svg>
-          Mis Padrinos de Honor
+          <span data-en="My Godparents of Honor">Mis Padrinos de Honor</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="#2D1B0E" style="opacity:.5"><path d="M12 2l1.2 7.8L21 12l-7.8 1.2L12 22l-1.2-8.8L3 12l8.8-1.2z"/></svg>
         </div>
         <div class="fam-names padrinos-rot" id="padrinosRot">
-          <span class="padrino-item is-on">Por confirmar</span>
+          <span class="padrino-item is-on" data-en="To be confirmed">Por confirmar</span>
           <div class="padrinos-dots" id="padrinosDots" aria-hidden="true"></div>
         </div>
       </div>
@@ -643,29 +839,10 @@ footer{padding:52px 20px 64px;text-align:center;}
     <svg viewBox="0 0 180 22" fill="none"><path d="M0,11 Q12,4 24,11 Q36,18 48,11 Q60,4 72,11" stroke="#B76E79" stroke-width="0.9" opacity="0.28" fill="none"/><path d="M108,11 Q120,4 132,11 Q144,18 156,11 Q168,4 180,11" stroke="#B76E79" stroke-width="0.9" opacity="0.28" fill="none"/><circle cx="90" cy="11" r="3.5" fill="#B76E79" opacity="0.30"/><circle cx="80" cy="11" r="1.8" fill="#B76E79" opacity="0.18"/><circle cx="100" cy="11" r="1.8" fill="#B76E79" opacity="0.18"/></svg>
   </div>
 
-  <!-- GALERIA -->
-  <section id="sgal">
-    <div class="eyebrow rv">Mis Recuerdos</div>
-    <h2 class="sec-title rv">Mis Momentos</h2>
-    <div class="wheel-scene rv" id="wheelScene">
-      <div class="wheel-ring" id="wheelRing">
-          <div class="wheel-card"><img data-src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-joy-caroline-joya/g01.jpg" alt="Joy Caroline" /></div>
-          <div class="wheel-card"><img data-src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-joy-caroline-joya/g02.jpg" alt="Joy Caroline" /></div>
-          <div class="wheel-card"><img data-src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-joy-caroline-joya/g03.jpg" alt="Joy Caroline" /></div>
-      </div>
-    </div>
-    <p class="gal-hint rv">Arrastra para girar</p>
-  </section>
-
-  <!-- ORNAMENTO -->
-  <div class="orn-wrap rv">
-    <svg viewBox="0 0 180 22" fill="none"><path d="M0,11 Q12,4 24,11 Q36,18 48,11 Q60,4 72,11" stroke="#B76E79" stroke-width="0.9" opacity="0.28" fill="none"/><path d="M108,11 Q120,4 132,11 Q144,18 156,11 Q168,4 180,11" stroke="#B76E79" stroke-width="0.9" opacity="0.28" fill="none"/><circle cx="90" cy="11" r="3.5" fill="#B76E79" opacity="0.30"/><circle cx="80" cy="11" r="1.8" fill="#B76E79" opacity="0.18"/><circle cx="100" cy="11" r="1.8" fill="#B76E79" opacity="0.18"/></svg>
-  </div>
-
   <!-- UBICACION -->
   <section id="subic">
-    <div class="eyebrow rv">Donde Nos Encontramos</div>
-    <h2 class="sec-title rv">Ubicaci&oacute;n</h2>
+    <div class="eyebrow rv" data-en="Where We Will Meet">Donde Nos Encontramos</div>
+    <h2 class="sec-title rv" data-en="Location">Ubicaci&oacute;n</h2>
 
     <!-- Recepcion -->
     <div class="ubic-card rv">
@@ -684,11 +861,11 @@ footer{padding:52px 20px 64px;text-align:center;}
           <rect x="24" y="18" width="8" height="8" rx="1" fill="none" stroke="#B76E79" stroke-width="1" opacity="0.5"/>
         </svg>
       </span>
-      <div class="ubic-tipo">Bendici&oacute;n</div>
+      <div class="ubic-tipo" data-en="Blessing">Bendici&oacute;n</div>
       <div class="ubic-name">Chandelier&rsquo;s Event Center</div>
       <div class="ubic-addr">359 Lake Park Rd, Ste 130<br>Lewisville, Texas 75057</div>
       <div class="ubic-hora">6:00 p.m.</div>
-      <a class="btn-pink" href="https://maps.app.goo.gl/fr2YnE5pfMZUx6tL7?g_st=ic" target="_blank" rel="noopener">Ver Ubicaci&oacute;n</a>
+      <a class="btn-pink" href="https://maps.app.goo.gl/fr2YnE5pfMZUx6tL7?g_st=ic" target="_blank" rel="noopener" data-en="View Location">Ver Ubicaci&oacute;n</a>
     </div>
 
     <!-- Cena -->
@@ -707,11 +884,11 @@ footer{padding:52px 20px 64px;text-align:center;}
           <line x1="10" y1="9" x2="30" y2="9" stroke="#B76E79" stroke-width="1" opacity="0.4"/>
         </svg>
       </span>
-      <div class="ubic-tipo">Recepci&oacute;n</div>
+      <div class="ubic-tipo" data-en="Reception">Recepci&oacute;n</div>
       <div class="ubic-name">Chandelier&rsquo;s Event Center</div>
       <div class="ubic-addr">359 Lake Park Rd, Ste 130<br>Lewisville, Texas 75057</div>
       <div class="ubic-hora">7:15 p.m.</div>
-      <a class="btn-pink" href="https://maps.app.goo.gl/fr2YnE5pfMZUx6tL7?g_st=ic" target="_blank" rel="noopener">Ver Ubicaci&oacute;n</a>
+      <a class="btn-pink" href="https://maps.app.goo.gl/fr2YnE5pfMZUx6tL7?g_st=ic" target="_blank" rel="noopener" data-en="View Location">Ver Ubicaci&oacute;n</a>
     </div>
   </section>
 
@@ -720,10 +897,18 @@ footer{padding:52px 20px 64px;text-align:center;}
     <svg viewBox="0 0 180 22" fill="none"><path d="M0,11 Q12,4 24,11 Q36,18 48,11 Q60,4 72,11" stroke="#B76E79" stroke-width="0.9" opacity="0.28" fill="none"/><path d="M108,11 Q120,4 132,11 Q144,18 156,11 Q168,4 180,11" stroke="#B76E79" stroke-width="0.9" opacity="0.28" fill="none"/><circle cx="90" cy="11" r="3.5" fill="#B76E79" opacity="0.30"/><circle cx="80" cy="11" r="1.8" fill="#B76E79" opacity="0.18"/><circle cx="100" cy="11" r="1.8" fill="#B76E79" opacity="0.18"/></svg>
   </div>
 
+  <!-- MOMENTO 2 -->
+  <div class="momento mom-2 rv">
+    <div class="mom-halo"></div>
+    <figure class="mom-foto"><img data-src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-joy-caroline-joya/g02.jpg" alt="Joy Caroline"></figure>
+    <span class="mom-chispa c1"></span><span class="mom-chispa c2"></span>
+    <span class="mom-chispa c3"></span><span class="mom-chispa c4"></span>
+  </div>
+
   <!-- ITINERARIO -->
   <section id="sitin">
-    <div class="eyebrow rv">El Orden del D&iacute;a</div>
-    <h2 class="sec-title rv">Itinerario</h2>
+    <div class="eyebrow rv" data-en="The Order of the Day">El Orden del D&iacute;a</div>
+    <h2 class="sec-title rv" data-en="Itinerary">Itinerario</h2>
     <div class="itin-list">
       <div class="itin-item rv">
         <span class="itin-ico"><svg width="30" height="30" viewBox="0 0 40 40" fill="none">
@@ -734,7 +919,7 @@ footer{padding:52px 20px 64px;text-align:center;}
       </svg></span>
         <div class="itin-txt">
           <div class="itin-hora">6:00 p.m.</div>
-          <div class="itin-nom">Bendici&oacute;n</div>
+          <div class="itin-nom" data-en="Blessing">Bendici&oacute;n</div>
         </div>
       </div>
       <div class="itin-item rv">
@@ -746,7 +931,7 @@ footer{padding:52px 20px 64px;text-align:center;}
       </svg></span>
         <div class="itin-txt">
           <div class="itin-hora">7:00 p.m.</div>
-          <div class="itin-nom">Cena</div>
+          <div class="itin-nom" data-en="Dinner">Cena</div>
         </div>
       </div>
       <div class="itin-item rv">
@@ -757,7 +942,7 @@ footer{padding:52px 20px 64px;text-align:center;}
       </svg></span>
         <div class="itin-txt">
           <div class="itin-hora">8:15 p.m.</div>
-          <div class="itin-nom">Presentaci&oacute;n</div>
+          <div class="itin-nom" data-en="Presentation">Presentaci&oacute;n</div>
         </div>
       </div>
       <div class="itin-item rv">
@@ -769,7 +954,7 @@ footer{padding:52px 20px 64px;text-align:center;}
       </svg></span>
         <div class="itin-txt">
           <div class="itin-hora">9:00 p.m.</div>
-          <div class="itin-nom">Baile</div>
+          <div class="itin-nom" data-en="Dancing">Baile</div>
         </div>
       </div>
       <div class="itin-item rv">
@@ -780,7 +965,7 @@ footer{padding:52px 20px 64px;text-align:center;}
       </svg></span>
         <div class="itin-txt">
           <div class="itin-hora">12:00 a.m.</div>
-          <div class="itin-nom">Despedida</div>
+          <div class="itin-nom" data-en="Farewell">Despedida</div>
         </div>
       </div>
     </div>
@@ -793,27 +978,22 @@ footer{padding:52px 20px 64px;text-align:center;}
 
   <!-- DRESS CODE -->
   <section id="sdc" style="position:relative;">
-    <div class="eyebrow rv">Etiqueta</div>
-    <h2 class="sec-title rv">C&oacute;digo de Vestimenta</h2>
-    <div class="dc-note rv">Formal</div>
+    <div class="eyebrow rv" data-en="Attire">Etiqueta</div>
+    <h2 class="sec-title rv" data-en="Dress Code">C&oacute;digo de Vestimenta</h2>
+    <div class="dc-note rv" data-en="Formal">Formal</div>
     <div class="dc-icons rv">
-      <svg width="60" height="72" viewBox="0 0 60 72" fill="none">
-        <path d="M20,2 L10,18 L2,18 L10,30 L6,70 L30,70 L54,70 L50,30 L58,18 L50,18 L40,2 C38,8 36,10 30,12 C24,10 22,8 20,2Z" fill="#2D1B0E" opacity="0.75"/>
-      </svg>
-      <svg width="60" height="72" viewBox="0 0 60 72" fill="none">
-        <path d="M18,2 L2,20 L12,22 L10,70 L30,70 L50,70 L48,22 L58,20 L42,2 L36,14 L30,18 L24,14 Z" fill="#2D1B0E" opacity="0.75"/>
-        <rect x="27" y="18" width="6" height="28" rx="1" fill="var(--bg)" opacity="0.6"/>
-      </svg>
+      <figure class="dc-fig"><img src="./dama.png" alt="Vestido largo en tono champ&aacute;n" data-en-alt="Long gown in champagne"></figure>
+      <figure class="dc-fig"><img src="./caballero.png" alt="Traje en tonos beige y champ&aacute;n" data-en-alt="Suit in beige and champagne"></figure>
     </div>
     <div class="dc-evitar rv">
-      <div class="dc-evitar-title">Colores Sugeridos</div>
+      <div class="dc-evitar-title" data-en="Suggested Colors">Colores Sugeridos</div>
       <div class="dc-swatches">
         <div class="dc-swatch"><div class="dot dot-silver"></div><div class="lbl">Silver</div></div>
         <div class="dc-swatch"><div class="dot dot-gold"></div><div class="lbl">Gold</div></div>
         <div class="dc-swatch"><div class="dot dot-champagne"></div><div class="lbl">Champagne</div></div>
         <div class="dc-swatch"><div class="dot dot-rosegold"></div><div class="lbl">Rose Gold</div></div>
       </div>
-      <div class="dc-note2">Tonos met&aacute;licos para acompa&ntilde;ar la paleta de la noche</div>
+      <div class="dc-note2" data-en="Metallic tones to match the palette of the evening">Tonos met&aacute;licos para acompa&ntilde;ar la paleta de la noche</div>
     </div>
   </section>
 
@@ -824,8 +1004,8 @@ footer{padding:52px 20px 64px;text-align:center;}
 
   <!-- BUZON -->
   <section id="sbuzon" style="padding:52px 28px 40px;">
-    <div class="eyebrow rv">Con Cari&ntilde;o</div>
-    <h2 class="sec-title rv">Lluvia de Sobres</h2>
+    <div class="eyebrow rv" data-en="With Love">Con Cari&ntilde;o</div>
+    <h2 class="sec-title rv" data-en="Shower of Envelopes">Lluvia de Sobres</h2>
     <div class="buzon-outer rv">
       <div class="buzon-card">
         <!-- Corner ornaments -->
@@ -847,7 +1027,7 @@ footer{padding:52px 20px 64px;text-align:center;}
             <ellipse cx="26.5" cy="11.5" rx="1.5" ry="1" fill="rgba(255,255,255,0.38)"/>
           </svg>
         </div>
-        <p class="buzon-text">En el festejo encontrar&aacute;s un hermoso buz&oacute;n especialmente decorado donde podr&aacute;s depositar tu sobre.<br><br>Tu cari&ntilde;o y presencia son lo m&aacute;s valioso para Joy Caroline y su familia.</p>
+        <p class="buzon-text" data-en-html="At the celebration you will find a beautifully decorated box where you can leave your envelope.<br><br>Your love and your presence are the most valuable gift for Joy Caroline and her family.">En el festejo encontrar&aacute;s un hermoso buz&oacute;n especialmente decorado donde podr&aacute;s depositar tu sobre.<br><br>Tu cari&ntilde;o y presencia son lo m&aacute;s valioso para Joy Caroline y su familia.</p>
       </div>
     </div>
   </section>
@@ -857,11 +1037,19 @@ footer{padding:52px 20px 64px;text-align:center;}
     <svg viewBox="0 0 180 22" fill="none"><path d="M0,11 Q12,4 24,11 Q36,18 48,11 Q60,4 72,11" stroke="#B76E79" stroke-width="0.9" opacity="0.28" fill="none"/><path d="M108,11 Q120,4 132,11 Q144,18 156,11 Q168,4 180,11" stroke="#B76E79" stroke-width="0.9" opacity="0.28" fill="none"/><circle cx="90" cy="11" r="3.5" fill="#B76E79" opacity="0.30"/><circle cx="80" cy="11" r="1.8" fill="#B76E79" opacity="0.18"/><circle cx="100" cy="11" r="1.8" fill="#B76E79" opacity="0.18"/></svg>
   </div>
 
+  <!-- MOMENTO 3 -->
+  <div class="momento mom-3 rv">
+    <div class="mom-halo"></div>
+    <figure class="mom-foto"><img data-src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-joy-caroline-joya/g03.jpg" alt="Joy Caroline"></figure>
+    <span class="mom-chispa c1"></span><span class="mom-chispa c2"></span>
+    <span class="mom-chispa c3"></span><span class="mom-chispa c4"></span>
+  </div>
+
   <!-- RSVP -->
   <section id="srsvp" style="padding:20px 28px 70px;">
-    <div class="eyebrow rv">Confirma Tu Asistencia</div>
+    <div class="eyebrow rv" data-en="Confirm Your Attendance">Confirma Tu Asistencia</div>
     <h2 class="sec-title rv">R.S.V.P.</h2>
-    <p style="text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:var(--gold);margin-bottom:32px;" class="rv">&#161;Nos encantar&iacute;a contar con tu presencia!</p>
+    <p style="text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:var(--gold);margin-bottom:32px;" class="rv" data-en="We would love to have you with us!">&#161;Nos encantar&iacute;a contar con tu presencia!</p>
     <div class="rsvp-outer rv">
 
 
@@ -875,26 +1063,26 @@ footer{padding:52px 20px 64px;text-align:center;}
         <!-- Pases (visible solo si ?pases=N esta en la URL) -->
         <div class="pases-wrap" id="pasesWrap">
           <div class="pases-card">
-            <div class="pases-title">Pases</div>
-            <div class="pases-sub">Hemos reservado</div>
+            <div class="pases-title" data-en="Passes">Pases</div>
+            <div class="pases-sub" data-en="We have reserved">Hemos reservado</div>
             <div class="pases-circles" id="pasesCircles"></div>
-            <div class="pases-honor">Asientos en tu honor</div>
+            <div class="pases-honor" data-en="Seats in your honor">Asientos en tu honor</div>
           </div>
         </div>
         <div id="rsvpBandeja">
-          <label>&iquest;Nos acompa&ntilde;ar&aacute;s?</label>
+          <label data-en="Will you join us?">&iquest;Nos acompa&ntilde;ar&aacute;s?</label>
           <div class="rsvp-toggle">
-            <button class="rsvp-toggle-btn" id="btnYes" type="button">S&iacute;, asistir&eacute;</button>
-            <button class="rsvp-toggle-btn" id="btnNo" type="button">No podr&eacute; asistir</button>
+            <button class="rsvp-toggle-btn" id="btnYes" type="button" data-en="Yes, I'll be there">S&iacute;, asistir&eacute;</button>
+            <button class="rsvp-toggle-btn" id="btnNo" type="button" data-en="I can't make it">No podr&eacute; asistir</button>
           </div>
           <div class="rsvp-fields" id="rsvpFields" style="display:none"></div>
-          <button class="btn-wa" id="rsvpBtn" type="button"><span id="rsvpBtnText">Confirmar asistencia</span></button>
+          <button class="btn-wa" id="rsvpBtn" type="button"><span id="rsvpBtnText" data-en="Confirm attendance">Confirmar asistencia</span></button>
         </div>
         <div class="rsvp-gracias" id="rsvpGracias" style="display:none">
           <svg class="rsvp-gracias-icon" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="8.5 12.5 11 15 16 9.5"/></svg>
           <p class="rsvp-gracias-title" id="rsvpGraciasTitle"></p>
           <p class="rsvp-gracias-sub" id="rsvpGraciasSub"></p>
-          <button class="rsvp-editar-btn" id="rsvpEditarBtn" type="button">Modificar mi respuesta</button>
+          <button class="rsvp-editar-btn" id="rsvpEditarBtn" type="button" data-en="Change my answer">Modificar mi respuesta</button>
         </div>
         <p class="rsvp-feedback" id="rsvpFeedback"></p>
       </div>
@@ -902,20 +1090,25 @@ footer{padding:52px 20px 64px;text-align:center;}
 
     </div>
 
-    <p class="rsvp-nokids rv">Por favor confirma antes del <strong>15 de enero de 2027</strong>.</p>
+    <p class="rsvp-nokids rv" data-en-html="Please confirm before <strong>January 15th, 2027</strong>.">Por favor confirma antes del <strong>15 de enero de 2027</strong>.</p>
   </section>
 
   <!-- FOOTER -->
   <footer>
     <div class="ft-name">Joy Caroline</div>
-    <div class="ft-date">20 &middot; Febrero &middot; 2027</div>
+    <div class="ft-date" data-en="20 &middot; February &middot; 2027">20 &middot; Febrero &middot; 2027</div>
     <div class="ft-credit">@elysium.invitaciones</div>
   </footer>
 
 </div><!-- /wrap -->
 
+<!-- INTERRUPTOR DE IDIOMA -->
+<div class="lang-switch" id="langSwitch" role="group" aria-label="Idioma / Language">
+  <button type="button" data-lang="es">ES</button><span>|</span><button type="button" data-lang="en">EN</button>
+</div>
+
 <!-- MUSIC FAB -->
-<button class="vinyl-btn" id="musicFab" type="button" aria-label="Reproducir m&uacute;sica de la invitaci&oacute;n">
+<button class="vinyl-btn" id="musicFab" type="button" aria-label="Reproducir m&uacute;sica de la invitaci&oacute;n" data-en-aria="Play the invitation music">
   <div class="vinyl-tonearm">
     <div class="vinyl-tonearm-pivot"></div>
     <div class="vinyl-tonearm-line"></div>
@@ -938,6 +1131,73 @@ footer{padding:52px 20px 64px;text-align:center;}
 </audio>
 
 <script>
+
+/* ── IDIOMA ──
+   Guarda el ES original la primera vez para poder volver. El modal sale en
+   CADA visita; localStorage solo recuerda la ultima eleccion. */
+(function(){
+  var qs=new URLSearchParams(location.search);
+  var guardado=null;
+  try{guardado=localStorage.getItem('joy-lang');}catch(e){}
+  window.LANG=(qs.get('lang')==='en'||qs.get('lang')==='es')?qs.get('lang'):(guardado||'es');
+
+  window.T=function(es,en){return window.LANG==='en'?en:es;};
+
+  window.applyLang=function(l){
+    window.LANG=l;
+    document.documentElement.lang=(l==='en')?'en':'es';
+    document.querySelectorAll('[data-en]').forEach(function(el){
+      if(el.dataset.es===undefined)el.dataset.es=el.textContent;
+      el.textContent=(l==='en')?el.dataset.en:el.dataset.es;
+    });
+    document.querySelectorAll('[data-en-html]').forEach(function(el){
+      if(el.dataset.esHtml===undefined)el.dataset.esHtml=el.innerHTML;
+      el.innerHTML=(l==='en')?el.dataset.enHtml:el.dataset.esHtml;
+    });
+    document.querySelectorAll('[data-en-aria]').forEach(function(el){
+      if(el.dataset.esAria===undefined)el.dataset.esAria=el.getAttribute('aria-label')||'';
+      el.setAttribute('aria-label',(l==='en')?el.dataset.enAria:el.dataset.esAria);
+    });
+    document.querySelectorAll('[data-en-alt]').forEach(function(el){
+      if(el.dataset.esAlt===undefined)el.dataset.esAlt=el.getAttribute('alt')||'';
+      el.setAttribute('alt',(l==='en')?el.dataset.enAlt:el.dataset.esAlt);
+    });
+    document.querySelectorAll('[data-en-ph]').forEach(function(el){
+      if(el.dataset.esPh===undefined)el.dataset.esPh=el.getAttribute('placeholder')||'';
+      el.setAttribute('placeholder',(l==='en')?el.dataset.enPh:el.dataset.esPh);
+    });
+    document.querySelectorAll('.lang-switch button').forEach(function(b){
+      b.classList.toggle('on',b.dataset.lang===l);
+    });
+    try{localStorage.setItem('joy-lang',l);}catch(e){}
+    if(window.refrescarRsvpIdioma)window.refrescarRsvpIdioma();
+    document.dispatchEvent(new CustomEvent('langchange',{detail:l}));
+  };
+
+  applyLang(window.LANG);
+
+  var pantalla=document.getElementById('lang-screen');
+  function elegir(l){
+    applyLang(l);
+    pantalla.classList.add('se-va');
+    setTimeout(function(){pantalla.style.display='none';},520);
+  }
+  pantalla.querySelectorAll('.lang-btn').forEach(function(b){
+    b.addEventListener('click',function(){elegir(b.dataset.lang);});
+  });
+  document.querySelectorAll('.lang-switch button').forEach(function(b){
+    b.addEventListener('click',function(){applyLang(b.dataset.lang);});
+  });
+
+  /* el interruptor se esconde al bajar y vuelve al subir */
+  var sw=document.getElementById('langSwitch'),ultimo=0;
+  window.addEventListener('scroll',function(){
+    var y=window.scrollY;
+    sw.classList.toggle('escondido',y>ultimo&&y>240);
+    ultimo=y;
+  },{passive:true});
+})();
+
 window.scrollTo(0,0);
 history.scrollRestoration='manual';
 gsap.registerPlugin(ScrollTrigger);
@@ -997,6 +1257,7 @@ gsap.registerPlugin(ScrollTrigger);
 /* ── LAUNCH PAGE ── */
 function launchPage(){
   initSparkles();
+  initMomentos();
   gsap.timeline({defaults:{ease:'power3.out'}})
     .to('#hMis',{opacity:1,y:0,duration:1.2})
     .to('#hXv', {opacity:1,y:0,duration:1.0},'-=0.8')
@@ -1006,6 +1267,13 @@ function launchPage(){
   document.querySelectorAll('.rv').forEach(function(el){
     gsap.fromTo(el,{y:26,opacity:0},{y:0,opacity:1,duration:1.1,ease:'power2.out',
       scrollTrigger:{trigger:el,start:'top 88%'}});
+  });
+}
+
+/* ── MOMENTOS ── */
+function initMomentos(){
+  document.querySelectorAll('.mom-foto img[data-src]').forEach(function(im){
+    im.src=im.dataset.src;im.removeAttribute('data-src');
   });
 }
 
@@ -1076,43 +1344,6 @@ function initSparkles(){
   },3600);
 })();
 
-/* ── GALERIA — RUEDA 3D ── */
-(function(){
-  var ring=document.getElementById('wheelRing');
-  if(!ring)return;
-  var cards=ring.querySelectorAll('.wheel-card');
-  var n=cards.length;if(!n)return;
-  /* data-src: loading="lazy" nunca dispara en tarjetas con translateZ */
-  cards.forEach(function(c){var im=c.querySelector('img');if(im&&im.dataset.src)im.src=im.dataset.src;});
-  var cw=cards[0].offsetWidth||168;
-  var radius=Math.max(190,Math.round((cw/2)/Math.tan(Math.PI/n)));
-  cards.forEach(function(card,i){
-    card.style.transform='rotateY('+(360/n*i)+'deg) translateZ('+radius+'px)';
-  });
-  var rot=0,vel=0,isDrag=false,startX=0,startRot=0,lastX=0,rafId=null,auto=true;
-  function setRot(){ring.style.transform='translateZ(-'+radius+'px) rotateY('+rot+'deg)';}
-  setRot();
-  function inertia(){
-    if(isDrag)return;
-    rot+=vel;vel*=0.94;setRot();
-    if(Math.abs(vel)>0.05)rafId=requestAnimationFrame(inertia);
-  }
-  function down(x){isDrag=true;auto=false;ring.classList.add('dragging');startX=x;lastX=x;startRot=rot;vel=0;if(rafId)cancelAnimationFrame(rafId);}
-  function move(x){if(!isDrag)return;rot=startRot+(x-startX)*0.45;vel=(x-lastX)*0.5;lastX=x;setRot();}
-  function up(){if(!isDrag)return;isDrag=false;ring.classList.remove('dragging');rafId=requestAnimationFrame(inertia);}
-  ring.addEventListener('mousedown',function(e){e.preventDefault();down(e.clientX);});
-  window.addEventListener('mousemove',function(e){move(e.clientX);});
-  window.addEventListener('mouseup',up);
-  ring.addEventListener('touchstart',function(e){down(e.touches[0].clientX);},{passive:true});
-  ring.addEventListener('touchmove',function(e){move(e.touches[0].clientX);},{passive:true});
-  ring.addEventListener('touchend',up);
-  var visible=false;
-  if(window.IntersectionObserver){
-    new IntersectionObserver(function(es){visible=es[0].isIntersecting;},{threshold:0.05})
-      .observe(document.getElementById('sgal'));
-  }else{visible=true;}
-  (function spin(){if(visible&&auto&&!isDrag){rot+=0.12;setRot();}requestAnimationFrame(spin);})();
-})();
 
 /* ── RSVP — Panel de Invitados ── */
 (function(){
@@ -1138,9 +1369,10 @@ function initSparkles(){
   var btn=document.getElementById('rsvpBtn');
   var btnText=document.getElementById('rsvpBtnText');
   var fb=document.getElementById('rsvpFeedback');
-  var estado=null,bloqueado=false;
+  var estado=null,bloqueado=false,respuestaGuardada=false;
 
-  if(urlPara)holaEl.textContent='\u00a1Hola, '+urlPara+'!';
+  function pintaHola(){if(urlPara)holaEl.textContent=T('\u00a1Hola, '+urlPara+'!','Hi, '+urlPara+'!');}
+  pintaHola();
 
   /* circulos de pases */
   if(!isNaN(p)&&p>0){
@@ -1157,7 +1389,9 @@ function initSparkles(){
   for(var j=1;j<=pases;j++){
     var inp=document.createElement('input');
     inp.type='text';inp.id='rsvpName'+j;
-    inp.placeholder='Nombre completo del invitado '+j;
+    inp.placeholder=T('Nombre completo del invitado '+j,'Full name of guest '+j);
+    inp.setAttribute('data-en-ph','Full name of guest '+j);
+    inp.dataset.esPh='Nombre completo del invitado '+j;
     inp.autocomplete='name';
     if(j===1&&urlPara)inp.value=urlPara;
     fieldsEl.appendChild(inp);
@@ -1180,7 +1414,7 @@ function initSparkles(){
   function cerrarPorBloqueo(){
     bloqueado=true;
     btn.disabled=true;btnYes.disabled=true;btnNo.disabled=true;editarBtn.disabled=true;
-    setFb('Tu respuesta ya qued\u00f3 registrada y no se puede modificar. Si necesitas un cambio, contacta a la familia.','#8F4F59');
+    setFb(T('Tu respuesta ya qued\u00f3 registrada y no se puede modificar. Si necesitas un cambio, contacta a la familia.','Your answer is already recorded and cannot be changed. Please contact the family if you need a change.'),'#8F4F59');
   }
 
   function select(e){
@@ -1195,13 +1429,13 @@ function initSparkles(){
 
   function mostrarGracias(e,nombres){
     if(e==='confirmado'){
-      gTitle.textContent='\u00a1Gracias por confirmar!';
+      gTitle.textContent=T('\u00a1Gracias por confirmar!','Thank you for confirming!');
       gSub.textContent=(nombres.length<=1)
-        ?('Te esperamos, '+(nombres[0]||urlPara||'')+'.')
-        :('Confirmamos '+nombres.length+' lugares: '+nombres.join(', ')+'.');
+        ?T('Te esperamos, '+(nombres[0]||urlPara||'')+'.','See you there, '+(nombres[0]||urlPara||'')+'.')
+        :T('Confirmamos '+nombres.length+' lugares: '+nombres.join(', ')+'.',nombres.length+' seats confirmed: '+nombres.join(', ')+'.');
     }else{
-      gTitle.textContent='Gracias por avisarnos';
-      gSub.textContent='Lamentamos que no puedas acompa\u00f1arnos. Te vamos a extra\u00f1ar.';
+      gTitle.textContent=T('Gracias por avisarnos','Thank you for letting us know');
+      gSub.textContent=T('Lamentamos que no puedas acompa\u00f1arnos. Te vamos a extra\u00f1ar.',"We are sorry you cannot join us. We will miss you.");
     }
     bandeja.style.display='none';
     gracias.style.display='';
@@ -1214,6 +1448,18 @@ function initSparkles(){
     setFb('','');
   });
 
+  /* cuando el invitado cambia de idioma, lo que el JS ya escribio se repinta */
+  window.refrescarRsvpIdioma=function(){
+    pintaHola();
+    if(btn&&btnText&&!btn.disabled)btnText.textContent=respuestaGuardada
+      ?T('Actualizar respuesta','Update answer')
+      :T('Confirmar asistencia','Confirm attendance');
+    if(gracias&&gracias.style.display!=='none'&&estado)mostrarGracias(estado,getNombres());
+    if(editarBtn)editarBtn.textContent=T('Modificar mi respuesta','Change my answer');
+    if(frozen)setFb(T('El periodo de confirmaci\u00f3n cerr\u00f3 el 15 de enero de 2027.','The confirmation period closed on January 15th, 2027.'),'var(--gold)');
+    else if(bloqueado)cerrarPorBloqueo();
+  };
+
   /* precarga */
   btn.disabled=true;
   if(urlPara){
@@ -1225,7 +1471,8 @@ function initSparkles(){
         if(inv&&inv.estado){
           select(inv.estado);
           setNombres(inv.nombres_confirmados||[]);
-          btnText.textContent='Actualizar respuesta';
+          respuestaGuardada=true;
+          btnText.textContent=T('Actualizar respuesta','Update answer');
           mostrarGracias(inv.estado,inv.nombres_confirmados||[]);
         }
         if(inv&&inv.bloqueado)cerrarPorBloqueo();
@@ -1237,17 +1484,17 @@ function initSparkles(){
   }
   if(frozen){
     btnYes.disabled=true;btnNo.disabled=true;
-    setFb('El periodo de confirmaci\u00f3n cerr\u00f3 el 15 de enero de 2027.','var(--gold)');
+    setFb(T('El periodo de confirmaci\u00f3n cerr\u00f3 el 15 de enero de 2027.','The confirmation period closed on January 15th, 2027.'),'var(--gold)');
   }
 
   btn.addEventListener('click',function(){
     if(frozen)return;
-    if(!estado){setFb('Por favor elige si podr\u00e1s acompa\u00f1arnos.','#7B4049');return;}
+    if(!estado){setFb(T('Por favor elige si podr\u00e1s acompa\u00f1arnos.','Please choose whether you can join us.'),'#7B4049');return;}
     var nombres=getNombres();
     if(estado==='confirmado'&&nombres.length===0){
-      setFb('Escribe al menos un nombre.','#7B4049');return;
+      setFb(T('Escribe al menos un nombre.','Please enter at least one name.'),'#7B4049');return;
     }
-    btn.disabled=true;btnText.textContent='Enviando...';
+    btn.disabled=true;btnText.textContent=T('Enviando...','Sending...');
     fetch(PANEL_API,{
       method:'POST',
       headers:{'Content-Type':'application/json'},
@@ -1263,25 +1510,26 @@ function initSparkles(){
     .then(function(res){
       if(res.ok){
         setFb('','');
-        btnText.textContent='Actualizar respuesta';
+        respuestaGuardada=true;
+        btnText.textContent=T('Actualizar respuesta','Update answer');
         btn.disabled=false;
         mostrarGracias(estado,nombres);
         return;
       }
-      btn.disabled=false;btnText.textContent='Confirmar asistencia';
+      btn.disabled=false;btnText.textContent=T('Confirmar asistencia','Confirm attendance');
       var err=(res.data&&(res.data.error||res.data.code))||'';
       if(err==='respuestas_cerradas'){cerrarPorBloqueo();return;}
       setFb(
         err==='no_match'
-          ? 'No pudimos identificar tu invitaci\u00f3n. Abre el enlace personalizado que te enviaron; ese es el \u00fanico que registra tu confirmaci\u00f3n.'
+          ? T('No pudimos identificar tu invitaci\u00f3n. Abre el enlace personalizado que te enviaron; ese es el \u00fanico que registra tu confirmaci\u00f3n.','We could not identify your invitation. Please open the personal link you were sent; it is the only one that records your answer.')
           : err==='invitacion_borrada'
-            ? 'Esta invitaci\u00f3n ya no est\u00e1 activa. Contacta a la familia para que te env\u00eden un enlace nuevo.'
-            : 'Hubo un problema al enviar. Int\u00e9ntalo de nuevo.',
+            ? T('Esta invitaci\u00f3n ya no est\u00e1 activa. Contacta a la familia para que te env\u00eden un enlace nuevo.','This invitation is no longer active. Please contact the family for a new link.')
+            : T('Hubo un problema al enviar. Int\u00e9ntalo de nuevo.','Something went wrong. Please try again.'),
         '#8F4F59');
     })
     .catch(function(){
-      btn.disabled=false;btnText.textContent='Confirmar asistencia';
-      setFb('Sin conexi\u00f3n. Verifica tu internet e int\u00e9ntalo de nuevo.','#8F4F59');
+      btn.disabled=false;btnText.textContent=T('Confirmar asistencia','Confirm attendance');
+      setFb(T('Sin conexi\u00f3n. Verifica tu internet e int\u00e9ntalo de nuevo.','No connection. Check your internet and try again.'),'#8F4F59');
     });
   });
 })();
