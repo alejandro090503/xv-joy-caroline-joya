@@ -440,9 +440,11 @@ footer{padding:52px 20px 64px;text-align:center;}
   letter-spacing:5px;text-transform:uppercase;
   color:var(--gold);margin-bottom:16px;position:relative;z-index:1;
 }
-.pases-circles{
-  display:flex;justify-content:center;gap:10px;
-  margin-bottom:14px;position:relative;z-index:1;
+.pases-num{
+  font-family:'Playfair Display',serif;font-weight:700;
+  font-size:64px;line-height:1;color:var(--rose-ink);
+  margin:2px 0 12px;position:relative;z-index:1;
+  font-variant-numeric:lining-nums;
 }
 .pases-circle{
   width:46px;height:46px;border-radius:50%;
@@ -1145,7 +1147,7 @@ footer>*{position:relative;z-index:1;}
           <div class="pases-card">
             <div class="pases-title" data-en="Passes">Pases</div>
             <div class="pases-sub" data-en="We have reserved">Hemos reservado</div>
-            <div class="pases-circles" id="pasesCircles"></div>
+            <div class="pases-num" id="pasesNum">1</div>
             <div class="pases-honor" data-en="Seats in your honor">Asientos en tu honor</div>
           </div>
         </div>
@@ -1510,14 +1512,13 @@ function initSparkles(){
   function pintaHola(){if(urlPara)holaEl.textContent=T('\u00a1Hola, '+urlPara+'!','Hi, '+urlPara+'!');}
   pintaHola();
 
-  /* circulos de pases */
-  if(!isNaN(p)&&p>0){
-    var circles=document.getElementById('pasesCircles');
-    for(var i=1;i<=Math.min(pases,10);i++){
-      var c=document.createElement('div');
-      c.className='pases-circle active';
-      circles.appendChild(c);
-    }
+  /* numero de pases asignados (el del panel manda sobre el del link) */
+  function pintaPases(){
+    var el=document.getElementById('pasesNum');
+    if(el)el.textContent=pases;
+  }
+  if(urlPara){
+    pintaPases();
     document.getElementById('pasesWrap').style.display='block';
   }
 
@@ -1558,7 +1559,7 @@ function initSparkles(){
         :T('Nombre completo del invitado '+j,'Full name of guest '+j);
       inp.autocomplete='name';inp.maxLength=60;
       inp.disabled=frozen||bloqueado;
-      inp.value=guardados[j-1]!==undefined?guardados[j-1]:(j===1&&urlPara?urlPara:'');
+      inp.value=guardados[j-1]!==undefined?guardados[j-1]:'';
       (function(idx,el){el.addEventListener('input',function(){guardados[idx]=el.value;});})(j-1,inp);
       camposBox.appendChild(inp);
     }
@@ -1699,13 +1700,13 @@ function initSparkles(){
         if(inv&&typeof inv.pases==='number'&&inv.pases>0){
           pases=Math.min(inv.pases,20);
           if(pasesUsar>pases)pasesUsar=pases;
-          pintaContador();renderCampos();
+          pintaPases();pintaContador();renderCampos();
         }
         if(d&&d.boda&&d.boda.fecha_limite_rsvp){
           var lim=new Date(d.boda.fecha_limite_rsvp).getTime();
           if(!isNaN(lim)){DEADLINE=lim;frozen=Date.now()>DEADLINE;}
         }
-        if(inv&&inv.estado){
+        if(inv&&(inv.estado==='confirmado'||inv.estado==='declino')){
           select(inv.estado);
           setNombres(inv.nombres_confirmados||[]);
           respuestaGuardada=true;
