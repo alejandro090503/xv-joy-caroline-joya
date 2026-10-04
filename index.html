@@ -1739,7 +1739,7 @@ function initSparkles(){
     }
     if(estado==='confirmado'&&nombres.length<pasesUsar){
       var faltan=pasesUsar-nombres.length;
-      setFb(T('Faltan '+faltan+' nombre'+(faltan===1?'':'s')+'. Escr\u00edbelos o baja el contador de pases si van a ser menos.',
+      setFb(T((faltan===1?'Falta 1 nombre. Escr\u00edbelo':'Faltan '+faltan+' nombres. Escr\u00edbelos')+' o baja el contador de pases si van a ser menos.',
               faltan+' name'+(faltan===1?' is':'s are')+' missing. Fill them in or lower the pass counter if fewer people are coming.'),'#7B4049');
       var vacio=null;
       for(var k=1;k<=pasesUsar&&!vacio;k++){var e2=document.getElementById('rsvpName'+k);if(e2&&!e2.value.trim())vacio=e2;}
