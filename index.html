@@ -59,27 +59,27 @@ body{font-family:'Montserrat',sans-serif;font-weight:500;color:#2D1B0E;backgroun
 }
 .sec-title,.cd-label,.fam-role,.ubic-tipo,.ft-name,.hero-xv,.hero-mis{
   background-image:linear-gradient(100deg,
-    #A8761F 0%, #C9A227 6%, #D4AF37 12%,
-    #E8CE86 19%, #F7E7CE 25%, #FFF8EA 30%, #F7E7CE 35%,
-    #E8CE86 41%, #D4AF37 48%, #B8853A 54%, #A8761F 59%,
-    #C9A227 65%, #D4AF37 70%, #E8CE86 76%,
-    #F7E7CE 82%, #FFF8EA 86%, #F7E7CE 90%,
-    #D4AF37 95%, #A8761F 100%);
-  background-size:300% 100%;
+    #8F5E13 0%, #B8853A 12%, #D4AF37 26%,
+    #E8CE86 38%, #F7E7CE 48%, #E8CE86 58%,
+    #D4AF37 70%, #B8853A 84%, #8F5E13 100%);
+  background-size:100% 100%;
+  background-position:center;
   -webkit-background-clip:text;background-clip:text;
   -webkit-text-fill-color:transparent;color:transparent;
-  animation:goldSweep 7.5s linear infinite;
-  padding-left:.34em;padding-right:.34em;
-  margin-left:-.34em;margin-right:-.34em;
+  box-sizing:border-box;
+  padding:.34em;
+  margin:-.34em;
   filter:drop-shadow(0 1px 0 rgba(118,76,16,.58)) drop-shadow(0 0 7px rgba(212,175,55,.34));
 }
+/* el margen negativo se come los huecos de abajo: se devuelven con calc */
+.sec-title{margin-bottom:calc(6px - .34em);}
+.cd-label{margin-bottom:calc(24px - .34em);}
+.fam-role{margin-bottom:calc(8px - .34em);}
+.ubic-tipo{margin-bottom:calc(8px - .34em);}
 /* el icono dentro del rol de familia conserva su tinta */
 .fam-role svg{-webkit-text-fill-color:initial;}
 /* sobre la foto del hero: halo claro para que el dorado no se pierda */
 .hero-mis,.hero-xv{filter:drop-shadow(0 1px 0 rgba(118,76,16,.52)) drop-shadow(0 0 10px rgba(212,175,55,.34));}
-@media(prefers-reduced-motion:reduce){
-  .sec-title,.cd-label,.fam-role,.ubic-tipo,.ft-name,.hero-xv,.hero-mis{animation:none;background-position:50% center;}
-}
 
 /* ── ENVELOPE ── */
 #envelope-screen{position:fixed;inset:0;z-index:10000;overflow:hidden;cursor:pointer;opacity:0;background:#FFFFFF;}
@@ -722,12 +722,12 @@ footer>*{position:relative;z-index:1;}
 .env-interactive.open .env-open-content{max-height:340px;opacity:1;pointer-events:auto;margin-top:20px;}
 .env-mailbox-icon{width:42px;height:42px;color:var(--gold);margin-top:6px;}
 .env-title{font-family:'Great Vibes',cursive;font-size:clamp(30px,8.6vw,38px);line-height:1.35;
-  padding:.1em .2em;margin:0 -.2em;
+  box-sizing:border-box;padding:.34em;margin:-.34em;
   background-image:linear-gradient(100deg,#A8761F 0%,#D4AF37 16%,#F7E7CE 30%,#FFF8EA 36%,#D4AF37 52%,#A8761F 62%,#E8CE86 80%,#F7E7CE 90%,#A8761F 100%);
   background-size:300% 100%;-webkit-background-clip:text;background-clip:text;
   -webkit-text-fill-color:transparent;color:transparent;
   filter:drop-shadow(0 1px 0 rgba(118,76,16,.55));
-  animation:goldSweep 7.5s linear infinite;}
+  animation:none;}
 .env-desc{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:500;font-style:italic;
   color:var(--text);line-height:1.75;max-width:300px;}
 .env-tap-hint{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600;letter-spacing:3px;
@@ -741,6 +741,17 @@ footer>*{position:relative;z-index:1;}
 @media(prefers-reduced-motion:reduce){
   .env-body.landed,.env-tap-hint.show{animation:none!important;}
 }
+
+/* ══ RONDA 3 OCT ══ */
+
+/* los nombres de la familia se leian chicos al lado de los roles */
+.fam-names{font-size:21px;line-height:1.75;letter-spacing:.6px;}
+/* sin encabezado, la seccion necesita su propio aire arriba */
+#sfam{padding-top:46px;}
+
+/* el nombre de la portada deja de ser negro: rosa viejo, que es el oro
+   rosado oscurecido hasta pasar contraste (5.1:1 sobre blanco) */
+.hero-name{color:var(--rose-ink);}
 </style>
 </head>
 <body>
@@ -837,8 +848,6 @@ footer>*{position:relative;z-index:1;}
 
   <!-- FAMILIA -->
   <section id="sfam" style="position:relative;">
-    <div class="eyebrow rv" data-en="For This Very Special Day">Para Este D&iacute;a Tan Especial</div>
-    <h2 class="sec-title rv" data-en="My Family">Mi Familia</h2>
     <div class="fam-wrap">
       <div class="fam-block rv">
         <div class="fam-role">
@@ -853,18 +862,6 @@ footer>*{position:relative;z-index:1;}
         <div class="fam-role" data-en="My Parents">Mis Padres</div>
         <div class="fam-names">Sherry Joya<br>&amp;<br>Juan Joya</div>
       </div>
-      <div class="fam-divider rv"></div>
-      <div class="fam-block rv">
-        <div class="fam-role">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#2D1B0E" style="opacity:.5"><path d="M12 2l1.2 7.8L21 12l-7.8 1.2L12 22l-1.2-8.8L3 12l8.8-1.2z"/></svg>
-          <span data-en="My Godparents of Honor">Mis Padrinos de Honor</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="#2D1B0E" style="opacity:.5"><path d="M12 2l1.2 7.8L21 12l-7.8 1.2L12 22l-1.2-8.8L3 12l8.8-1.2z"/></svg>
-        </div>
-        <div class="fam-names padrinos-rot" id="padrinosRot">
-          <span class="padrino-item is-on" data-en="To be confirmed">Por confirmar</span>
-          <div class="padrinos-dots" id="padrinosDots" aria-hidden="true"></div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -875,7 +872,6 @@ footer>*{position:relative;z-index:1;}
 
   <!-- UBICACION -->
   <section id="subic">
-    <div class="eyebrow rv" data-en="Where We Will Meet">Donde Nos Encontramos</div>
     <h2 class="sec-title rv" data-en="Location">Ubicaci&oacute;n</h2>
 
     <!-- Recepcion -->
@@ -941,7 +937,6 @@ footer>*{position:relative;z-index:1;}
 
   <!-- ITINERARIO -->
   <section id="sitin">
-    <div class="eyebrow rv" data-en="The Order of the Day">El Orden del D&iacute;a</div>
     <h2 class="sec-title rv" data-en="Itinerary">Itinerario</h2>
     <div class="itin-list">
       <div class="itin-item rv">
@@ -1453,35 +1448,6 @@ function initSparkles(){
   tick(); setInterval(tick,1000);
 }());
 
-/* ── PADRINOS — rotador con fade ── */
-(function(){
-  var wrap=document.getElementById('padrinosRot');
-  if(!wrap)return;
-  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  var items=wrap.querySelectorAll('.padrino-item');
-  if(items.length<2)return;
-  var dots=document.getElementById('padrinosDots'),ds=[];
-  for(var i=0;i<items.length;i++){
-    var d=document.createElement('i');
-    if(i===0)d.className='on';
-    dots.appendChild(d);ds.push(d);
-  }
-  var idx=0,visible=true;
-  if(window.IntersectionObserver){
-    new IntersectionObserver(function(es){visible=es[0].isIntersecting;},{threshold:0.15}).observe(wrap);
-  }
-  setInterval(function(){
-    if(!visible)return;
-    items[idx].classList.remove('is-on');
-    ds[idx].classList.remove('on');
-    var next=(idx+1)%items.length;
-    setTimeout(function(){
-      items[next].classList.add('is-on');
-      ds[next].classList.add('on');
-    },1000);
-    idx=next;
-  },3600);
-})();
 
 
 /* ── RSVP — Panel de Invitados ── */
