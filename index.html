@@ -17,6 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <style>
@@ -752,6 +753,30 @@ footer>*{position:relative;z-index:1;}
 /* el nombre de la portada deja de ser negro: rosa viejo, que es el oro
    rosado oscurecido hasta pasar contraste (5.1:1 sobre blanco) */
 .hero-name{color:var(--rose-ink);}
+
+/* ── Contador de pases a ocupar ── */
+.rsvp-contador-wrap{margin:4px auto 18px;text-align:center}
+.rsvp-contador-nota{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:17px;color:#2D1B0E;line-height:1.5;margin:0 auto 12px;max-width:380px}
+.rsvp-contador{display:inline-flex;align-items:center;gap:18px}
+.rsvp-contador-btn{width:46px;height:46px;border-radius:50%;border:1.5px solid rgba(158,90,100,.6);background:#fff;color:var(--rose-ink);font-size:24px;font-weight:600;line-height:1;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:background .2s,opacity .2s}
+.rsvp-contador-btn:hover:not(:disabled){background:var(--champagne)}
+.rsvp-contador-btn:disabled{opacity:.35;cursor:not-allowed}
+.rsvp-contador-valor{font-family:'Playfair Display',serif;font-weight:700;font-size:34px;color:var(--rose-ink);min-width:44px;text-align:center}
+.rsvp-contador-pie{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:16px;color:var(--gold);margin-top:8px}
+/* ── Codigos de acceso QR (panel Celestial) ── */
+#qrSection{margin-top:30px}
+.rsvp-qr-title{font-family:'Great Vibes',cursive;font-size:clamp(32px,8vw,42px);color:var(--rose-ink);text-align:center;line-height:1.2;margin-bottom:6px}
+.rsvp-qr-hint{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:18px;color:#2D1B0E;text-align:center;line-height:1.6;margin:0 auto 22px;max-width:420px}
+.rsvp-qr-grid{display:flex;flex-direction:column;gap:16px;align-items:center}
+.rsvp-qr-card{background:#fff;border:1.5px solid rgba(153,101,21,.4);border-radius:18px;padding:22px 20px;text-align:center;width:100%;max-width:300px;box-shadow:0 8px 26px rgba(153,101,21,.12)}
+.rsvp-qr-card .qr-img{background:#fff;padding:8px;display:inline-block;line-height:0}
+.rsvp-qr-card .qr-img canvas{display:block;width:180px;height:180px}
+.rsvp-qr-name{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:clamp(20px,5vw,23px);color:#2D1B0E;margin-top:12px}
+.rsvp-qr-mesa{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:18px;color:var(--rose-ink);margin-top:2px}
+.rsvp-qr-code-lbl{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-top:12px}
+.rsvp-qr-code-txt{font-family:'Courier New',monospace;font-size:15px;letter-spacing:2px;color:#2D1B0E;margin-top:4px;user-select:all;-webkit-user-select:all}
+.rsvp-qr-dl{display:inline-flex;align-items:center;justify-content:center;margin-top:14px;padding:10px 24px;min-height:44px;background:transparent;border:1.5px solid rgba(158,90,100,.55);border-radius:10px;color:var(--rose-ink);font-family:'Cormorant Garamond',serif;font-weight:700;font-size:17px;cursor:pointer;transition:background .2s}
+.rsvp-qr-dl:hover{background:rgba(247,231,206,.6)}
 </style>
 </head>
 <body>
@@ -1140,6 +1165,11 @@ footer>*{position:relative;z-index:1;}
           <button class="rsvp-editar-btn" id="rsvpEditarBtn" type="button" data-en="Change my answer">Modificar mi respuesta</button>
         </div>
         <p class="rsvp-feedback" id="rsvpFeedback"></p>
+        <div id="qrSection" style="display:none">
+          <p class="rsvp-qr-title" data-en="Your access codes">Tus c&oacute;digos de acceso</p>
+          <p class="rsvp-qr-hint" data-en-html="Show your QR code at the entrance.&lt;br&gt;You can display it on your phone or download it.">Presenta tu c&oacute;digo QR en la entrada.<br>Puedes mostrarlo desde el celular o descargarlo.</p>
+          <div class="rsvp-qr-grid" id="qrGrid"></div>
+        </div>
       </div>
 
 
@@ -1450,12 +1480,13 @@ function initSparkles(){
 
 
 
-/* ── RSVP — Panel de Invitados ── */
+/* ── RSVP — Panel Celestial (codigos QR) ── */
 (function(){
-  var PANEL_API='https://panel-invitados.vercel.app/api/confirmar';
+  var PANEL_API='https://panel-invitados-qr.vercel.app/api/confirmar';
   var RSVP_URL='https://xv-joy-caroline-joya.vercel.app';
   var DEADLINE=new Date('2027-01-16T00:00:00-06:00').getTime();
   var frozen=Date.now()>DEADLINE;
+  var anulada=false,qrs=null; /* qrs: null = sin seccion, [] = pendientes */
 
   var qs=new URLSearchParams(window.location.search);
   var urlPara=(qs.get('para')||'').trim();
@@ -1490,35 +1521,77 @@ function initSparkles(){
     document.getElementById('pasesWrap').style.display='block';
   }
 
-  /* campos de nombres */
-  for(var j=1;j<=pases;j++){
-    var inp=document.createElement('input');
-    inp.type='text';inp.id='rsvpName'+j;
-    inp.placeholder=T('Nombre completo del invitado '+j,'Full name of guest '+j);
-    inp.setAttribute('data-en-ph','Full name of guest '+j);
-    inp.dataset.esPh='Nombre completo del invitado '+j;
-    inp.autocomplete='name';
-    if(j===1&&urlPara)inp.value=urlPara;
-    fieldsEl.appendChild(inp);
+  /* Contador de pases: arranca en 1 y sube hasta los asignados. Un campo por
+     pase que se vaya a ocupar; lo escrito se conserva al subir y bajar. */
+  var pasesUsar=1,guardados=[];
+  var contWrap=document.createElement('div');contWrap.className='rsvp-contador-wrap';
+  contWrap.innerHTML='<p class="rsvp-contador-nota" id="rsvpContNota"></p>'
+    +'<div class="rsvp-contador">'
+    +'<button type="button" class="rsvp-contador-btn" id="rsvpMenos" aria-label="Quitar un pase">\u2212</button>'
+    +'<span class="rsvp-contador-valor" id="rsvpContValor" aria-live="polite">1</span>'
+    +'<button type="button" class="rsvp-contador-btn" id="rsvpMas" aria-label="Agregar un pase">+</button>'
+    +'</div><p class="rsvp-contador-pie" id="rsvpContPie"></p>';
+  var camposBox=document.createElement('div');
+  fieldsEl.appendChild(contWrap);fieldsEl.appendChild(camposBox);
+  var btnMenos=contWrap.querySelector('#rsvpMenos'),btnMas=contWrap.querySelector('#rsvpMas');
+
+  function pintaContador(){
+    contWrap.querySelector('#rsvpContValor').textContent=pasesUsar;
+    var cerrado=frozen||bloqueado;
+    btnMenos.disabled=cerrado||pasesUsar<=1;
+    btnMas.disabled=cerrado||pasesUsar>=pases;
+    contWrap.style.display=pases>1?'':'none';
+    contWrap.querySelector('#rsvpContNota').textContent=T(
+      'Tienes '+pases+' pases reservados. Aumenta o disminuye el n\u00famero de pases que vayas a ocupar.',
+      'You have '+pases+' passes reserved. Increase or decrease the number of passes you will use.');
+    contWrap.querySelector('#rsvpContPie').textContent=pasesUsar>=pases
+      ?T('Est\u00e1s usando todos tus pases','You are using all your passes')
+      :T(pasesUsar+' de '+pases+' pases',pasesUsar+' of '+pases+' passes');
   }
+  function renderCampos(){
+    camposBox.innerHTML='';
+    for(var j=1;j<=pasesUsar;j++){
+      var inp=document.createElement('input');
+      inp.type='text';inp.id='rsvpName'+j;
+      inp.placeholder=pasesUsar===1
+        ?T('Tu nombre completo','Your full name')
+        :T('Nombre completo del invitado '+j,'Full name of guest '+j);
+      inp.autocomplete='name';inp.maxLength=60;
+      inp.disabled=frozen||bloqueado;
+      inp.value=guardados[j-1]!==undefined?guardados[j-1]:(j===1&&urlPara?urlPara:'');
+      (function(idx,el){el.addEventListener('input',function(){guardados[idx]=el.value;});})(j-1,inp);
+      camposBox.appendChild(inp);
+    }
+  }
+  function setPasesUsar(n){
+    var nuevo=Math.min(pases,Math.max(1,n));
+    if(nuevo===pasesUsar)return;
+    for(var j=1;j<=pasesUsar;j++){var el=document.getElementById('rsvpName'+j);if(el)guardados[j-1]=el.value;}
+    pasesUsar=nuevo;pintaContador();renderCampos();setFb('','');
+  }
+  btnMenos.addEventListener('click',function(){setPasesUsar(pasesUsar-1);});
+  btnMas.addEventListener('click',function(){setPasesUsar(pasesUsar+1);});
+  pintaContador();renderCampos();
+
   function getNombres(){
     var out=[];
-    for(var j=1;j<=pases;j++){
-      var v=document.getElementById('rsvpName'+j).value.trim();
+    for(var j=1;j<=pasesUsar;j++){
+      var el=document.getElementById('rsvpName'+j);
+      var v=el?el.value.trim():'';
       if(v)out.push(v);
     }
     return out;
   }
   function setNombres(arr){
-    for(var j=1;j<=pases;j++){
-      var el=document.getElementById('rsvpName'+j);
-      el.value=(arr&&arr[j-1])?arr[j-1]:(j===1&&urlPara?urlPara:'');
-    }
+    guardados=(arr||[]).slice();
+    pasesUsar=Math.min(pases,Math.max(1,guardados.length||1));
+    pintaContador();renderCampos();
   }
   function setFb(msg,col){fb.textContent=msg;fb.style.color=col||'var(--text)';}
   function cerrarPorBloqueo(){
     bloqueado=true;
     btn.disabled=true;btnYes.disabled=true;btnNo.disabled=true;editarBtn.disabled=true;
+    pintaContador();
     setFb(T('Tu respuesta ya qued\u00f3 registrada y no se puede modificar. Si necesitas un cambio, contacta a la familia.','Your answer is already recorded and cannot be changed. Please contact the family if you need a change.'),'#8F4F59');
   }
 
@@ -1553,16 +1626,66 @@ function initSparkles(){
     setFb('','');
   });
 
+  /* ── Codigos de acceso: uno por persona confirmada ── */
+  var qrSec=document.getElementById('qrSection'),qrGrid=document.getElementById('qrGrid');
+  function pintaQrs(){
+    if(!qrSec||!qrGrid)return;
+    if(qrs===null){qrSec.style.display='none';return;}
+    qrGrid.innerHTML='';
+    if(!qrs.length||typeof QRCode==='undefined'){
+      var pp=document.createElement('p');pp.className='rsvp-qr-hint';
+      pp.textContent=T('Tus c\u00f3digos de acceso estar\u00e1n disponibles cuando se acerque el evento. Vuelve a esta p\u00e1gina m\u00e1s adelante.','Your access codes will be available closer to the event. Please come back to this page later.');
+      qrGrid.appendChild(pp);qrSec.style.display='block';return;
+    }
+    qrs.forEach(function(q){
+      var card=document.createElement('div');card.className='rsvp-qr-card';
+      var box=document.createElement('div');box.className='qr-img';
+      var cv=document.createElement('canvas');box.appendChild(cv);card.appendChild(box);
+      QRCode.toCanvas(cv,q.codigo,{width:180,margin:1,color:{dark:'#2D1B0E',light:'#FFFFFF'}},function(){});
+      var nm=document.createElement('p');nm.className='rsvp-qr-name';nm.textContent=q.nombre_persona;card.appendChild(nm);
+      if(q.mesa){var ms=document.createElement('p');ms.className='rsvp-qr-mesa';ms.textContent=T('Mesa ','Table ')+q.mesa;card.appendChild(ms);}
+      var lb=document.createElement('p');lb.className='rsvp-qr-code-lbl';lb.textContent=T('C\u00f3digo de respaldo','Backup code');card.appendChild(lb);
+      var ct=document.createElement('p');ct.className='rsvp-qr-code-txt';ct.textContent=q.codigo;card.appendChild(ct);
+      var dl=document.createElement('button');dl.type='button';dl.className='rsvp-qr-dl';dl.textContent=T('Descargar','Download');
+      dl.addEventListener('click',function(){
+        QRCode.toDataURL(q.codigo,{width:1024,margin:2,color:{dark:'#2D1B0E',light:'#FFFFFF'}},function(err,url){
+          if(err)return;
+          var a=document.createElement('a');a.href=url;
+          a.download='qr-'+q.nombre_persona.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')+'.png';
+          a.click();
+        });
+      });
+      card.appendChild(dl);qrGrid.appendChild(card);
+    });
+    qrSec.style.display='block';
+  }
+  function invitacionNoDisponible(){
+    anulada=true;bloqueado=true;qrs=null;pintaQrs();
+    btn.disabled=true;btnYes.disabled=true;btnNo.disabled=true;editarBtn.disabled=true;
+    gracias.style.display='none';bandeja.style.display='';
+    btnText.textContent=T('Invitaci\u00f3n no disponible','Invitation unavailable');
+    setFb(T('Esta invitaci\u00f3n ya no est\u00e1 disponible. Por favor contacta a la familia.','This invitation is no longer available. Please contact the family.'),'#8F4F59');
+  }
+  function sinEnlace(){
+    btn.disabled=true;
+    setFb(T('Para confirmar abre el enlace personalizado que te enviaron; ese enlace lleva tu nombre y tus pases.','To confirm, please open the personal link you were sent; it carries your name and passes.'),'#8F4F59');
+  }
+
   /* cuando el invitado cambia de idioma, lo que el JS ya escribio se repinta */
   window.refrescarRsvpIdioma=function(){
     pintaHola();
+    for(var j=1;j<=pasesUsar;j++){var el=document.getElementById('rsvpName'+j);if(el)guardados[j-1]=el.value;}
+    pintaContador();renderCampos();
     if(btn&&btnText&&!btn.disabled)btnText.textContent=respuestaGuardada
       ?T('Actualizar respuesta','Update answer')
       :T('Confirmar asistencia','Confirm attendance');
     if(gracias&&gracias.style.display!=='none'&&estado)mostrarGracias(estado,getNombres());
     if(editarBtn)editarBtn.textContent=T('Modificar mi respuesta','Change my answer');
-    if(frozen)setFb(T('El periodo de confirmaci\u00f3n cerr\u00f3 el 15 de enero de 2027.','The confirmation period closed on January 15th, 2027.'),'var(--gold)');
+    pintaQrs();
+    if(anulada)invitacionNoDisponible();
+    else if(frozen)setFb(T('El periodo de confirmaci\u00f3n cerr\u00f3 el 15 de enero de 2027.','The confirmation period closed on January 15th, 2027.'),'var(--gold)');
     else if(bloqueado)cerrarPorBloqueo();
+    else if(!urlPara)sinEnlace();
   };
 
   /* precarga */
@@ -1571,21 +1694,36 @@ function initSparkles(){
     fetch(PANEL_API+'?nombre='+encodeURIComponent(urlPara)+'&url_boda='+encodeURIComponent(RSVP_URL))
       .then(function(r){return r.json();})
       .then(function(d){
-        var inv=d&&(d.invitado||d);
-        if(inv&&inv.pases&&!isNaN(inv.pases)){/* el panel manda los pases reales */}
+        if(d&&d.ok&&!d.invitado){invitacionNoDisponible();return;}
+        var inv=d&&d.invitado;
+        if(inv&&typeof inv.pases==='number'&&inv.pases>0){
+          pases=Math.min(inv.pases,20);
+          if(pasesUsar>pases)pasesUsar=pases;
+          pintaContador();renderCampos();
+        }
+        if(d&&d.boda&&d.boda.fecha_limite_rsvp){
+          var lim=new Date(d.boda.fecha_limite_rsvp).getTime();
+          if(!isNaN(lim)){DEADLINE=lim;frozen=Date.now()>DEADLINE;}
+        }
         if(inv&&inv.estado){
           select(inv.estado);
           setNombres(inv.nombres_confirmados||[]);
           respuestaGuardada=true;
           btnText.textContent=T('Actualizar respuesta','Update answer');
           mostrarGracias(inv.estado,inv.nombres_confirmados||[]);
+          if(inv.estado==='confirmado'){qrs=d.qrs||[];pintaQrs();}
         }
         if(inv&&inv.bloqueado)cerrarPorBloqueo();
       })
       .catch(function(){})
-      .then(function(){if(!bloqueado)btn.disabled=frozen;});
+      .then(function(){
+        if(!bloqueado)btn.disabled=frozen;
+        if(frozen&&!anulada){btnYes.disabled=true;btnNo.disabled=true;editarBtn.disabled=true;
+          setFb(T('El periodo de confirmaci\u00f3n cerr\u00f3 el 15 de enero de 2027.','The confirmation period closed on January 15th, 2027.'),'var(--gold)');}
+      });
   }else{
-    btn.disabled=frozen;
+    /* sin ?para= el panel QR no puede identificar la invitacion (ya no las crea) */
+    sinEnlace();
   }
   if(frozen){
     btnYes.disabled=true;btnNo.disabled=true;
@@ -1593,32 +1731,54 @@ function initSparkles(){
   }
 
   btn.addEventListener('click',function(){
-    if(frozen)return;
+    if(frozen||anulada||bloqueado||!urlPara)return;
     if(!estado){setFb(T('Por favor elige si podr\u00e1s acompa\u00f1arnos.','Please choose whether you can join us.'),'#7B4049');return;}
     var nombres=getNombres();
     if(estado==='confirmado'&&nombres.length===0){
       setFb(T('Escribe al menos un nombre.','Please enter at least one name.'),'#7B4049');return;
+    }
+    if(estado==='confirmado'&&nombres.length<pasesUsar){
+      var faltan=pasesUsar-nombres.length;
+      setFb(T('Faltan '+faltan+' nombre'+(faltan===1?'':'s')+'. Escr\u00edbelos o baja el contador de pases si van a ser menos.',
+              faltan+' name'+(faltan===1?' is':'s are')+' missing. Fill them in or lower the pass counter if fewer people are coming.'),'#7B4049');
+      var vacio=null;
+      for(var k=1;k<=pasesUsar&&!vacio;k++){var e2=document.getElementById('rsvpName'+k);if(e2&&!e2.value.trim())vacio=e2;}
+      if(vacio)vacio.focus();
+      return;
     }
     btn.disabled=true;btnText.textContent=T('Enviando...','Sending...');
     fetch(PANEL_API,{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
-        nombre:urlPara||(nombres[0]||'Invitado'),
+        nombre:urlPara,
         url_boda:RSVP_URL,
         estado:estado,
+        pases:pases,
         pases_confirmados:(estado==='confirmado')?nombres.length:0,
         nombres_confirmados:(estado==='confirmado')?nombres:[]
       })
     })
-    .then(function(r){return r.json().catch(function(){return {};}).then(function(d){return {ok:r.ok,data:d};});})
+    .then(function(r){return r.json().catch(function(){return {};}).then(function(d){return {ok:r.ok,status:r.status,data:d};});})
     .then(function(res){
-      if(res.ok){
+      if(res.ok&&res.data&&res.data.ok){
         setFb('','');
         respuestaGuardada=true;
         btnText.textContent=T('Actualizar respuesta','Update answer');
         btn.disabled=false;
         mostrarGracias(estado,nombres);
+        if(estado==='confirmado'){
+          qrs=res.data.qrs||[];pintaQrs();
+          setTimeout(function(){qrSec.scrollIntoView({behavior:'smooth',block:'nearest'});},350);
+        }else{qrs=null;pintaQrs();}
+        return;
+      }
+      var code=(res.data&&res.data.error)||'';
+      if(res.status===404&&(code==='invitacion_no_disponible'||code==='no_match')){invitacionNoDisponible();return;}
+      if(res.status===403&&code==='rsvp_cerrado'){
+        frozen=true;btn.disabled=true;btnYes.disabled=true;btnNo.disabled=true;editarBtn.disabled=true;
+        btnText.textContent=T('Confirmar asistencia','Confirm attendance');
+        setFb(T('El periodo de confirmaci\u00f3n ya cerr\u00f3.','The confirmation period has closed.'),'var(--gold)');
         return;
       }
       btn.disabled=false;btnText.textContent=T('Confirmar asistencia','Confirm attendance');
