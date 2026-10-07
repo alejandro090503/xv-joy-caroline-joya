@@ -1684,7 +1684,7 @@ function initSparkles(){
     if(editarBtn)editarBtn.textContent=T('Modificar mi respuesta','Change my answer');
     pintaQrs();
     if(anulada)invitacionNoDisponible();
-    else if(frozen)setFb(T('El periodo de confirmaci\u00f3n cerr\u00f3 el 15 de enero de 2027.','The confirmation period closed on January 15th, 2027.'),'var(--gold)');
+    else if(frozen)setFb(T('El periodo de confirmaci\u00f3n ya cerr\u00f3.','The confirmation period has closed.'),'var(--gold)');
     else if(bloqueado)cerrarPorBloqueo();
     else if(!urlPara)sinEnlace();
   };
@@ -1697,15 +1697,17 @@ function initSparkles(){
       .then(function(d){
         if(d&&d.ok&&!d.invitado){invitacionNoDisponible();return;}
         var inv=d&&d.invitado;
-        if(inv&&typeof inv.pases==='number'&&inv.pases>0){
-          pases=Math.min(inv.pases,20);
-          if(pasesUsar>pases)pasesUsar=pases;
-          pintaPases();pintaContador();renderCampos();
-        }
+        /* la fecha que manda es la del panel (el organizador la puede ampliar) */
         if(d&&d.boda&&d.boda.fecha_limite_rsvp){
           var lim=new Date(d.boda.fecha_limite_rsvp).getTime();
           if(!isNaN(lim)){DEADLINE=lim;frozen=Date.now()>DEADLINE;}
         }
+        if(inv&&typeof inv.pases==='number'&&inv.pases>0){
+          pases=Math.min(inv.pases,20);
+          if(pasesUsar>pases)pasesUsar=pases;
+          pintaPases();
+        }
+        pintaContador();renderCampos();
         if(inv&&(inv.estado==='confirmado'||inv.estado==='declino')){
           select(inv.estado);
           setNombres(inv.nombres_confirmados||[]);
@@ -1718,17 +1720,16 @@ function initSparkles(){
       })
       .catch(function(){})
       .then(function(){
-        if(!bloqueado)btn.disabled=frozen;
-        if(frozen&&!anulada){btnYes.disabled=true;btnNo.disabled=true;editarBtn.disabled=true;
-          setFb(T('El periodo de confirmaci\u00f3n cerr\u00f3 el 15 de enero de 2027.','The confirmation period closed on January 15th, 2027.'),'var(--gold)');}
+        if(anulada||bloqueado)return;
+        btn.disabled=frozen;
+        btnYes.disabled=frozen;btnNo.disabled=frozen;editarBtn.disabled=frozen;
+        pintaContador();renderCampos();
+        if(frozen)setFb(T('El periodo de confirmaci\u00f3n ya cerr\u00f3.','The confirmation period has closed.'),'var(--gold)');
       });
   }else{
     /* sin ?para= el panel QR no puede identificar la invitacion (ya no las crea) */
     sinEnlace();
-  }
-  if(frozen){
-    btnYes.disabled=true;btnNo.disabled=true;
-    setFb(T('El periodo de confirmaci\u00f3n cerr\u00f3 el 15 de enero de 2027.','The confirmation period closed on January 15th, 2027.'),'var(--gold)');
+    if(frozen){btnYes.disabled=true;btnNo.disabled=true;}
   }
 
   btn.addEventListener('click',function(){
