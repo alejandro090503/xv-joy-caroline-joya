@@ -620,6 +620,25 @@ footer{padding:52px 20px 64px;text-align:center;}
   mask-image:linear-gradient(to right,transparent 0%,#000 16%,#000 84%,transparent 100%),linear-gradient(to bottom,transparent 0%,#000 14%,#000 86%,transparent 100%);mask-composite:intersect;
   -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 16%,#000 84%,transparent 100%),linear-gradient(to bottom,transparent 0%,#000 14%,#000 86%,transparent 100%);-webkit-mask-composite:destination-in;}
 #srsvp>*{position:relative;z-index:1;}
+/* ── Álbum de fotos (Elysium) ── */
+#salbum{position:relative;overflow:hidden;text-align:center;}
+#salbum::before{content:"";position:absolute;inset:-2px;
+  background:
+    radial-gradient(ellipse 86% 64% at 50% 50%,rgba(255,255,255,.80) 0%,rgba(255,255,255,.42) 52%,rgba(255,255,255,0) 80%),
+    linear-gradient(rgba(255,255,255,0.56),rgba(255,255,255,0.56)),
+    url('https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/xv-joy-caroline-joya/bg-marco.jpg') center/cover no-repeat;
+  opacity:1;pointer-events:none;z-index:0;
+  mask-image:linear-gradient(to right,transparent 0%,#000 16%,#000 84%,transparent 100%),linear-gradient(to bottom,transparent 0%,#000 14%,#000 86%,transparent 100%);mask-composite:intersect;
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 16%,#000 84%,transparent 100%),linear-gradient(to bottom,transparent 0%,#000 14%,#000 86%,transparent 100%);-webkit-mask-composite:destination-in;}
+#salbum>*{position:relative;z-index:1;}
+.album-text{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:19px;font-style:italic;color:#2D1B0E;line-height:1.7;margin:6px auto 26px;max-width:340px;}
+.album-qr{position:relative;display:inline-flex;flex-direction:column;align-items:center;gap:20px;}
+.album-qr-img{background:#fff;padding:12px;border-radius:18px;border:1.5px solid rgba(153,101,21,.4);box-shadow:0 8px 26px rgba(153,101,21,.12);line-height:0;}
+.album-qr-img img{width:200px;height:200px;display:block;}
+.album-qr.bloqueado .album-qr-img img{filter:blur(7px);opacity:.75;}
+.album-qr.bloqueado .btn-pink{pointer-events:none;opacity:.45;}
+.album-aviso{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:18px;font-style:italic;color:var(--rose-ink);line-height:1.7;margin:22px auto 0;max-width:320px;}
+.album-qr:not(.bloqueado) + .album-aviso{display:none;}
 
 /* el pie de cada seccion funde a blanco para que no haya cortes duros */
 .wrap section{position:relative;}
@@ -1218,6 +1237,35 @@ footer>*{position:relative;z-index:1;}
     </div>
 
     <p class="rsvp-nokids rv" data-en-html="Please confirm before <strong>January 15th, 2027</strong>.">Por favor confirma antes del <strong>15 de enero de 2027</strong>.</p>
+  </section>
+
+  <!-- ORNAMENTO -->
+  <div class="orn-wrap rv">
+    <svg viewBox="0 0 180 22" fill="none"><path d="M0,11 Q12,4 24,11 Q36,18 48,11 Q60,4 72,11" stroke="#B76E79" stroke-width="0.9" opacity="0.28" fill="none"/><path d="M108,11 Q120,4 132,11 Q144,18 156,11 Q168,4 180,11" stroke="#B76E79" stroke-width="0.9" opacity="0.28" fill="none"/><circle cx="90" cy="11" r="3.5" fill="#B76E79" opacity="0.30"/><circle cx="80" cy="11" r="1.8" fill="#B76E79" opacity="0.18"/><circle cx="100" cy="11" r="1.8" fill="#B76E79" opacity="0.18"/></svg>
+  </div>
+
+  <!-- ÁLBUM DE FOTOS (Elysium): el QR abre /album → panel-invitados.vercel.app/subir/xv-joy-caroline-joya -->
+  <section id="salbum" style="padding:30px 28px 70px;">
+    <div class="eyebrow rv" data-en="Share the Moment">Comparte el Momento</div>
+    <h2 class="sec-title rv" data-en="Photo album">&Aacute;lbum de fotos</h2>
+    <p class="album-text rv" data-en="Help us keep every moment: upload here the photos you take during the event.">Ay&uacute;danos a guardar cada momento: sube aqu&iacute; las fotos que tomes durante el evento.</p>
+    <div class="album-qr rv" data-fecha="2027-02-20">
+      <div class="album-qr-img">
+        <img src="qr-album.png" alt="C&oacute;digo QR del &aacute;lbum de fotos" data-en-alt="Photo album QR code" width="200" height="200" loading="lazy">
+      </div>
+      <a class="btn-pink album-btn" href="/album" data-en="Upload my photos">Subir mis fotos</a>
+    </div>
+    <p class="album-aviso rv" data-en="The photo album opens on the day of the event. Come back here and upload all your photos from the night ✨">El álbum de fotos se habilita el día del evento. Regresa aquí y sube todas tus fotos de la noche ✨</p>
+    <script>
+      /* Se desbloquea solo el día del evento (la base además rechaza fotos antes de tiempo) */
+      (function(){
+        var box = document.querySelector('.album-qr');
+        if(!box) return;
+        var p = box.dataset.fecha.split('-');
+        var abre = new Date(+p[0], +p[1] - 1, +p[2], 0, 0, 0);
+        if(new Date() < abre) box.classList.add('bloqueado');
+      })();
+    </script>
   </section>
 
   <!-- FOOTER -->
